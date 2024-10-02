@@ -7,16 +7,13 @@ import (
     "net"
     "os"
     "practica1/com"
-    "strconv"
-    "time"
-    "golang.org/x/crypto/ssh"
 )
 
 var availableWorkers int
 
 func processRequest(tasks <-chan com.Task, workerAddr string) {
     for task := range tasks {
-        log.Println("Ha llegado una conexón al master")
+        log.Println("Ha llegado una conexón al master para conectarse")
         
         workerConn, err := net.Dial("tcp", workerAddr)
         if err != nil {
@@ -49,7 +46,7 @@ func processRequest(tasks <-chan com.Task, workerAddr string) {
         if err != nil {
             log.Println("Error encoding reply to client:", err)
         }
-
+        log.Println("Ha mandado una respuesta")
         workerConn.Close()
         task.Conn.Close()
     }
@@ -75,14 +72,13 @@ func loadWorkers(filename string) ([]string, error) {
 
 func main() {
     args := os.Args
-    if len(args) != 4 {
+    if len(args) != 3 {
         log.Println("Error: usage: go run server.go ip:port workers.txt")
         os.Exit(1)
     }
     endpoint := args[1]
     workersFile := args[2]
-	poolSize, err := strconv.Atoi(args[2])
-	
+
     workers, err := loadWorkers(workersFile)
     if err != nil {
         log.Fatalf("Error loading workers: %v", err)
@@ -91,23 +87,11 @@ func main() {
         log.Fatalf("No workers found in %s", workersFile)
     }
 
-    availableWorkers = len(workers)
-    //FOR DE SSH
-    for i:=0; i < availableWorkers; i++ {
-        ip := workers[i]
 
+    tasks := make(chan com.Task)
+    for i:=0; i < len(workers); i++ {
+        go processRequest(tasks, workers[i])
     }
-
-
-
-
-	
-	tasks := make(chan com.Task)
-	for i := 0; i < len(workers); i++ {
-		workerAddr := workers[i]
-		go processRequest(task.conn, workerAddr)
-	}
-	
 
     listener, err := net.Listen("tcp", endpoint)
     com.CheckError(err)
@@ -115,7 +99,6 @@ func main() {
     log.SetFlags(log.Lshortfile | log.Lmicroseconds)
 
     log.Println("***** Listening for new connection in endpoint ", endpoint)
-    workerIndex := 0
     for {
         conn, err := listener.Accept()
         if err != nil {
@@ -126,7 +109,7 @@ func main() {
 		log.Println("Ha llegado una conexón al master")
     	var request com.Request
     	decoder := gob.NewDecoder(conn)
-    	err := decoder.Decode(&request)
+    	err = decoder.Decode(&request)
     	com.CheckError(err)
 		tasks <- com.Task{Conn: conn, Request: request}
     }

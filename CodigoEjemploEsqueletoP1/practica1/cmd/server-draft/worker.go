@@ -48,6 +48,7 @@ func worker(conn net.Conn) {
     if err != nil {
         log.Println("Error encoding reply:", err)
     }
+    log.Println("Ha mandado una respuesta")
 }
 
 func main() {
