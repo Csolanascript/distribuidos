@@ -11,9 +11,13 @@ import (
 
 var availableWorkers int
 
-func processRequest(tasks <-chan com.Task, workerAddr string) {
+func processRequest(tasks <-chan com.Task, workerAddr string, id int) {
     for task := range tasks {
-        log.Println("Ha llegado una conexón al master para conectarse")
+        if task.ID != id {
+            log.Println("Se la mando al otro worker",id)
+            continue
+        }
+        log.Println("Ha llegado una conexón al master para conectarse",id)
         
         workerConn, err := net.Dial("tcp", workerAddr)
         if err != nil {
@@ -78,19 +82,20 @@ func main() {
     }
     endpoint := args[1]
     workersFile := args[2]
-
+    i := 0
     workers, err := loadWorkers(workersFile)
     if err != nil {
         log.Fatalf("Error loading workers: %v", err)
     }
-    if len(workers) == 0 {
+    longitud := len(workers)
+    if longitud == 0 {
         log.Fatalf("No workers found in %s", workersFile)
     }
 
 
     tasks := make(chan com.Task)
-    for i:=0; i < len(workers); i++ {
-        go processRequest(tasks, workers[i])
+    for i:=0; i < longitud; i++ {
+        go processRequest(tasks, workers[i], i)
     }
 
     listener, err := net.Listen("tcp", endpoint)
@@ -111,6 +116,8 @@ func main() {
     	decoder := gob.NewDecoder(conn)
     	err = decoder.Decode(&request)
     	com.CheckError(err)
-		tasks <- com.Task{Conn: conn, Request: request}
+		tasks <- com.Task{Conn: conn, Request: request, ID: i}
+        i = (i + 1) % longitud
+
     }
 }
