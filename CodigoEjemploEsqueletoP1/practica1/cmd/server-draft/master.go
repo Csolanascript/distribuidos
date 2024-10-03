@@ -11,10 +11,12 @@ import (
 	"strings"
 )
 
+var availableWorkers int
+
 func processRequest(tasks <-chan com.Task, workerAddr string) {
 	i := 0
 	for task := range tasks {
-		log.Println("Ha llegado una conexón al master para conectarse")
+		log.Println("New connection arrived to the master procces request")
 
 		workerConn, err := net.Dial("tcp", workerAddr)
 		if err != nil {
@@ -47,7 +49,7 @@ func processRequest(tasks <-chan com.Task, workerAddr string) {
 		if err != nil {
 			log.Println("Error encoding reply to client:", err)
 		}
-		log.Println("Ha mandado una respuesta")
+		log.Println("Response sent to the client")
 		workerConn.Close()
 		task.Conn.Close()
 		i++
@@ -137,7 +139,7 @@ func main() {
 			continue
 		}
 
-		log.Println("Ha llegado una conexón al master")
+		log.Println("New connection arrived to the master")
 		var request com.Request
 		decoder := gob.NewDecoder(conn)
 		err = decoder.Decode(&request)

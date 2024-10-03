@@ -1,11 +1,11 @@
 package main
 
 import (
-    "encoding/gob"
-    "log"
-    "net"
-    "os"
-    "practica1/com"
+	"encoding/gob"
+	"log"
+	"net"
+	"os"
+	"practica1/com"
 )
 
 // PRE: verdad = !foundDivisor
@@ -20,8 +20,7 @@ func isPrime(n int) (foundDivisor bool) {
 
 // PRE: interval.A < interval.B
 // POST: FindPrimes devuelve todos los números primos comprendidos en el
-//
-//	intervalo [interval.A, interval.B]
+// intervalo [interval.A, interval.B]
 func findPrimes(interval com.TPInterval) (primes []int) {
 	for i := interval.Min; i <= interval.Max; i++ {
 		if isPrime(i) {
@@ -31,8 +30,9 @@ func findPrimes(interval com.TPInterval) (primes []int) {
 	return primes
 }
 
-func processRequest(conn net.Conn){
-	log.Println("Ha llegado una conexón")
+// Procesa la solicitud recibida en la conexión
+func processRequest(conn net.Conn) {
+	log.Println("A connection has arrived to the goroutines pool")
 	defer conn.Close() // Asegura que la conexión se cierre al finalizar la función
 	var request com.Request
 	decoder := gob.NewDecoder(conn)
@@ -44,12 +44,9 @@ func processRequest(conn net.Conn){
 	encoder.Encode(&reply)
 }
 
-
-
-
 func main() {
 	args := os.Args
-	if len(args) != 2 {
+	if len(args) != 2) {
 		log.Println("Error: endpoint missing: go run server.go ip:port")
 		os.Exit(1)
 	}
@@ -59,12 +56,11 @@ func main() {
 
 	log.SetFlags(log.Lshortfile | log.Lmicroseconds)
 
-	
 	log.Println("***** Listening for new connection in endpoint ", endpoint)
 	for {
 		conn, err := listener.Accept()
-		defer conn.Close()
+		defer conn.Close() // Asegura que la conexión se cierre al finalizar la función
 		com.CheckError(err)
-		go processRequest(conn)
+		go processRequest(conn) // Procesa la solicitud en una nueva goroutine
 	}
 }
