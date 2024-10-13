@@ -8,6 +8,7 @@ import (
 type Request struct {
 	Clock int
 	Pid   int
+	op    int
 }
 
 type Reply struct{}
@@ -22,6 +23,8 @@ type RASharedDB struct {
 	done      chan bool
 	chrep     chan bool
 	Mutex     *sync.Mutex // Mutex para proteger concurrencia sobre las variables
+	op        int
+	op_matrix [][]bool
 }
 
 // Constructor para inicializar la estructura RASharedDB
@@ -40,6 +43,10 @@ func New(me int, usersFile string) *RASharedDB {
 		done:      make(chan bool),
 		chrep:     make(chan bool),
 		Mutex:     &sync.Mutex{},
+		op:        0,
+		op_matrix: [][]bool{
+			{true, false, false, false},
+		},
 	}
 	return ra
 }
@@ -56,7 +63,7 @@ func (ra *RASharedDB) PreProtocol() {
 	// Envía una solicitud a todos los procesos
 	for i := 0; i < len(ra.ms.Peers()); i++ {
 		if i != ra.ms.Me()-1 { // No se envía a sí mismo
-			req := Request{Clock: ra.OurSeqNum, Pid: ra.ms.Me()}
+			req := Request{Clock: ra.OurSeqNum, Pid: ra.ms.Me(), op: ra.op}
 			ra.ms.Send(i+1, req)
 		}
 	}
@@ -94,9 +101,10 @@ func (ra *RASharedDB) HandleRequest(req Request) {
 	}
 
 	// Determina si debe enviar un Reply de inmediato o diferirlo
-	if ra.ReqCS && (ra.OurSeqNum < req.Clock || (ra.OurSeqNum == req.Clock && ra.ms.Me() < req.Pid)) {
+	if (ra.ReqCS && (ra.OurSeqNum < req.Clock || (ra.OurSeqNum == req.Clock && ra.ms.Me() < req.Pid))) || !ra.op_matrix[ra.op][req.op] {
 		// Diferir respuesta
 		ra.RepDefd[req.Pid-1] = true
+
 	} else {
 		// Enviar respuesta inmediata
 		reply := Reply{}
@@ -125,16 +133,21 @@ func (ra *RASharedDB) Stop() {
 // Función que escucha y maneja mensajes recibidos
 func (ra *RASharedDB) Listen() {
 	for {
+		// Verifica si el canal `ra.done` ha recibido una señal para detenerse
 		select {
-		case msg := ra.ms.Receive(): // Recibe el mensaje desde la función
+		case <-ra.done:
+			return
+		default:
+			// Recibe el mensaje desde la función Receive
+			msg := ra.ms.Receive()
+
+			// Maneja el tipo de mensaje recibido
 			switch m := msg.(type) {
 			case Request:
 				ra.HandleRequest(m)
 			case Reply:
 				ra.HandleReply()
 			}
-		case <-ra.done:
-			return
 		}
 	}
 }
