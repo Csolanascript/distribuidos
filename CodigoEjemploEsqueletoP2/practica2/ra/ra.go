@@ -1,62 +1,153 @@
-/*
-* AUTOR: Rafael Tolosana Calasanz
-* ASIGNATURA: 30221 Sistemas Distribuidos del Grado en Ingeniería Informática
-*			Escuela de Ingeniería y Arquitectura - Universidad de Zaragoza
-* FECHA: septiembre de 2021
-* FICHERO: ricart-agrawala.go
-* DESCRIPCIÓN: Implementación del algoritmo de Ricart-Agrawala Generalizado en Go
-*/
 package ra
 
 import (
-    "ms"
-    "sync"
+	"practica2/ms"
+	"sync"
 )
 
-type Request struct{
-    Clock   int
-    Pid     int
+type Request struct {
+	Clock int
+	Pid   int
+	op    int
 }
 
 type Reply struct{}
 
 type RASharedDB struct {
-    OurSeqNum   int
-    HigSeqNum   int
-    OutRepCnt   int
-    ReqCS       boolean
-    RepDefd     bool[]
-    ms          *MessageSystem
-    done        chan bool
-    chrep       chan bool
-    Mutex       sync.Mutex // mutex para proteger concurrencia sobre las variables
-    // TODO: completar
+	OurSeqNum int
+	HigSeqNum int
+	OutRepCnt int
+	ReqCS     bool
+	RepDefd   []bool
+	ms        *ms.MessageSystem
+	done      chan bool
+	chrep     chan bool
+	Mutex     *sync.Mutex // Mutex para proteger concurrencia sobre las variables
+	op        int
+	op_matrix [][]bool
 }
 
+// Constructor para inicializar la estructura RASharedDB
+func New(me int, usersFile string) *RASharedDB {
+	messageTypes := []ms.Message{Request{}, Reply{}}
+	msgs := ms.New(me, usersFile, messageTypes)
+	numProcesses := len(msgs.Peers()) // Asumimos que la cantidad de procesos es igual al número de peers
 
-func New(me int, usersFile string) (*RASharedDB) {
-    messageTypes := []Message{Request, Reply}
-    msgs = ms.New(me, usersFile string, messageTypes)
-    ra := RASharedDB{0, 0, 0, false, []int{}, &msgs,  make(chan bool),  make(chan bool), &sync.Mutex{}}
-    // TODO completar
-    return &ra
+	ra := &RASharedDB{
+		OurSeqNum: 0,
+		HigSeqNum: 0,
+		OutRepCnt: 0,
+		ReqCS:     false,
+		RepDefd:   make([]bool, numProcesses),
+		ms:        &msgs,
+		done:      make(chan bool),
+		chrep:     make(chan bool),
+		Mutex:     &sync.Mutex{},
+		op:        0,
+		op_matrix: [][]bool{
+			{true, false, false, false},
+		},
+	}
+	return ra
 }
 
-//Pre: Verdad
-//Post: Realiza  el  PreProtocol  para el  algoritmo de
-//      Ricart-Agrawala Generalizado
-func (ra *RASharedDB) PreProtocol(){
-    // TODO completar
+// PreProtocol: Realiza el PreProtocol del algoritmo Ricart-Agrawala Generalizado
+func (ra *RASharedDB) PreProtocol() {
+	ra.Mutex.Lock()
+
+	// Incrementa el número de secuencia y marca la intención de entrar en la sección crítica
+	ra.OurSeqNum = ra.HigSeqNum + 1
+	ra.ReqCS = true
+	ra.OutRepCnt = 0
+
+	// Envía una solicitud a todos los procesos
+	for i := 0; i < len(ra.ms.Peers()); i++ {
+		if i != ra.ms.Me()-1 { // No se envía a sí mismo
+			req := Request{Clock: ra.OurSeqNum, Pid: ra.ms.Me(), op: ra.op}
+			ra.ms.Send(i+1, req)
+		}
+	}
+	ra.Mutex.Unlock()
+
+	// Espera hasta recibir todas las respuestas
+	for ra.OutRepCnt < len(ra.ms.Peers())-1 {
+		<-ra.chrep
+	}
 }
 
-//Pre: Verdad
-//Post: Realiza  el  PostProtocol  para el  algoritmo de
-//      Ricart-Agrawala Generalizado
-func (ra *RASharedDB) PostProtocol(){
-    // TODO completar
+// PostProtocol: Realiza el PostProtocol del algoritmo Ricart-Agrawala Generalizado
+func (ra *RASharedDB) PostProtocol() {
+	ra.Mutex.Lock()
+	ra.ReqCS = false
+
+	// Envía respuestas diferidas
+	for i := 0; i < len(ra.ms.Peers()); i++ {
+		if ra.RepDefd[i] {
+			reply := Reply{}
+			ra.ms.Send(i+1, reply)
+			ra.RepDefd[i] = false
+		}
+	}
+	ra.Mutex.Unlock()
 }
 
-func (ra *RASharedDB) Stop(){
-    ra.ms.Stop()
-    ra.done <- true
+// Manejador de solicitudes entrantes
+func (ra *RASharedDB) HandleRequest(req Request) {
+	ra.Mutex.Lock()
+
+	// Actualiza el número de secuencia más alto conocido
+	if req.Clock > ra.HigSeqNum {
+		ra.HigSeqNum = req.Clock
+	}
+
+	// Determina si debe enviar un Reply de inmediato o diferirlo
+	if (ra.ReqCS && (ra.OurSeqNum < req.Clock || (ra.OurSeqNum == req.Clock && ra.ms.Me() < req.Pid))) || !ra.op_matrix[ra.op][req.op] {
+		// Diferir respuesta
+		ra.RepDefd[req.Pid-1] = true
+
+	} else {
+		// Enviar respuesta inmediata
+		reply := Reply{}
+		ra.ms.Send(req.Pid, reply)
+	}
+
+	ra.Mutex.Unlock()
+}
+
+// Manejador de respuestas entrantes
+func (ra *RASharedDB) HandleReply() {
+	ra.Mutex.Lock()
+	ra.OutRepCnt++
+	ra.Mutex.Unlock()
+
+	// Señaliza que ha recibido una respuesta
+	ra.chrep <- true
+}
+
+// Función para detener el sistema
+func (ra *RASharedDB) Stop() {
+	ra.ms.Stop()
+	ra.done <- true
+}
+
+// Función que escucha y maneja mensajes recibidos
+func (ra *RASharedDB) Listen() {
+	for {
+		// Verifica si el canal `ra.done` ha recibido una señal para detenerse
+		select {
+		case <-ra.done:
+			return
+		default:
+			// Recibe el mensaje desde la función Receive
+			msg := ra.ms.Receive()
+
+			// Maneja el tipo de mensaje recibido
+			switch m := msg.(type) {
+			case Request:
+				ra.HandleRequest(m)
+			case Reply:
+				ra.HandleReply()
+			}
+		}
+	}
 }
