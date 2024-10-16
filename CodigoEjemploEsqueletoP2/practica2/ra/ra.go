@@ -6,13 +6,13 @@ import (
 )
 
 type Request struct {
-	Clock []int
-	Pid   int
-	SeqNum int 
-	op    int
+	Clock  []int
+	Pid    int
+	SeqNum int
+	op     int
 }
 
-type Reply struct{
+type Reply struct {
 	Clock []int
 }
 
@@ -26,19 +26,17 @@ type RASharedDB struct {
 	done      chan bool
 	chrep     chan bool
 	Mutex     *sync.Mutex // Mutex para proteger concurrencia sobre las variables
-	op int
+	op        int
 	op_matrix [][]bool
-	Clock []int
+	Clock     []int
 }
-
-
 
 // Constructor para inicializar la estructura RASharedDB
 func New(me int, usersFile string, operacion int) *RASharedDB {
 	messageTypes := []ms.Message{Request{}, Reply{}}
 	msgs := ms.New(me, usersFile, messageTypes)
 	numProcesses := len(msgs.Peers()) // Asumimos que la cantidad de procesos es igual al número de peers
-	Aux := make([]int,len(msgs.Peers()))
+	Aux := make([]int, len(msgs.Peers()))
 	for i := 0; i < len(msgs.Peers()); i++ {
 		Aux[i] = 0
 	}
@@ -52,12 +50,12 @@ func New(me int, usersFile string, operacion int) *RASharedDB {
 		done:      make(chan bool),
 		chrep:     make(chan bool),
 		Mutex:     &sync.Mutex{},
-		op: operacion,
+		op:        operacion,
 		op_matrix: [][]bool{
-			{true, false,}, 
+			{true, false},
 			{false, false},
 		},
-		Clock: Aux
+		Clock: Aux,
 	}
 	return ra
 }
@@ -104,32 +102,31 @@ func (ra *RASharedDB) PostProtocol() {
 }
 
 // Comprueba que un vector sea estrictamente menor que otro
-func vectormenor (v1 []int, v2 []int) bool {
-	for i:=0; i < len(v1); i++ {
-		if(v1[i] >= v2[i]) {
+func vectormenor(v1 []int, v2 []int) bool {
+	for i := 0; i < len(v1); i++ {
+		if v1[i] >= v2[i] {
 			return false
 		}
 	}
-	return true;
+	return true
 }
 
 // Comprueba que un vector sea estrictamente mayor que otro
-func vectormayor (v1 []int, v2 []int) bool {
-	for i:=0; i < len(v1); i++ {
-		if(v1[i] <= v2[i]) {
+func vectormayor(v1 []int, v2 []int) bool {
+	for i := 0; i < len(v1); i++ {
+		if v1[i] <= v2[i] {
 			return false
 		}
 	}
-	return true;
+	return true
 }
 
 // Manejador de solicitudes entrantes
 func (ra *RASharedDB) HandleRequest(req Request) {
 	ra.Mutex.Lock()
 
-
 	// Determina si debe enviar un Reply de inmediato o diferirlo
-	if (ra.ReqCS && ((vectormenor(ra.Clock, req.Clock) || (!vectormenor(ra.Clock, req.Clock) && !vectormayor(ra.Clock, req.Clock) && ra.HigSeqNum < req.SeqNum)) || !ra.op_matrix[ra.op][req.op])) {
+	if ra.ReqCS && ((vectormenor(ra.Clock, req.Clock) || (!vectormenor(ra.Clock, req.Clock) && !vectormayor(ra.Clock, req.Clock) && ra.HigSeqNum < req.SeqNum)) || !ra.op_matrix[ra.op][req.op]) {
 		// Diferir respuesta
 		ra.RepDefd[req.Pid-1] = true
 

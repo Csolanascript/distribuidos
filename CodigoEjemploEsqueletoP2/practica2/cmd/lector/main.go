@@ -4,12 +4,13 @@ import (
 	"fmt"
 	"os"
 	"practica2/ra"
+	"strconv"
 	"time"
 )
 
 func Lector(processID int) {
-	raInstance := ra.New(processID, "lectores.txt", 0)
-	go raInstance.Listen(raInstance)
+	raInstance := ra.New(processID, "../users.txt", 0)
+	go raInstance.Listen()
 	for {
 		// Fase de preprotocolo: solicitar acceso a la sección crítica (lectura)
 		fmt.Printf("Lector %d solicitando acceso a la sección crítica para leer...\n", processID)
@@ -17,7 +18,7 @@ func Lector(processID int) {
 
 		// Sección crítica: lectura del archivo compartido
 		fmt.Printf("Lector %d accede a la sección crítica para leer...\n", processID)
-		content := LeerFichero("archivo_compartido.txt")
+		content := LeerFichero("../archivo_compartido.txt")
 		fmt.Printf("Lector %d leyó: %s\n", processID, content)
 
 		// Fase de postprotocolo: liberar la sección crítica
@@ -39,31 +40,17 @@ func LeerFichero(filename string) string {
 	return string(data)
 }
 
-// ContarLineas cuenta el número de líneas en el archivo especificado sin manejar errores explícitamente
-func ContarLineas(filename string) int {
-	file, err := os.Open(filename)
-	if err != nil {
-		return 0
-	}
-	defer file.Close()
-
-	scanner := bufio.NewScanner(file)
-	lineCount := 0
-	for scanner.Scan() {
-		lineCount++
-	}
-
-	return lineCount
-}
-
 func main() {
-	// Crear instancia del algoritmo Ricart-Agrawala
-	int NLectores := ContarLineas("lectores.txt")
-	int NEscritores := ContarLineas("../escritor/escritores.txt")
-	for i := Nescritores; i <= Nlectores + Nescritores; i++ {  // Crear NLectores lectores con IDs diferentes
-		go Lector(i)
+	if len(os.Args) < 2 {
+		fmt.Println("Uso: escritor <writerID>")
+		return
 	}
 
-	while(1)
-}
+	writerID, err := strconv.Atoi(os.Args[1])
+	if err != nil {
+		fmt.Printf("Error: writerID debe ser un número entero. %v\n", err)
+		return
+	}
 
+	Lector(writerID)
+}
