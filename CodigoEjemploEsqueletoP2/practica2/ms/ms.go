@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"net"
 	"os"
+	"time"
 )
 
 type Message interface{}
@@ -63,10 +64,12 @@ func parsePeers(path string) (lines []string) {
 func (ms *MessageSystem) Send(pid int, msg Message) {
 	// Establecer la conexión TCP
 	conn, err := net.Dial("tcp", ms.peers[pid-1])
-	if err != nil {
+	for err != nil {
 		// Manejo del error de conexión
 		fmt.Fprintf(os.Stderr, "Error al conectar con el proceso %d: %s\n", pid, err.Error())
-		return
+		err = nil
+		time.Sleep(time.Second * 3)
+		conn, err = net.Dial("tcp", ms.peers[pid-1])
 	}
 	defer conn.Close()
 

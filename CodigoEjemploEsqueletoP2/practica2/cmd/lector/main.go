@@ -12,6 +12,7 @@ func Lector(processID int) {
 	raInstance := ra.New(processID, "../users.txt", 0)
 	go raInstance.Listen()
 	for {
+
 		// Fase de preprotocolo: solicitar acceso a la sección crítica (lectura)
 		fmt.Printf("Lector %d solicitando acceso a la sección crítica para leer...\n", processID)
 		raInstance.PreProtocol()
@@ -20,7 +21,7 @@ func Lector(processID int) {
 		fmt.Printf("Lector %d accede a la sección crítica para leer...\n", processID)
 		content := LeerFichero("../archivo_compartido.txt")
 		fmt.Printf("Lector %d leyó: %s\n", processID, content)
-
+		time.Sleep(time.Second * 2)
 		// Fase de postprotocolo: liberar la sección crítica
 		raInstance.PostProtocol()
 		fmt.Printf("Lector %d ha liberado la sección crítica\n", processID)
