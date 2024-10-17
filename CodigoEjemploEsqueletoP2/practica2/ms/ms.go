@@ -76,19 +76,10 @@ func (ms *MessageSystem) Send(pid int, msg Message) {
 	// Codificar y enviar el mensaje
 	encoder := gob.NewEncoder(conn)
 	err = encoder.Encode(&msg)
-	if err != nil {
-		// Manejo del error al codificar el mensaje
-		fmt.Fprintf(os.Stderr, "Error al codificar mensaje para el proceso %d: %s\n", pid, err.Error())
-		return
-	}
-
+	checkError(err)
 	// Cerrar la conexión (el defer conn.Close() ya se encargará de cerrar la conexión)
 	err = conn.Close() // Esto es opcional, ya que `defer conn.Close()` lo cerrará de todas maneras
-	if err != nil {
-		// Manejo del error al cerrar la conexión
-		fmt.Fprintf(os.Stderr, "Error al cerrar la conexión con el proceso %d: %s\n", pid, err.Error())
-		return
-	}
+	checkError(err)
 }
 
 // Pre: True
@@ -122,11 +113,7 @@ func New(whoIam int, usersFile string, messageTypes []Message) (ms MessageSystem
 
 	go func() {
 		listener, err := net.Listen("tcp", ms.peers[ms.me-1])
-		if err != nil {
-			// Manejo del error al abrir el listener
-			fmt.Fprintf(os.Stderr, "Error al iniciar listener en %s: %s\n", ms.peers[ms.me-1], err.Error())
-			return
-		}
+		checkError(err)
 		fmt.Println("Process listening at " + ms.peers[ms.me-1])
 		defer close(ms.mbox)
 
@@ -136,21 +123,12 @@ func New(whoIam int, usersFile string, messageTypes []Message) (ms MessageSystem
 				return
 			default:
 				conn, err := listener.Accept()
-				if err != nil {
-					// Manejo del error al aceptar la conexión
-					fmt.Fprintf(os.Stderr, "Error al aceptar conexión: %s\n", err.Error())
-					continue
-				}
+				checkError(err)
 
 				decoder := gob.NewDecoder(conn)
 				var msg Message
 				err = decoder.Decode(&msg)
-				if err != nil {
-					// Manejo del error al decodificar el mensaje
-					fmt.Fprintf(os.Stderr, "Error al decodificar el mensaje: %s\n", err.Error())
-					conn.Close() // Asegúrate de cerrar la conexión incluso si hay un error
-					continue
-				}
+				checkError(err)
 
 				conn.Close()   // Cierra la conexión normalmente
 				ms.mbox <- msg // Enviar el mensaje al canal mbox

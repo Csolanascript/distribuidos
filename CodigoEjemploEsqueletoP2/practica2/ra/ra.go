@@ -136,7 +136,7 @@ func (ra *RASharedDB) HandleRequest(req Request) {
 	ra.Clock[req.Pid-1] = req.Clock[req.Pid-1]
 	fmt.Println("Ha llegado una solicitud de sc")
 	// Determina si debe enviar un Reply de inmediato o diferirlo
-	if ra.ReqCS && ((vectormenor(ra.Clock, req.Clock) || (!vectormenor(ra.Clock, req.Clock) && !vectormayor(ra.Clock, req.Clock) && ra.HigSeqNum < req.SeqNum)) && !ra.op_matrix[ra.op][req.op]) {
+	if ra.ReqCS && ((vectormenor(ra.Clock, req.Clock) || (!vectormenor(ra.Clock, req.Clock) && !vectormayor(ra.Clock, req.Clock) && ra.ms.Me() < req.Pid)) && !ra.op_matrix[ra.op][req.op]) {
 		fmt.Println(ra.op_matrix[ra.op][req.op])
 		// Diferir respuesta
 		ra.RepDefd[req.Pid-1] = true
