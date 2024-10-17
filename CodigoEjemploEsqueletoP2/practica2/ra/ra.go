@@ -7,10 +7,9 @@ import (
 )
 
 type Request struct {
-	Clock  []int
-	Pid    int
-	SeqNum int
-	op     int
+	Clock []int
+	Pid   int
+	op    int
 }
 
 type Reply struct {
@@ -18,8 +17,6 @@ type Reply struct {
 }
 
 type RASharedDB struct {
-	OurSeqNum int
-	HigSeqNum int
 	OutRepCnt int
 	ReqCS     bool
 	RepDefd   []bool
@@ -43,8 +40,6 @@ func New(me int, usersFile string, operacion int) *RASharedDB {
 		Aux[i] = 0
 	}
 	ra := &RASharedDB{
-		OurSeqNum: 0,
-		HigSeqNum: 0,
 		OutRepCnt: 0,
 		ReqCS:     false,
 		RepDefd:   make([]bool, numProcesses),
@@ -67,16 +62,13 @@ func New(me int, usersFile string, operacion int) *RASharedDB {
 func (ra *RASharedDB) PreProtocol() {
 	ra.Mutex.Lock()
 	fmt.Println("Pide permiso para entrar en la sección crítica")
-	// Incrementa el número de secuencia y marca la intención de entrar en la sección crítica
-	ra.OurSeqNum = ra.HigSeqNum + 1
 	ra.ReqCS = true
 	ra.OutRepCnt = 0
-	ra.Clock[ra.ms.Me()-1]++
 
 	// Envía una solicitud a todos los procesos
 	for i := 0; i < len(ra.ms.Peers()); i++ {
 		if i != ra.ms.Me()-1 { // No se envía a sí mismo
-			req := Request{Clock: ra.Clock, Pid: ra.ms.Me(), SeqNum: ra.OurSeqNum, op: ra.op}
+			req := Request{Clock: ra.Clock, Pid: ra.ms.Me(), op: ra.op}
 			ra.ms.Send(i+1, req)
 
 		}
@@ -133,7 +125,7 @@ func vectormayor(v1 []int, v2 []int) bool {
 func (ra *RASharedDB) HandleRequest(req Request) {
 	ra.Mutex.Lock()
 	defer ra.Mutex.Unlock()
-	ra.Clock[req.Pid-1] = req.Clock[req.Pid-1]
+
 	fmt.Println("Ha llegado una solicitud de sc")
 	// Determina si debe enviar un Reply de inmediato o diferirlo
 	if ra.ReqCS && ((vectormenor(ra.Clock, req.Clock) || (!vectormenor(ra.Clock, req.Clock) && !vectormayor(ra.Clock, req.Clock) && ra.ms.Me() < req.Pid)) && !ra.op_matrix[ra.op][req.op]) {
@@ -148,10 +140,11 @@ func (ra *RASharedDB) HandleRequest(req Request) {
 		ra.ms.Send(req.Pid, reply)
 		fmt.Println("Se ha enviado la respuesta")
 	}
-
-	// Actualiza el número de secuencia más alto conocido
-	if req.SeqNum > ra.HigSeqNum {
-		ra.HigSeqNum = req.SeqNum
+	ra.Clock[ra.ms.Me()-1]++
+	for i := 0; i < len(ra.Clock); i++ {
+		if req.Clock[i] > ra.Clock[i] {
+			ra.Clock[i] = req.Clock[i]
+		}
 	}
 
 }

@@ -19,7 +19,7 @@ func Lector(processID int) {
 
 		// Sección crítica: lectura del archivo compartido
 		fmt.Printf("Lector %d accede a la sección crítica para leer...\n", processID)
-		content := LeerFichero("../archivo_compartido.txt")
+		content := LeerFichero(fmt.Sprintf("../fichero_compartido_%d.txt", processID))
 		fmt.Printf("Lector %d leyó: %s\n", processID, content)
 		time.Sleep(time.Second * 2)
 		// Fase de postprotocolo: liberar la sección crítica
