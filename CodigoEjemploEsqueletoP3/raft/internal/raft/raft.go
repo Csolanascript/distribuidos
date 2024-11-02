@@ -46,7 +46,7 @@ const (
 	kEnableDebugLogs = true
 
 	// Poner a true para logear a stdout en lugar de a fichero
-	kLogToStdout = false
+	kLogToStdout = true
 
 	// Cambiar esto para salida de logs en un directorio diferente
 	kLogOutputDir = "./logs_raft/"
@@ -56,6 +56,7 @@ type TipoOperacion struct {
 	Operacion string // La operaciones posibles son "leer" y "escribir"
 	Clave     string
 	Valor     string // en el caso de la lectura Valor = ""
+	Mandato	  int
 }
 
 // A medida que el nodo Raft conoce las operaciones de las  entradas de registro
@@ -79,7 +80,19 @@ type NodoRaft struct {
 	Logger *log.Logger
 
 	// Vuestros datos aqui.
+	MandatoActual int
+	HaVotadoA     int
+	Log           []TipoOperacion
 
+	UltimoIndiceLog int // NO SE SI SE TIENE QUE HACER
+
+	//Indices
+	IndiceMayorComprometido int
+	IndiceMayorAplicado     int
+
+	//para el lider
+	SiguienteIndice      []int // SiguienteIndice[0] = Siguiente entrada que se mandará al nodo 0
+	IndiceUltimoConocido []int // IndiceUltimoConocido[0] = Ultima entrada que el lider sabe que le ha llegado al nodo 0
 	// mirar figura 2 para descripción del estado que debe mantenre un nodo Raft
 }
 
@@ -132,6 +145,12 @@ func NuevoNodo(nodos []rpctimeout.HostPort, yo int,
 	}
 
 	// Añadir codigo de inicialización
+	nr.HaVotadoA = -1
+	nr.MandatoActual = 0
+	nr.IndiceMayorComprometido = 0
+	nr.IndiceMayorAplicado = 0
+
+	//FALTA INICIALIZAR LAS DE LIDER, HAY QUE CONFIRMAR COMO HACERLO
 
 	return nr
 }
@@ -157,7 +176,8 @@ func (nr *NodoRaft) obtenerEstado() (int, int, bool, int) {
 	var esLider bool
 	var idLider int = nr.IdLider
 
-	// Vuestro codigo aqui
+	mandato = nr.MandatoActual
+	esLider = (idLider == yo)
 
 	return yo, mandato, esLider, idLider
 }
@@ -245,6 +265,11 @@ func (nr *NodoRaft) SometerOperacionRaft(operacion TipoOperacion,
 // Nombres de campos deben comenzar con letra mayuscula !
 type ArgsPeticionVoto struct {
 	// Vuestros datos aqui
+
+	MandatoCandidato              int
+	IdCandidato                   int
+	IndiceUltimaEntradaCandidato  int
+	MandatoUltimaEntradaCandidato int
 }
 
 // Structura de ejemplo de respuesta de RPC PedirVoto,
@@ -254,30 +279,126 @@ type ArgsPeticionVoto struct {
 // Nombres de campos deben comenzar con letra mayuscula !
 type RespuestaPeticionVoto struct {
 	// Vuestros datos aqui
+
+	MandatoPropio int
+	VotoRecibido  bool
 }
 
 // Metodo para RPC PedirVoto
 func (nr *NodoRaft) PedirVoto(peticion *ArgsPeticionVoto,
 	reply *RespuestaPeticionVoto) error {
+
 	// Vuestro codigo aqui
+	nr.Mux.Lock()
+	defer nr.Mux.Unlock()
+	if peticion.MandatoCandidato < nr.MandatoActual {
+		reply.VotoRecibido = false
+		reply.MandatoPropio = nr.MandatoActual
+	} else if (nr.HaVotadoA == -1 || nr.HaVotadoA == peticion.IdCandidato) && peticion.IndiceUltimaEntradaCandidato >= nr.UltimoIndiceLog {
+		reply.VotoRecibido = true
+		reply.MandatoPropio = peticion.MandatoCandidato
+
+	} else { // NO SE SI ESTO SE TIENE QUE HACER
+		reply.VotoRecibido = false
+		reply.MandatoPropio = peticion.MandatoCandidato
+	}
 
 	return nil
 }
 
 type ArgAppendEntries struct {
-	// Vuestros datos aqui
+	MandatoLider       int
+	IdLider            int
+	IndiceLogAnterior  int
+	MandatoLogAnterior int
+	EntradasLog        []TipoOperacion
+	IndiceComprometido int
 }
 
 type Results struct {
-	// Vuestros datos aqui
+	MandatoActual int
+	Exito         bool
 }
 
 // Metodo de tratamiento de llamadas RPC AppendEntries
 func (nr *NodoRaft) AppendEntries(args *ArgAppendEntries,
 	results *Results) error {
-	// Completar....
 
+	nr.Mux.Lock() // Bloquear acceso concurrente
+	defer nr.Mux.Unlock()
+
+	// 1. Responder false si el término del líder es menor que el término actual
+	if args.MandatoLider < nr.MandatoActual {
+		results.MandatoActual = nr.MandatoActual
+		results.Exito = false
+		return nil
+	}
+
+	if args.MandatoLider == nr.MandatoActual{
+		nr.IdLider = args.IdLider 
+		args.MandatoLider = nr.MandatoActual
+
+	}else if args.MandatoLider > nr.MandatoActual { // NO SE SI HAY QUE HACER ESTO
+		nr.MandatoActual = args.MandatoLider
+		nr.HaVotadoA = -1         // Reiniciar el voto, ya que el término ha cambiado
+		nr.IdLider = args.IdLider // Actualizar el líder al nuevo líder en el término actual
+	}
+
+	// 3. Responder false si el log no contiene una entrada en prevLogIndex cuyo término coincide con prevLogTerm
+	if nr.Log[args.IndiceLogAnterior].Mandato != args.MandatoLogAnterior {
+		results.MandatoActual = nr.MandatoActual
+		results.Exito = false
+		return nil
+	}
+
+	// 4. Si una entrada existente en el log entra en conflicto con una nueva (mismo índice pero diferente término),
+	// eliminar la entrada existente y todas las posterioresr
+	for i := args.IndiceLogAnterior + 1; i < len(nr.Log) ; i++ {
+		if (i) < len(args.EntradasLog) || nr.Log[i].Mandato != args.EntradasLog[i-args.IndiceLogAnterior-1].Mandato {
+			nr.Log = nr.Log[:i] // Eliminar desde el índice en conflicto
+			break
+		}
+	}
+
+	// 5. Agregar cualquier nueva entrada que aún no esté en el log
+	for i, entrada := range args.EntradasLog {
+		if args.IndiceLogAnterior+1+i >= len(nr.Log) {
+			nr.Log = append(nr.Log, entrada) // Agregar nuevas entradas al log
+		}
+	}
+
+	// Actualizar el Último índice en el log
+	nr.UltimoIndiceLog = len(nr.Log) - 1
+
+	// 6. Si leaderCommit > commitIndex, establecer commitIndex al mínimo entre leaderCommit y el índice de la última entrada en el log
+	if args.IndiceComprometido > nr.IndiceMayorComprometido {
+		nr.IndiceMayorComprometido = min(args.IndiceComprometido, nr.UltimoIndiceLog)
+	}
+
+	// 7. Aplicar operaciones comprometidas a la máquina de estados
+	/*for nr.IndiceMayorAplicado < nr.IndiceMayorComprometido {
+		nr.IndiceMayorAplicado++
+		opAplicar := AplicaOperacion{
+			Indice:    nr.IndiceMayorAplicado,
+			Operacion: nr.Log[nr.IndiceMayorAplicado],
+		}
+		// Enviar la operación al canal para que sea aplicada
+		nr.CanalAplicar <- opAplicar
+	}
+	*/
+
+	// Establecer resultados exitosos
+	results.MandatoActual = nr.MandatoActual
+	results.Exito = true
 	return nil
+}
+
+// Función auxiliar para encontrar el mínimo de dos enteros
+func min(a, b int) int {
+	if a < b {
+		return a
+	}
+	return b
 }
 
 // --------------------------------------------------------------------------
