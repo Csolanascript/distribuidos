@@ -56,7 +56,6 @@ type TipoOperacion struct {
 	Operacion string // La operaciones posibles son "leer" y "escribir"
 	Clave     string
 	Valor     string // en el caso de la lectura Valor = ""
-	Mandato	  int
 }
 
 // A medida que el nodo Raft conoce las operaciones de las  entradas de registro
@@ -65,6 +64,22 @@ type TipoOperacion struct {
 type AplicaOperacion struct {
 	Indice    int // en la entrada de registro
 	Operacion TipoOperacion
+}
+
+type Entrada struct {
+	Indice    int
+	Mandato   int
+	Operacion TipoOperacion
+}
+
+type State struct {
+	MandatoActual           int
+	HaVotadoA               int
+	Log                     []Entrada
+	IndiceMayorComprometido int
+	IndiceMayorAplicado     int
+	SiguienteIndice         []int // SiguienteIndice[0] = Siguiente entrada que se mandará al nodo 0
+	IndiceUltimoConocido    []int // IndiceUltimoConocido[0] = Ultima entrada que el lider sabe que le ha llegado al nodo 0
 }
 
 // Tipo de dato Go que representa un solo nodo (réplica) de raft
@@ -79,21 +94,14 @@ type NodoRaft struct {
 	// Cada nodo Raft tiene su propio registro de trazas (logs)
 	Logger *log.Logger
 
-	// Vuestros datos aqui.
-	MandatoActual int
-	HaVotadoA     int
-	Log           []TipoOperacion
+	Estado State
 
-	UltimoIndiceLog int // NO SE SI SE TIENE QUE HACER
+	CanalLatido   chan bool
+	CanalSeguidor chan bool
+	CanalLider    chan bool
+	CanalVotos    chan bool
 
-	//Indices
-	IndiceMayorComprometido int
-	IndiceMayorAplicado     int
-
-	//para el lider
-	SiguienteIndice      []int // SiguienteIndice[0] = Siguiente entrada que se mandará al nodo 0
-	IndiceUltimoConocido []int // IndiceUltimoConocido[0] = Ultima entrada que el lider sabe que le ha llegado al nodo 0
-	// mirar figura 2 para descripción del estado que debe mantenre un nodo Raft
+	Rol string
 }
 
 // Creacion de un nuevo nodo de eleccion
@@ -145,10 +153,17 @@ func NuevoNodo(nodos []rpctimeout.HostPort, yo int,
 	}
 
 	// Añadir codigo de inicialización
-	nr.HaVotadoA = -1
-	nr.MandatoActual = 0
-	nr.IndiceMayorComprometido = 0
-	nr.IndiceMayorAplicado = 0
+	nr.Estado.HaVotadoA = -1
+	nr.Estado.MandatoActual = 0
+	nr.Estado.IndiceMayorComprometido = 0
+	nr.Estado.IndiceMayorAplicado = 0
+
+	nr.CanalLatido = make(chan bool)
+	nr.CanalSeguidor = make(chan bool)
+	nr.CanalLider = make(chan bool)
+	nr.CanalVotos = make(chan bool)
+
+	nr.Rol = "Seguidor"
 
 	//FALTA INICIALIZAR LAS DE LIDER, HAY QUE CONFIRMAR COMO HACERLO
 
@@ -171,14 +186,21 @@ func (nr *NodoRaft) para() {
 // El tercer valor es true si el nodo cree ser el lider
 // Cuarto valor es el lider, es el indice del líder si no es él
 func (nr *NodoRaft) obtenerEstado() (int, int, bool, int) {
+	nr.Mux.Lock()
 	var yo int = nr.Yo
 	var mandato int
 	var esLider bool
-	var idLider int = nr.IdLider
+	var idLider int
 
-	mandato = nr.MandatoActual
-	esLider = (idLider == yo)
+	mandato = nr.Estado.MandatoActual
+	esLider = (nr.Rol == "Lider")
 
+	if esLider {
+		idLider = nr.Yo
+	} else {
+		idLider = nr.IdLider
+	}
+	nr.Mux.Unlock()
 	return yo, mandato, esLider, idLider
 }
 
@@ -204,15 +226,52 @@ func (nr *NodoRaft) someterOperacion(operacion TipoOperacion) (int, int,
 	bool, int, string) {
 	indice := -1
 	mandato := -1
-	EsLider := false
+	esLider := nr.Yo == nr.IdLider
 	idLider := -1
 	valorADevolver := ""
 
-	fmt.Println(operacion)
+	if esLider {
+		indice = nr.Estado.IndiceMayorComprometido
+		mandato = nr.Estado.MandatoActual
+		entry := Entrada{indice, mandato, operacion}
 
-	// VUESTRO CODIGO AQUI
+		nr.Logger.Printf("(%d, %d, %s, %s, %s)", entry.Indice, entry.Mandato,
+			entry.Operacion.Operacion, entry.Operacion.Clave,
+			entry.Operacion.Valor)
 
-	return indice, mandato, EsLider, idLider, valorADevolver
+		var results Results
+		confirmados := 0
+
+		for i := 0; i < len(nr.Nodos); i++ {
+			if i != nr.Yo {
+				nr.Nodos[i].CallTimeout(
+					"NodoRaft.AppendEntries",
+					ArgAppendEntries{
+						MandatoLider:       mandato,
+						IdLider:            nr.Yo,
+						IndiceLogAnterior:  indice,
+						MandatoLogAnterior: entry.Mandato,
+						EntradasLog:        []Entrada{entry},
+						IndiceComprometido: nr.Estado.IndiceMayorComprometido,
+					},
+					&results,
+					20*time.Millisecond,
+				)
+			}
+
+			if results.Exito {
+				confirmados++
+			}
+		}
+
+		if confirmados > len(nr.Nodos)/2 {
+			nr.Estado.IndiceMayorComprometido++
+		}
+
+		idLider = nr.Yo
+	}
+
+	return indice, mandato, esLider, idLider, valorADevolver
 }
 
 // -----------------------------------------------------------------------
@@ -263,13 +322,12 @@ func (nr *NodoRaft) SometerOperacionRaft(operacion TipoOperacion,
 // Recordar
 // -----------
 // Nombres de campos deben comenzar con letra mayuscula !
+// Argumentos para la solicitud de voto
 type ArgsPeticionVoto struct {
-	// Vuestros datos aqui
-
-	MandatoCandidato              int
-	IdCandidato                   int
-	IndiceUltimaEntradaCandidato  int
-	MandatoUltimaEntradaCandidato int
+	MandatoCandidato              int // Mandato del candidato solicitando el voto
+	IdCandidato                   int // ID del candidato solicitando el voto
+	IndiceUltimaEntradaCandidato  int // Índice de la última entrada en el log del candidato
+	MandatoUltimaEntradaCandidato int // Mandato de la última entrada en el log del candidato
 }
 
 // Structura de ejemplo de respuesta de RPC PedirVoto,
@@ -277,11 +335,11 @@ type ArgsPeticionVoto struct {
 // Recordar
 // -----------
 // Nombres de campos deben comenzar con letra mayuscula !
+// Respuesta a la solicitud de voto
 type RespuestaPeticionVoto struct {
-	// Vuestros datos aqui
-
-	MandatoPropio int
-	VotoRecibido  bool
+	IDNodo        int  // ID del nodo que responde
+	MandatoPropio int  // Mandato del nodo que responde
+	VotoRecibido  bool // Indicador de si el voto fue concedido
 }
 
 // Metodo para RPC PedirVoto
@@ -291,17 +349,50 @@ func (nr *NodoRaft) PedirVoto(peticion *ArgsPeticionVoto,
 	// Vuestro codigo aqui
 	nr.Mux.Lock()
 	defer nr.Mux.Unlock()
-	if peticion.MandatoCandidato < nr.MandatoActual {
-		reply.VotoRecibido = false
-		reply.MandatoPropio = nr.MandatoActual
-	} else if (nr.HaVotadoA == -1 || nr.HaVotadoA == peticion.IdCandidato) && peticion.IndiceUltimaEntradaCandidato >= nr.UltimoIndiceLog {
-		reply.VotoRecibido = true
-		reply.MandatoPropio = peticion.MandatoCandidato
-
-	} else { // NO SE SI ESTO SE TIENE QUE HACER
-		reply.VotoRecibido = false
-		reply.MandatoPropio = peticion.MandatoCandidato
+	MandatoLog := 0
+	LongLog := len(nr.Estado.Log)
+	if LongLog > 0 {
+		MandatoLog = nr.Estado.Log[LongLog-1].Mandato
 	}
+	// Inicializamos la respuesta con el mandato actual del nodo
+	reply.MandatoPropio = nr.Estado.MandatoActual
+	reply.VotoRecibido = false // Inicialmente, asumimos que el voto no será concedido
+
+	// Verificación de la actualidad del log del candidato
+	logOk := false
+	if peticion.MandatoUltimaEntradaCandidato > MandatoLog {
+		logOk = true // El log del candidato está en un mandato más reciente
+	} else if peticion.MandatoUltimaEntradaCandidato == MandatoLog {
+		if peticion.IndiceUltimaEntradaCandidato >= LongLog-1 {
+			logOk = true // El candidato tiene el mismo mandato y al menos el mismo índice
+		}
+	}
+
+	// Verificación del término del candidato y el estado de votación
+	termOk := false
+	if peticion.MandatoCandidato > nr.Estado.MandatoActual {
+		termOk = true // El candidato tiene un término superior
+	} else if peticion.MandatoCandidato == nr.Estado.MandatoActual {
+		if nr.Estado.HaVotadoA == -1 || nr.Estado.HaVotadoA == peticion.IdCandidato {
+			termOk = true // Mismo término y aún no ha votado, o ya votó por el candidato
+		}
+	}
+
+	reply.MandatoPropio = nr.Estado.MandatoActual
+
+	if logOk && termOk {
+		nr.Logger.Printf("RECV RPC.PedirVoto: Voto concedido a %d\n",
+			peticion.IdCandidato)
+		nr.Estado.MandatoActual = peticion.MandatoCandidato
+		nr.Estado.HaVotadoA = peticion.IdCandidato
+		nr.Rol = "Seguidor"
+		nr.CanalLatido <- true
+		reply.VotoRecibido = true
+		reply.MandatoPropio = nr.Estado.MandatoActual
+	} else {
+		reply.VotoRecibido = false
+	}
+	nr.Mux.Unlock()
 
 	return nil
 }
@@ -311,89 +402,89 @@ type ArgAppendEntries struct {
 	IdLider            int
 	IndiceLogAnterior  int
 	MandatoLogAnterior int
-	EntradasLog        []TipoOperacion
+	EntradasLog        []Entrada
 	IndiceComprometido int
 }
 
 type Results struct {
-	MandatoActual int
-	Exito         bool
+	MandatoActual     int
+	Exito             bool
+	IndiceCoincidente int // Indice de la última entrada coincidente
 }
 
 // Metodo de tratamiento de llamadas RPC AppendEntries
-func (nr *NodoRaft) AppendEntries(args *ArgAppendEntries,
-	results *Results) error {
+func (nr *NodoRaft) AppendEntries(args *ArgAppendEntries, results *Results) error {
+	nr.Logger.Printf("AppendEntries recibido de %d", args.IdLider)
 
-	nr.Mux.Lock() // Bloquear acceso concurrente
-	defer nr.Mux.Unlock()
+	// Verificar si el mandato del líder es mayor al mandato actual
+	if args.MandatoLider > nr.Estado.MandatoActual {
+		nr.Logger.Println("RECV RPC.AppendEntries: Voy rezagado")
+		nr.Estado.MandatoActual = args.MandatoLider
+		nr.Estado.HaVotadoA = -1 // Reiniciar el voto en el nuevo mandato
+	}
 
-	// 1. Responder false si el término del líder es menor que el término actual
-	if args.MandatoLider < nr.MandatoActual {
-		results.MandatoActual = nr.MandatoActual
+	// Procesar AppendEntries si el mandato es el actual y el log está alineado
+	if args.MandatoLider == nr.Estado.MandatoActual && nr.isLogValido(args) {
+		nr.Logger.Printf("RPC.AppendEntries: %v\n", args.EntradasLog)
+		nr.Rol = "Seguidor"
+		nr.IdLider = args.IdLider
+		results.MandatoActual = nr.Estado.MandatoActual
+		results.Exito = true
+		results.IndiceCoincidente = args.IndiceLogAnterior + len(args.EntradasLog)
+
+		nr.updateLog(args)
+		nr.CanalLatido <- true
+	} else {
+		nr.Logger.Printf("AppendEntries fallido: %v", args)
+		results.MandatoActual = nr.Estado.MandatoActual
 		results.Exito = false
-		return nil
+		results.IndiceCoincidente = -1
 	}
 
-	if args.MandatoLider == nr.MandatoActual{
-		nr.IdLider = args.IdLider 
-		args.MandatoLider = nr.MandatoActual
-
-	}else if args.MandatoLider > nr.MandatoActual { // NO SE SI HAY QUE HACER ESTO
-		nr.MandatoActual = args.MandatoLider
-		nr.HaVotadoA = -1         // Reiniciar el voto, ya que el término ha cambiado
-		nr.IdLider = args.IdLider // Actualizar el líder al nuevo líder en el término actual
-	}
-
-	// 3. Responder false si el log no contiene una entrada en prevLogIndex cuyo término coincide con prevLogTerm
-	if nr.Log[args.IndiceLogAnterior].Mandato != args.MandatoLogAnterior {
-		results.MandatoActual = nr.MandatoActual
-		results.Exito = false
-		return nil
-	}
-
-	// 4. Si una entrada existente en el log entra en conflicto con una nueva (mismo índice pero diferente término),
-	// eliminar la entrada existente y todas las posterioresr
-	for i := args.IndiceLogAnterior + 1; i < len(nr.Log) ; i++ {
-		if (i) < len(args.EntradasLog) || nr.Log[i].Mandato != args.EntradasLog[i-args.IndiceLogAnterior-1].Mandato {
-			nr.Log = nr.Log[:i] // Eliminar desde el índice en conflicto
-			break
-		}
-	}
-
-	// 5. Agregar cualquier nueva entrada que aún no esté en el log
-	for i, entrada := range args.EntradasLog {
-		if args.IndiceLogAnterior+1+i >= len(nr.Log) {
-			nr.Log = append(nr.Log, entrada) // Agregar nuevas entradas al log
-		}
-	}
-
-	// Actualizar el Último índice en el log
-	nr.UltimoIndiceLog = len(nr.Log) - 1
-
-	// 6. Si leaderCommit > commitIndex, establecer commitIndex al mínimo entre leaderCommit y el índice de la última entrada en el log
-	if args.IndiceComprometido > nr.IndiceMayorComprometido {
-		nr.IndiceMayorComprometido = min(args.IndiceComprometido, nr.UltimoIndiceLog)
-	}
-
-	// 7. Aplicar operaciones comprometidas a la máquina de estados
-	/*for nr.IndiceMayorAplicado < nr.IndiceMayorComprometido {
-		nr.IndiceMayorAplicado++
-		opAplicar := AplicaOperacion{
-			Indice:    nr.IndiceMayorAplicado,
-			Operacion: nr.Log[nr.IndiceMayorAplicado],
-		}
-		// Enviar la operación al canal para que sea aplicada
-		nr.CanalAplicar <- opAplicar
-	}
-	*/
-
-	// Establecer resultados exitosos
-	results.MandatoActual = nr.MandatoActual
-	results.Exito = true
 	return nil
 }
 
-// Función auxiliar para encontrar el mínimo de dos enteros
+// Verificar si el log contiene la entrada en IndiceLogAnterior con el mandato correcto
+func (nr *NodoRaft) isLogValido(args *ArgAppendEntries) bool {
+	if args.IndiceLogAnterior >= 0 && args.IndiceLogAnterior < len(nr.Estado.Log) {
+		return args.MandatoLogAnterior == nr.Estado.Log[args.IndiceLogAnterior].Mandato
+	}
+	return false
+}
+
+// Lógica de actualización del log
+func (nr *NodoRaft) updateLog(args *ArgAppendEntries) {
+	nr.Mux.Lock()
+	defer nr.Mux.Unlock()
+
+	// Verificar si el log contiene la entrada en IndiceLogAnterior con el mandato correcto
+	if args.IndiceLogAnterior >= 0 && args.IndiceLogAnterior < len(nr.Estado.Log) {
+		if nr.Estado.Log[args.IndiceLogAnterior].Mandato != args.MandatoLogAnterior {
+			nr.Logger.Println("Log inconsistente, truncando...")
+			nr.Estado.Log = nr.Estado.Log[:args.IndiceLogAnterior]
+		}
+	} else if args.IndiceLogAnterior >= len(nr.Estado.Log) {
+		nr.Logger.Println("IndiceLogAnterior fuera de rango, truncando...")
+		nr.Estado.Log = nr.Estado.Log[:len(nr.Estado.Log)]
+	}
+
+	// Añadir las nuevas entradas al log
+	for i, entry := range args.EntradasLog {
+		if args.IndiceLogAnterior+1+i < len(nr.Estado.Log) {
+			nr.Estado.Log[args.IndiceLogAnterior+1+i] = entry
+		} else {
+			nr.Estado.Log = append(nr.Estado.Log, entry)
+		}
+	}
+
+	// Actualizar el índice mayor comprometido si es necesario
+	if args.IndiceComprometido > nr.Estado.IndiceMayorComprometido {
+		nr.Estado.IndiceMayorComprometido = min(args.IndiceComprometido, len(nr.Estado.Log)-1)
+	}
+
+	nr.Logger.Println("Log actualizado:", nr.Estado.Log)
+}
+
 func min(a, b int) int {
 	if a < b {
 		return a
@@ -431,12 +522,28 @@ func min(a, b int) int {
 // pasadas como parametros en las llamadas RPC es una mayuscula,
 // Y que la estructura de recuperacion de resultado sea un puntero a estructura
 // y no la estructura misma.
-func (nr *NodoRaft) enviarPeticionVoto(nodo int, args *ArgsPeticionVoto,
-	reply *RespuestaPeticionVoto) bool {
+func (nr *NodoRaft) enviarPeticionVoto(nodo int, args *ArgsPeticionVoto, respuesta *RespuestaPeticionVoto) bool {
+	// Enviar la solicitud de voto al nodo especificado con un tiempo límite de 25ms
+	err := nr.Nodos[nodo].CallTimeout("NodoRaft.PedirVoto", args, respuesta, 25*time.Millisecond)
+	nr.Logger.Printf("RPC.PedirVoto: Solicitud de Voto [%d]{%v} -> Respuesta [%d]{%v}", nr.Yo, args, nodo, respuesta)
 
-	fmt.Println(nodo, args, reply)
+	// Bloquear el acceso concurrente y procesar la respuesta
+	nr.Mux.Lock()
+	defer nr.Mux.Unlock()
 
-	// Completar con la llamada RPC correcta incluida
+	if err == nil { // Si la solicitud se ha enviado con éxito
+		if nr.Rol == "Candidato" && respuesta.MandatoPropio == nr.Estado.MandatoActual && respuesta.VotoRecibido {
+			nr.Logger.Printf("RPC.PedirVoto: Voto recibido de %d\n", nodo)
+			nr.CanalVotos <- true
+		} else if respuesta.MandatoPropio > nr.Estado.MandatoActual {
+			nr.Logger.Println("RPC.PedirVoto: Mandato actual desactualizado, cambiando a Seguidor")
+			nr.Rol = "Seguidor"
+			nr.Estado.MandatoActual = respuesta.MandatoPropio
+			nr.Estado.HaVotadoA = -1
+		}
+	} else {
+		nr.Logger.Println("RPC.PedirVoto: Error al recibir respuesta del nodo")
+	}
 
-	return true
+	return err == nil // Retorna true si no hubo error en la solicitud, false en caso contrario
 }
