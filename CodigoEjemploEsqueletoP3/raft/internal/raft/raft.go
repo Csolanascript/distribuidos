@@ -425,17 +425,17 @@ func (nr *NodoRaft) AppendEntries(args *ArgAppendEntries, results *Results) erro
 
 	// Procesar AppendEntries si el mandato es el actual y el log está alineado
 	if args.MandatoLider == nr.Estado.MandatoActual && nr.isLogValido(args) {
-		nr.Logger.Printf("RPC.AppendEntries: %v\n", args.EntradasLog)
-		nr.Rol = "Seguidor"
+
 		nr.IdLider = args.IdLider
 		results.MandatoActual = nr.Estado.MandatoActual
+		nr.Rol = "Seguidor"
 		results.Exito = true
 		results.IndiceCoincidente = args.IndiceLogAnterior + len(args.EntradasLog)
 
-		nr.updateLog(args)
+		nr.ActualizarLog(args)
 		nr.CanalLatido <- true
 	} else {
-		nr.Logger.Printf("AppendEntries fallido: %v", args)
+		nr.Logger.Printf("Error append entries")
 		results.MandatoActual = nr.Estado.MandatoActual
 		results.Exito = false
 		results.IndiceCoincidente = -1
@@ -453,7 +453,7 @@ func (nr *NodoRaft) isLogValido(args *ArgAppendEntries) bool {
 }
 
 // Lógica de actualización del log
-func (nr *NodoRaft) updateLog(args *ArgAppendEntries) {
+func (nr *NodoRaft) ActualizarLog(args *ArgAppendEntries) {
 	nr.Mux.Lock()
 	defer nr.Mux.Unlock()
 
@@ -522,6 +522,33 @@ func min(a, b int) int {
 // pasadas como parametros en las llamadas RPC es una mayuscula,
 // Y que la estructura de recuperacion de resultado sea un puntero a estructura
 // y no la estructura misma.
+
+// Ejemplo de código enviarPeticionVoto
+//
+// nodo int -- indice del servidor destino en nr.nodos[]
+//
+// args *RequestVoteArgs -- argumentos par la llamada RPC
+//
+// reply *RequestVoteReply -- respuesta RPC
+//
+// Los tipos de argumentos y respuesta pasados a CallTimeout deben ser
+// los mismos que los argumentos declarados en el metodo de tratamiento
+// de la llamada (incluido si son punteros)
+//
+// Si en la llamada RPC, la respuesta llega en un intervalo de tiempo,
+// la funcion devuelve true, sino devuelve false
+//
+// la llamada RPC deberia tener un timeout adecuado.
+//
+// Un resultado falso podria ser causado por una replica caida,
+// un servidor vivo que no es alcanzable (por problemas de red ?),
+// una petición perdida, o una respuesta perdida
+//
+// Para problemas con funcionamiento de RPC, comprobar que la primera letra
+// del nombre de todo los campos de la estructura (y sus subestructuras)
+// pasadas como parametros en las llamadas RPC es una mayuscula,
+// Y que la estructura de recuperacion de resultado sea un puntero a estructura
+// y no la estructura misma.
 func (nr *NodoRaft) enviarPeticionVoto(nodo int, args *ArgsPeticionVoto, respuesta *RespuestaPeticionVoto) bool {
 	// Enviar la solicitud de voto al nodo especificado con un tiempo límite de 25ms
 	err := nr.Nodos[nodo].CallTimeout("NodoRaft.PedirVoto", args, respuesta, 25*time.Millisecond)
@@ -532,18 +559,63 @@ func (nr *NodoRaft) enviarPeticionVoto(nodo int, args *ArgsPeticionVoto, respues
 	defer nr.Mux.Unlock()
 
 	if err == nil { // Si la solicitud se ha enviado con éxito
-		if nr.Rol == "Candidato" && respuesta.MandatoPropio == nr.Estado.MandatoActual && respuesta.VotoRecibido {
-			nr.Logger.Printf("RPC.PedirVoto: Voto recibido de %d\n", nodo)
+		if respuesta.MandatoPropio == nr.Estado.MandatoActual && respuesta.VotoRecibido && nr.Rol == "Candidato" {
 			nr.CanalVotos <- true
 		} else if respuesta.MandatoPropio > nr.Estado.MandatoActual {
-			nr.Logger.Println("RPC.PedirVoto: Mandato actual desactualizado, cambiando a Seguidor")
-			nr.Rol = "Seguidor"
 			nr.Estado.MandatoActual = respuesta.MandatoPropio
 			nr.Estado.HaVotadoA = -1
+			if nr.Rol != "Candidato" {
+				nr.Rol = "Seguidor"
+			}
 		}
 	} else {
-		nr.Logger.Println("RPC.PedirVoto: Error al recibir respuesta del nodo")
+		nr.Logger.Println("Error")
 	}
 
 	return err == nil // Retorna true si no hubo error en la solicitud, false en caso contrario
+}
+
+// Método para iniciar una nueva elección
+func (nr *NodoRaft) eleccion() {
+	nr.Logger.Printf("Nueva elección")
+
+	// Incrementar el mandato actual y votar por sí mismo
+	nr.Estado.MandatoActual++
+	nr.Estado.HaVotadoA = nr.Yo
+
+	// Preparar los argumentos de la petición de voto
+	args := nr.prepararArgsPeticionVoto()
+
+	// Enviar peticiones de voto a otros nodos
+	nr.enviarPeticionesVoto(args)
+}
+
+// Preparar los argumentos para la petición de voto
+func (nr *NodoRaft) prepararArgsPeticionVoto() ArgsPeticionVoto {
+	args := ArgsPeticionVoto{
+		MandatoCandidato:              nr.Estado.MandatoActual,
+		IdCandidato:                   nr.Yo,
+		IndiceUltimaEntradaCandidato:  -1,
+		MandatoUltimaEntradaCandidato: 0,
+	}
+
+	if len(nr.Estado.Log) > 0 {
+		indiceUltimaEntrada := len(nr.Estado.Log) - 1
+		args.IndiceUltimaEntradaCandidato = indiceUltimaEntrada
+		args.MandatoUltimaEntradaCandidato = nr.Estado.Log[indiceUltimaEntrada].Mandato
+	}
+
+	return args
+}
+
+// Enviar peticiones de voto a todos los demás nodos
+func (nr *NodoRaft) enviarPeticionesVoto(args ArgsPeticionVoto) {
+	for nodoID := range nr.Nodos {
+		if nodoID != nr.Yo {
+			go func() {
+				var respuesta RespuestaPeticionVoto
+				nr.PedirVoto(&args, &respuesta)
+			}()
+		}
+	}
 }
