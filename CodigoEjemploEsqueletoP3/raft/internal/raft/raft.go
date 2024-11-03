@@ -619,3 +619,160 @@ func (nr *NodoRaft) enviarPeticionesVoto(args ArgsPeticionVoto) {
 		}
 	}
 }
+
+func (nr *NodoRaft) peticionLatido(nodo int, args *ArgAppendEntries, reply *Results) {
+	err := nr.Nodos[nodo].CallTimeout("NodoRaft.AppendEntries", args, reply, 25*time.Millisecond)
+	if err != nil {
+		nr.Logger.Printf("Error en la petición de latido: %v", err)
+		return
+	}
+
+	if reply.MandatoActual > nr.Estado.MandatoActual {
+		nr.Estado.MandatoActual = reply.MandatoActual
+		nr.Estado.HaVotadoA = -1
+		nr.Rol = "Seguidor"
+		return
+	}
+
+	if nr.Rol != "Líder" || nr.Estado.MandatoActual != reply.MandatoActual {
+		return
+	}
+
+	if reply.Exito {
+		nr.Estado.SiguienteIndice[nodo] = reply.IndiceCoincidente + 1
+		nr.Estado.IndiceUltimoConocido[nodo] = reply.IndiceCoincidente
+	} else if nr.Estado.SiguienteIndice[nodo] > 0 {
+		nr.Estado.SiguienteIndice[nodo]--
+	}
+}
+
+// Función para enviar nuevos latidos a otros nodos
+func (nr *NodoRaft) enviarLatido() {
+	nr.Logger.Println("Nuevo latido")
+	args := ArgAppendEntries{
+		MandatoLider:       nr.Estado.MandatoActual,
+		IdLider:            nr.Yo,
+		IndiceLogAnterior:  -1,
+		MandatoLogAnterior: 0,
+		EntradasLog:        nil,
+		IndiceComprometido: nr.Estado.IndiceMayorComprometido,
+	}
+
+	for nodo := range nr.Nodos {
+		if nodo != nr.Yo {
+			var respuesta Results
+			args.IndiceLogAnterior = nr.Estado.SiguienteIndice[nodo] - 1
+			if args.IndiceLogAnterior > -1 {
+				args.MandatoLogAnterior = nr.Estado.Log[args.IndiceLogAnterior].Mandato
+			}
+			if nr.Estado.SiguienteIndice[nodo] < len(nr.Estado.Log) {
+				args.EntradasLog = nr.Estado.Log[nr.Estado.SiguienteIndice[nodo]:]
+			} else {
+				args.EntradasLog = nil
+			}
+			go nr.peticionLatido(nodo, &args, &respuesta)
+		}
+	}
+}
+
+// =============================================================================
+// Maquina de estados
+// =============================================================================
+//                                                      timeout
+//                                           ______
+//                                          v      |
+//   --------    timeout    -----------  recv majority votes   -----------
+//  |Seguidor| ----------> | Candidato |--------------------> |  Lider   |
+//   --------               -----------                        -----------
+//        ^          higher term/ |                         higher term |
+//         |            new leader |                                     |
+//         |_______________________|____________________________________ |
+// =============================================================================
+
+func (nr *NodoRaft) bucle() {
+	time.Sleep(2000 * time.Millisecond)
+	for {
+		switch nr.Rol {
+		case "Seguidor":
+			nr.Logger.Printf("ESTADO: Seguidor | Mandato %d\n", nr.Estado.MandatoActual)
+			nr.bucleSeguidor()
+		case "Candidato":
+			nr.Logger.Printf("ESTADO: Candidato | Mandato %d\n", nr.Estado.MandatoActual+1)
+			nr.bucleCandidato()
+		case "Lider":
+			nr.Logger.Printf("ESTADO: Lider | Mandato %d\n", nr.Estado.MandatoActual)
+			nr.bucleLider()
+		}
+	}
+}
+
+/**
+ * @brief Caso de que el nodo sea un seguidor.
+ */
+func (nr *NodoRaft) bucleSeguidor() {
+	temporizador := time.NewTimer(tiempoEleccion())
+	defer temporizador.Stop()
+
+	for nr.Rol == "Seguidor" {
+		select {
+		case <-nr.CanalLatido:
+			temporizador.Reset(tiempoEleccion())
+		case <-temporizador.C:
+			nr.Rol = "Candidato"
+		}
+	}
+}
+
+/**
+ * @brief Caso de que el nodo sea un candidato.
+ */
+func (nr *NodoRaft) bucleCandidato() {
+	temporizador := time.NewTicker(tiempoEleccion())
+	defer temporizador.Stop()
+
+	votosRecibidos := 1
+	nr.eleccion()
+	for nr.Rol == "Candidato" {
+		select {
+		case <-nr.CanalVotos:
+			votosRecibidos++
+			if votosRecibidos > len(nr.Nodos)/2 {
+				nr.Rol = "Lider"
+				nr.IdLider = nr.Yo
+			}
+		case <-temporizador.C:
+			votosRecibidos = 1
+			nr.eleccion()
+		}
+	}
+}
+
+/**
+ * @brief Caso de que el nodo sea un líder.
+ */
+func (nr *NodoRaft) bucleLider() {
+	nr.Logger.Printf("Inicio Lider: IndiceComprometido:%d Log: %v Almacen: %v\n",
+		nr.Estado.IndiceMayorComprometido, nr.Estado.Log)
+
+	temporizador := time.NewTicker(25 * time.Millisecond)
+	defer temporizador.Stop()
+
+	nr.IdLider = nr.Yo
+	nr.Estado.SiguienteIndice = make([]int, len(nr.Nodos))
+	for i := range nr.Estado.SiguienteIndice {
+		nr.Estado.SiguienteIndice[i] = len(nr.Estado.Log)
+	}
+	nr.Estado.IndiceUltimoConocido = make([]int, len(nr.Nodos))
+	for i := range nr.Estado.IndiceUltimoConocido {
+		nr.Estado.IndiceUltimoConocido[i] = -1
+	}
+
+	nr.enviarLatido()
+
+	for nr.Rol == "Lider" {
+		select {
+		case <-temporizador.C:
+			nr.enviarLatido()
+		}
+	}
+}
