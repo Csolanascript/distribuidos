@@ -705,7 +705,6 @@ func (nr *NodoRaft) bucleSeguidor() {
 		case <-temporizador.C:
 			// Cambiar el rol a "Candidato" y llamar a bucleCandidato
 			nr.Rol = "Candidato"
-			nr.bucleCandidato()
 			return
 		}
 	}
@@ -745,12 +744,10 @@ func (nr *NodoRaft) bucleCandidato() {
 				}
 				// Detener temporizador y comenzar nueva elección
 				temporizador.Stop()
-				break
 			}
 			// Verificar si el rol ha cambiado
 			if nr.Rol != "Candidato" {
 				temporizador.Stop()
-				nr.bucleCandidato()
 				return
 			}
 		}
@@ -785,5 +782,4 @@ func (nr *NodoRaft) bucleLider() {
 			nr.enviarLatido()
 		}
 	}
-	nr.bucleSeguidor()
 }
