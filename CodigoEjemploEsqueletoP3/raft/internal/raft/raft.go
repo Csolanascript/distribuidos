@@ -44,10 +44,10 @@ const (
 
 	//  false deshabilita por completo los logs de depuracion
 	// Aseguraros de poner kEnableDebugLogs a false antes de la entrega
-	kEnableDebugLogs = true
+	kEnableDebugLogs = false
 
 	// Poner a true para logear a stdout en lugar de a fichero
-	kLogToStdout = true
+	kLogToStdout = false
 
 	// Cambiar esto para salida de logs en un directorio diferente
 	kLogOutputDir = "./logs_raft/"
@@ -86,7 +86,6 @@ type State struct {
 // Tipo de dato Go que representa un solo nodo (réplica) de raft
 type NodoRaft struct {
 	Mux sync.Mutex // Mutex para proteger acceso a estado compartido
-
 	// Host:Port de todos los nodos (réplicas) Raft, en mismo orden
 	Nodos   []rpctimeout.HostPort
 	Yo      int // indice de este nodos en campo array "nodos"
@@ -129,11 +128,12 @@ func Make(val, len int) []int {
 // poner en marcha Gorutinas para trabajos de larga duracion
 func NuevoNodo(nodos []rpctimeout.HostPort, yo int,
 	canalAplicarOperacion chan AplicaOperacion) *NodoRaft {
+
+	fmt.Println("Creando nuevo nodo Raft")
 	nr := &NodoRaft{}
 	nr.Nodos = nodos
 	nr.Yo = yo
 	nr.IdLider = -1
-
 	if kEnableDebugLogs {
 		nombreNodo := nodos[yo].Host() + "_" + nodos[yo].Port()
 		fmt.Println("nombreNodo: ", nombreNodo)
@@ -177,6 +177,12 @@ func NuevoNodo(nodos []rpctimeout.HostPort, yo int,
 	nr.Estado.SiguienteIndice = Make(0, len(nr.Nodos))
 	nr.Estado.IndiceUltimoConocido = Make(-1, len(nr.Nodos))
 
+	fmt.Println("NodoRaft creado con éxito")
+	fmt.Printf("Estado inicial: %+v\n", nr.Estado)
+	fmt.Printf("Rol inicial: %s\n", nr.Rol)
+
+	go nr.bucle()
+
 	return nr
 }
 
@@ -196,12 +202,13 @@ func (nr *NodoRaft) para() {
 // El tercer valor es true si el nodo cree ser el lider
 // Cuarto valor es el lider, es el indice del líder si no es él
 func (nr *NodoRaft) obtenerEstado() (int, int, bool, int) {
+	nr.Logger.Println("Obteniendo estado")
 	nr.Mux.Lock()
 	var yo int = nr.Yo
 	var mandato int
 	var esLider bool
 	var idLider int
-
+	nr.Logger.Println("Estado obtenido")
 	mandato = nr.Estado.MandatoActual
 	esLider = (nr.Rol == "Lider")
 
@@ -307,6 +314,7 @@ type EstadoRemoto struct {
 }
 
 func (nr *NodoRaft) ObtenerEstadoNodo(args Vacio, reply *EstadoRemoto) error {
+	nr.Logger.Println("Obteniendo estado nodo")
 	reply.IdNodo, reply.Mandato, reply.EsLider, reply.IdLider = nr.obtenerEstado()
 	return nil
 }
