@@ -105,6 +105,14 @@ type NodoRaft struct {
 	Rol string
 }
 
+func Make(val, len int) []int {
+	v := make([]int, len)
+	for i := range v {
+		v[i] = val
+	}
+	return v
+}
+
 // Creacion de un nuevo nodo de eleccion
 //
 // Tabla de <Direccion IP:puerto> de cada nodo incluido a si mismo.
@@ -166,7 +174,8 @@ func NuevoNodo(nodos []rpctimeout.HostPort, yo int,
 
 	nr.Rol = "Seguidor"
 
-	//FALTA INICIALIZAR LAS DE LIDER, HAY QUE CONFIRMAR COMO HACERLO
+	nr.Estado.SiguienteIndice = Make(0, len(nr.Nodos))
+	nr.Estado.IndiceUltimoConocido = Make(-1, len(nr.Nodos))
 
 	return nr
 }
@@ -758,7 +767,7 @@ func (nr *NodoRaft) bucleCandidato() {
  * @brief Caso de que el nodo sea un líder.
  */
 func (nr *NodoRaft) bucleLider() {
-	nr.Logger.Printf("Inicio Lider: IndiceComprometido:%d Log: %v Almacen: %v\n",
+	nr.Logger.Printf("Inicio Lider: IndiceComprometido:%d Log: %v\n",
 		nr.Estado.IndiceMayorComprometido, nr.Estado.Log)
 
 	temporizador := time.NewTicker(time.Duration(tiempoEleccion(1, 50)) * time.Millisecond)

@@ -19,9 +19,9 @@ import (
 
 const (
 	//nodos replicas
-	REPLICA1 = "127.0.0.1:29001"
-	REPLICA2 = "127.0.0.1:29002"
-	REPLICA3 = "127.0.0.1:29003"
+	REPLICA1 = "localhost:29001"
+	REPLICA2 = "localhost:29002"
+	REPLICA3 = "localhost:29003"
 
 	// paquete main de ejecutables relativos a directorio raiz de modulo
 	EXECREPLICA = "cmd/srvraft/main.go"
@@ -256,7 +256,7 @@ func (cfg *configDespliegue) startDistributedProcesses() {
 			[]string{endPoint.Host()}, cfg.cr)
 
 		// dar tiempo para se establezcan las replicas
-		//time.Sleep(2000 * time.Millisecond)
+		time.Sleep(2000 * time.Millisecond)
 	}
 
 	// aproximadamente 500 ms para cada arranque por ssh en portatil
