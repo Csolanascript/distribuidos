@@ -29,6 +29,7 @@ import (
 	"os"
 
 	//"crypto/rand"
+	"math/rand"
 	"sync"
 	"time"
 
@@ -231,7 +232,7 @@ func (nr *NodoRaft) someterOperacion(operacion TipoOperacion) (int, int,
 	valorADevolver := ""
 
 	if esLider {
-		indice = nr.Estado.IndiceMayorComprometido
+		indice = nr.Estado.IndiceMayorComprometido //+1?
 		mandato = nr.Estado.MandatoActual
 		entry := Entrada{indice, mandato, operacion}
 
@@ -378,8 +379,6 @@ func (nr *NodoRaft) PedirVoto(peticion *ArgsPeticionVoto,
 		}
 	}
 
-	reply.MandatoPropio = nr.Estado.MandatoActual
-
 	if logOk && termOk {
 		nr.Logger.Printf("RECV RPC.PedirVoto: Voto concedido a %d\n",
 			peticion.IdCandidato)
@@ -388,11 +387,9 @@ func (nr *NodoRaft) PedirVoto(peticion *ArgsPeticionVoto,
 		nr.Rol = "Seguidor"
 		nr.CanalLatido <- true
 		reply.VotoRecibido = true
-		reply.MandatoPropio = nr.Estado.MandatoActual
 	} else {
 		reply.VotoRecibido = false
 	}
-	nr.Mux.Unlock()
 
 	return nil
 }
@@ -465,7 +462,7 @@ func (nr *NodoRaft) ActualizarLog(args *ArgAppendEntries) {
 		}
 	} else if args.IndiceLogAnterior >= len(nr.Estado.Log) {
 		nr.Logger.Println("IndiceLogAnterior fuera de rango, truncando...")
-		nr.Estado.Log = nr.Estado.Log[:len(nr.Estado.Log)]
+		nr.Estado.Log = nr.Estado.Log[:len(nr.Estado.Log)] //
 	}
 
 	// Añadir las nuevas entradas al log
@@ -523,32 +520,6 @@ func min(a, b int) int {
 // Y que la estructura de recuperacion de resultado sea un puntero a estructura
 // y no la estructura misma.
 
-// Ejemplo de código enviarPeticionVoto
-//
-// nodo int -- indice del servidor destino en nr.nodos[]
-//
-// args *RequestVoteArgs -- argumentos par la llamada RPC
-//
-// reply *RequestVoteReply -- respuesta RPC
-//
-// Los tipos de argumentos y respuesta pasados a CallTimeout deben ser
-// los mismos que los argumentos declarados en el metodo de tratamiento
-// de la llamada (incluido si son punteros)
-//
-// Si en la llamada RPC, la respuesta llega en un intervalo de tiempo,
-// la funcion devuelve true, sino devuelve false
-//
-// la llamada RPC deberia tener un timeout adecuado.
-//
-// Un resultado falso podria ser causado por una replica caida,
-// un servidor vivo que no es alcanzable (por problemas de red ?),
-// una petición perdida, o una respuesta perdida
-//
-// Para problemas con funcionamiento de RPC, comprobar que la primera letra
-// del nombre de todo los campos de la estructura (y sus subestructuras)
-// pasadas como parametros en las llamadas RPC es una mayuscula,
-// Y que la estructura de recuperacion de resultado sea un puntero a estructura
-// y no la estructura misma.
 func (nr *NodoRaft) enviarPeticionVoto(nodo int, args *ArgsPeticionVoto, respuesta *RespuestaPeticionVoto) bool {
 	// Enviar la solicitud de voto al nodo especificado con un tiempo límite de 25ms
 	err := nr.Nodos[nodo].CallTimeout("NodoRaft.PedirVoto", args, respuesta, 25*time.Millisecond)
@@ -564,12 +535,12 @@ func (nr *NodoRaft) enviarPeticionVoto(nodo int, args *ArgsPeticionVoto, respues
 		} else if respuesta.MandatoPropio > nr.Estado.MandatoActual {
 			nr.Estado.MandatoActual = respuesta.MandatoPropio
 			nr.Estado.HaVotadoA = -1
-			if nr.Rol != "Candidato" {
+			if nr.Rol != "Seguidor" {
 				nr.Rol = "Seguidor"
 			}
 		}
 	} else {
-		nr.Logger.Println("Error")
+		nr.Logger.Println("Error en la solicitud de envío de solicitud")
 	}
 
 	return err == nil // Retorna true si no hubo error en la solicitud, false en caso contrario
@@ -595,8 +566,8 @@ func (nr *NodoRaft) prepararArgsPeticionVoto() ArgsPeticionVoto {
 	args := ArgsPeticionVoto{
 		MandatoCandidato:              nr.Estado.MandatoActual,
 		IdCandidato:                   nr.Yo,
-		IndiceUltimaEntradaCandidato:  -1,
 		MandatoUltimaEntradaCandidato: 0,
+		IndiceUltimaEntradaCandidato:  -1,
 	}
 
 	if len(nr.Estado.Log) > 0 {
@@ -610,11 +581,13 @@ func (nr *NodoRaft) prepararArgsPeticionVoto() ArgsPeticionVoto {
 
 // Enviar peticiones de voto a todos los demás nodos
 func (nr *NodoRaft) enviarPeticionesVoto(args ArgsPeticionVoto) {
+	var nodoEnvio int
 	for nodoID := range nr.Nodos {
 		if nodoID != nr.Yo {
+			nodoEnvio = nodoID
 			go func() {
 				var respuesta RespuestaPeticionVoto
-				nr.PedirVoto(&args, &respuesta)
+				nr.enviarPeticionVoto(nodoEnvio, &args, &respuesta)
 			}()
 		}
 	}
@@ -709,16 +682,31 @@ func (nr *NodoRaft) bucle() {
 /**
  * @brief Caso de que el nodo sea un seguidor.
  */
+
+func tiempoEleccion(min, max int) int {
+	rand.Seed(time.Now().UnixNano())
+	return rand.Intn(max-min+1) + min
+}
+
 func (nr *NodoRaft) bucleSeguidor() {
-	temporizador := time.NewTimer(tiempoEleccion())
+	// Inicializar el temporizador con un tiempo de elección entre 150ms y 500ms
+	temporizador := time.NewTimer(time.Duration(tiempoEleccion(150, 500)))
+
 	defer temporizador.Stop()
 
 	for nr.Rol == "Seguidor" {
 		select {
 		case <-nr.CanalLatido:
-			temporizador.Reset(tiempoEleccion())
+			// Reiniciar el temporizador con un nuevo tiempo de elección entre 150ms y 500ms
+			if !temporizador.Stop() {
+				<-temporizador.C
+			}
+			temporizador.Reset(time.Duration(tiempoEleccion(150, 500)))
 		case <-temporizador.C:
+			// Cambiar el rol a "Candidato" y llamar a bucleCandidato
 			nr.Rol = "Candidato"
+			nr.bucleCandidato()
+			return
 		}
 	}
 }
@@ -727,22 +715,44 @@ func (nr *NodoRaft) bucleSeguidor() {
  * @brief Caso de que el nodo sea un candidato.
  */
 func (nr *NodoRaft) bucleCandidato() {
-	temporizador := time.NewTicker(tiempoEleccion())
-	defer temporizador.Stop()
+	startTime := time.Now()
+	totalElectionTimeout := 2500 * time.Millisecond
 
-	votosRecibidos := 1
-	nr.eleccion()
 	for nr.Rol == "Candidato" {
-		select {
-		case <-nr.CanalVotos:
-			votosRecibidos++
-			if votosRecibidos > len(nr.Nodos)/2 {
-				nr.Rol = "Lider"
-				nr.IdLider = nr.Yo
+		// Temporizador de elección entre 150ms y 300ms
+		electionTimeout := time.Duration(tiempoEleccion(150, 300)) * time.Millisecond
+		temporizador := time.NewTimer(electionTimeout)
+		votosRecibidos := 1
+
+		for {
+			select {
+			case <-nr.CanalVotos:
+				votosRecibidos++
+				if votosRecibidos > len(nr.Nodos)/2 {
+					nr.Rol = "Lider"
+					nr.IdLider = nr.Yo
+					temporizador.Stop()
+					nr.bucleLider()
+					return
+				}
+			case <-temporizador.C:
+				// Expiró el temporizador de elección
+				if time.Since(startTime) > totalElectionTimeout {
+					fmt.Println("Error fatal: No se pudo elegir líder en 2.5 segundos")
+					nr.Rol = "Error"
+					temporizador.Stop()
+					return
+				}
+				// Detener temporizador y comenzar nueva elección
+				temporizador.Stop()
+				break
 			}
-		case <-temporizador.C:
-			votosRecibidos = 1
-			nr.eleccion()
+			// Verificar si el rol ha cambiado
+			if nr.Rol != "Candidato" {
+				temporizador.Stop()
+				nr.bucleCandidato()
+				return
+			}
 		}
 	}
 }
@@ -754,7 +764,7 @@ func (nr *NodoRaft) bucleLider() {
 	nr.Logger.Printf("Inicio Lider: IndiceComprometido:%d Log: %v Almacen: %v\n",
 		nr.Estado.IndiceMayorComprometido, nr.Estado.Log)
 
-	temporizador := time.NewTicker(25 * time.Millisecond)
+	temporizador := time.NewTicker(time.Duration(tiempoEleccion(1, 50)) * time.Millisecond)
 	defer temporizador.Stop()
 
 	nr.IdLider = nr.Yo
@@ -775,4 +785,5 @@ func (nr *NodoRaft) bucleLider() {
 			nr.enviarLatido()
 		}
 	}
+	nr.bucleSeguidor()
 }
