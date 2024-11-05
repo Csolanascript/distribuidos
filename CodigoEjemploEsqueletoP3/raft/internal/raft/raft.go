@@ -44,10 +44,10 @@ const (
 
 	//  false deshabilita por completo los logs de depuracion
 	// Aseguraros de poner kEnableDebugLogs a false antes de la entrega
-	kEnableDebugLogs = false
+	kEnableDebugLogs = true
 
 	// Poner a true para logear a stdout en lugar de a fichero
-	kLogToStdout = false
+	kLogToStdout = true
 
 	// Cambiar esto para salida de logs en un directorio diferente
 	kLogOutputDir = "./logs_raft/"
@@ -130,10 +130,12 @@ func NuevoNodo(nodos []rpctimeout.HostPort, yo int,
 	canalAplicarOperacion chan AplicaOperacion) *NodoRaft {
 
 	fmt.Println("Creando nuevo nodo Raft")
+
 	nr := &NodoRaft{}
 	nr.Nodos = nodos
 	nr.Yo = yo
 	nr.IdLider = -1
+
 	if kEnableDebugLogs {
 		nombreNodo := nodos[yo].Host() + "_" + nodos[yo].Port()
 		fmt.Println("nombreNodo: ", nombreNodo)
@@ -160,29 +162,32 @@ func NuevoNodo(nodos []rpctimeout.HostPort, yo int,
 	} else {
 		nr.Logger = log.New(io.Discard, "", 0)
 	}
+	nr.Logger.Println("Iniciando configuración de estado y canales")
 
-	// Añadir codigo de inicialización
+	nr.Estado.Log = make([]Entrada, 0)
+	nr.Logger.Println("Estado inicializado1")
+	nr.CanalLatido = make(chan bool)
+	nr.Logger.Println("Estado inicializado2")
+	nr.CanalSeguidor = make(chan bool)
+	nr.Logger.Println("Estado inicializado3")
+	nr.CanalLider = make(chan bool)
+	nr.Logger.Println("Estado inicializado4")
+	nr.CanalVotos = make(chan bool)
+	nr.Logger.Println("Estado inicializado5")
+
 	nr.Estado.HaVotadoA = -1
 	nr.Estado.MandatoActual = 0
 	nr.Estado.IndiceMayorComprometido = 0
 	nr.Estado.IndiceMayorAplicado = 0
 
-	nr.CanalLatido = make(chan bool)
-	nr.CanalSeguidor = make(chan bool)
-	nr.CanalLider = make(chan bool)
-	nr.CanalVotos = make(chan bool)
-
 	nr.Rol = "Seguidor"
-
 	nr.Estado.SiguienteIndice = Make(0, len(nr.Nodos))
 	nr.Estado.IndiceUltimoConocido = Make(-1, len(nr.Nodos))
 
-	fmt.Println("NodoRaft creado con éxito")
-	fmt.Printf("Estado inicial: %+v\n", nr.Estado)
+	fmt.Println("Log inicializado y nodo creado con éxito")
+	//fmt.Printf("Estado inicial: %+v\n", nr.Estado)
 	fmt.Printf("Rol inicial: %s\n", nr.Rol)
-
 	go nr.bucle()
-
 	return nr
 }
 
@@ -208,7 +213,8 @@ func (nr *NodoRaft) obtenerEstado() (int, int, bool, int) {
 	var mandato int
 	var esLider bool
 	var idLider int
-	nr.Logger.Println("Estado obtenido")
+	nr.Logger.Println(fmt.Sprintf("Estado obtenido, soy %d y soy %s. El ID lider es %d", nr.Yo, nr.Rol, nr.IdLider))
+
 	mandato = nr.Estado.MandatoActual
 	esLider = (nr.Rol == "Lider")
 
@@ -241,6 +247,7 @@ func (nr *NodoRaft) obtenerEstado() (int, int, bool, int) {
 // - Quinto valor es el resultado de aplicar esta operación en máquina de estados
 func (nr *NodoRaft) someterOperacion(operacion TipoOperacion) (int, int,
 	bool, int, string) {
+
 	indice := -1
 	mandato := -1
 	esLider := nr.Yo == nr.IdLider
@@ -373,8 +380,6 @@ func (nr *NodoRaft) PedirVoto(peticion *ArgsPeticionVoto,
 		MandatoLog = nr.Estado.Log[LongLog-1].Mandato
 	}
 	// Inicializamos la respuesta con el mandato actual del nodo
-	reply.MandatoPropio = nr.Estado.MandatoActual
-	reply.VotoRecibido = false // Inicialmente, asumimos que el voto no será concedido
 
 	// Verificación de la actualidad del log del candidato
 	logOk := false
@@ -402,10 +407,13 @@ func (nr *NodoRaft) PedirVoto(peticion *ArgsPeticionVoto,
 		nr.Estado.MandatoActual = peticion.MandatoCandidato
 		nr.Estado.HaVotadoA = peticion.IdCandidato
 		nr.Rol = "Seguidor"
-		nr.CanalLatido <- true
 		reply.VotoRecibido = true
+		reply.MandatoPropio = nr.Estado.MandatoActual
+		nr.CanalLatido <- true
+
 	} else {
 		reply.VotoRecibido = false
+		reply.MandatoPropio = nr.Estado.MandatoActual
 	}
 
 	return nil
@@ -435,6 +443,7 @@ func (nr *NodoRaft) AppendEntries(args *ArgAppendEntries, results *Results) erro
 		nr.Logger.Println("RECV RPC.AppendEntries: Voy rezagado")
 		nr.Estado.MandatoActual = args.MandatoLider
 		nr.Estado.HaVotadoA = -1 // Reiniciar el voto en el nuevo mandato
+		nr.CanalLatido <- true
 	}
 
 	// Procesar AppendEntries si el mandato es el actual y el log está alineado
@@ -447,9 +456,10 @@ func (nr *NodoRaft) AppendEntries(args *ArgAppendEntries, results *Results) erro
 		results.IndiceCoincidente = args.IndiceLogAnterior + len(args.EntradasLog)
 
 		nr.ActualizarLog(args)
+		nr.Rol = "Seguidor"
 		nr.CanalLatido <- true
 	} else {
-		nr.Logger.Printf("Error append entries")
+		nr.Logger.Printf("Error append entries. Mi mandato es %d y el del lider es %d", nr.Estado.MandatoActual, args.MandatoLider)
 		results.MandatoActual = nr.Estado.MandatoActual
 		results.Exito = false
 		results.IndiceCoincidente = -1
@@ -460,16 +470,16 @@ func (nr *NodoRaft) AppendEntries(args *ArgAppendEntries, results *Results) erro
 
 // Verificar si el log contiene la entrada en IndiceLogAnterior con el mandato correcto
 func (nr *NodoRaft) isLogValido(args *ArgAppendEntries) bool {
-	if args.IndiceLogAnterior >= 0 && args.IndiceLogAnterior < len(nr.Estado.Log) {
+	if args.IndiceLogAnterior >= 0 && args.IndiceLogAnterior <= len(nr.Estado.Log)-1 {
+		nr.Logger.Println("ENTRÉEEEE")
 		return args.MandatoLogAnterior == nr.Estado.Log[args.IndiceLogAnterior].Mandato
 	}
+	nr.Logger.Printf("NO HE ENTRADO. IndiceLogAnterior es %d y el ttamaño del log de nr es %d\n", args.IndiceLogAnterior, len(nr.Estado.Log))
 	return false
 }
 
 // Lógica de actualización del log
 func (nr *NodoRaft) ActualizarLog(args *ArgAppendEntries) {
-	nr.Mux.Lock()
-	defer nr.Mux.Unlock()
 
 	// Verificar si el log contiene la entrada en IndiceLogAnterior con el mandato correcto
 	if args.IndiceLogAnterior >= 0 && args.IndiceLogAnterior < len(nr.Estado.Log) {
@@ -552,9 +562,7 @@ func (nr *NodoRaft) enviarPeticionVoto(nodo int, args *ArgsPeticionVoto, respues
 		} else if respuesta.MandatoPropio > nr.Estado.MandatoActual {
 			nr.Estado.MandatoActual = respuesta.MandatoPropio
 			nr.Estado.HaVotadoA = -1
-			if nr.Rol != "Seguidor" {
-				nr.Rol = "Seguidor"
-			}
+			nr.CanalLatido <- true
 		}
 	} else {
 		nr.Logger.Println("Error en la solicitud de envío de solicitud")
@@ -657,8 +665,6 @@ func (nr *NodoRaft) enviarLatido() {
 			}
 			if nr.Estado.SiguienteIndice[nodo] < len(nr.Estado.Log) {
 				args.EntradasLog = nr.Estado.Log[nr.Estado.SiguienteIndice[nodo]:]
-			} else {
-				args.EntradasLog = nil
 			}
 			go nr.peticionLatido(nodo, &args, &respuesta)
 		}
@@ -680,7 +686,6 @@ func (nr *NodoRaft) enviarLatido() {
 // =============================================================================
 
 func (nr *NodoRaft) bucle() {
-	time.Sleep(2000 * time.Millisecond)
 	for {
 		switch nr.Rol {
 		case "Seguidor":
@@ -701,13 +706,12 @@ func (nr *NodoRaft) bucle() {
  */
 
 func tiempoEleccion(min, max int) int {
-	rand.Seed(time.Now().UnixNano())
-	return rand.Intn(max-min+1) + min
+	return rand.Intn(max) + min
 }
 
 func (nr *NodoRaft) bucleSeguidor() {
 	// Inicializar el temporizador con un tiempo de elección entre 150ms y 500ms
-	temporizador := time.NewTimer(time.Duration(tiempoEleccion(150, 500)))
+	temporizador := time.NewTimer(time.Duration(tiempoEleccion(100, 500)) * time.Millisecond)
 
 	defer temporizador.Stop()
 
@@ -715,13 +719,11 @@ func (nr *NodoRaft) bucleSeguidor() {
 		select {
 		case <-nr.CanalLatido:
 			// Reiniciar el temporizador con un nuevo tiempo de elección entre 150ms y 500ms
-			if !temporizador.Stop() {
-				<-temporizador.C
-			}
-			temporizador.Reset(time.Duration(tiempoEleccion(150, 500)))
+			temporizador.Reset(time.Duration(tiempoEleccion(100, 500)) * time.Millisecond)
 		case <-temporizador.C:
 			// Cambiar el rol a "Candidato" y llamar a bucleCandidato
 			nr.Rol = "Candidato"
+			nr.IdLider = -1
 			return
 		}
 	}
@@ -734,40 +736,41 @@ func (nr *NodoRaft) bucleCandidato() {
 	startTime := time.Now()
 	totalElectionTimeout := 2500 * time.Millisecond
 
+	votosRecibidos := 1
 	for nr.Rol == "Candidato" {
-		// Temporizador de elección entre 150ms y 300ms
-		electionTimeout := time.Duration(tiempoEleccion(150, 300)) * time.Millisecond
-		temporizador := time.NewTimer(electionTimeout)
-		votosRecibidos := 1
 
-		for {
-			select {
-			case <-nr.CanalVotos:
-				votosRecibidos++
-				if votosRecibidos > len(nr.Nodos)/2 {
-					nr.Rol = "Lider"
-					nr.IdLider = nr.Yo
-					temporizador.Stop()
-					nr.bucleLider()
-					return
-				}
-			case <-temporizador.C:
-				// Expiró el temporizador de elección
-				if time.Since(startTime) > totalElectionTimeout {
-					fmt.Println("Error fatal: No se pudo elegir líder en 2.5 segundos")
-					nr.Rol = "Error"
-					temporizador.Stop()
-					return
-				}
-				// Detener temporizador y comenzar nueva elección
-				temporizador.Stop()
+		// Temporizador de elección entre 150ms y 300ms
+		electionTimeout := time.Duration(tiempoEleccion(100, 500)) * time.Millisecond
+		temporizador := time.NewTimer(electionTimeout)
+		nr.eleccion()
+
+		select {
+		case <-nr.CanalVotos:
+			votosRecibidos++
+			temporizador.Reset(time.Duration(tiempoEleccion(100, 500)) * time.Millisecond)
+			if votosRecibidos > len(nr.Nodos)/2 {
+				nr.Rol = "Lider"
+				nr.IdLider = nr.Yo
+				nr.bucleLider()
 			}
-			// Verificar si el rol ha cambiado
-			if nr.Rol != "Candidato" {
+			temporizador.Stop()
+		case <-temporizador.C:
+			// Expiró el temporizador de elección
+			if time.Since(startTime) > totalElectionTimeout {
+				fmt.Println("Error fatal: No se pudo elegir líder en 2.5 segundos")
+				nr.Rol = "Error"
 				temporizador.Stop()
-				return
+
 			}
+			votosRecibidos = 1
+			// Detener temporizador y comenzar nueva elección
+			//temporizador.Stop()
+			//temporizador.Reset(time.Duration(tiempoEleccion(150, 300)) * time.Millisecond)
+		case <-nr.CanalLatido:
+			nr.Rol = "Seguidor"
+
 		}
+
 	}
 }
 
@@ -778,7 +781,7 @@ func (nr *NodoRaft) bucleLider() {
 	nr.Logger.Printf("Inicio Lider: IndiceComprometido:%d Log: %v\n",
 		nr.Estado.IndiceMayorComprometido, nr.Estado.Log)
 
-	temporizador := time.NewTicker(time.Duration(tiempoEleccion(1, 50)) * time.Millisecond)
+	temporizador := time.NewTicker(time.Duration(25) * time.Millisecond)
 	defer temporizador.Stop()
 
 	nr.IdLider = nr.Yo
@@ -791,12 +794,14 @@ func (nr *NodoRaft) bucleLider() {
 		nr.Estado.IndiceUltimoConocido[i] = -1
 	}
 
-	nr.enviarLatido()
-
 	for nr.Rol == "Lider" {
+		temporizador = time.NewTicker(time.Duration(25) * time.Millisecond)
+		nr.enviarLatido()
+
 		select {
 		case <-temporizador.C:
-			nr.enviarLatido()
+		case <-nr.CanalLatido:
+			nr.Rol = "Seguidor"
 		}
 	}
 }

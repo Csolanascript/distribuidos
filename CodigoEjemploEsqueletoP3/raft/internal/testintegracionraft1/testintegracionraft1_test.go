@@ -19,9 +19,9 @@ import (
 
 const (
 	//nodos replicas
-	REPLICA1 = "127.0.0.1:29008"
-	REPLICA2 = "127.0.0.1:29009"
-	REPLICA3 = "127.0.0.1:29010"
+	REPLICA1 = "127.0.0.1:29001"
+	REPLICA2 = "127.0.0.1:29002"
+	REPLICA3 = "127.0.0.1:29003"
 	//REPLICA1 = "192.168.3.13:29230"
 	//REPLICA2 = "192.168.3.14:29230"
 	//REPLICA3 = "192.168.3.15:29230"
@@ -170,7 +170,7 @@ func (cfg *configDespliegue) elegirPrimerLiderTest2(t *testing.T) {
 
 // Fallo de un primer lider y reeleccion de uno nuevo - 3 NODOS RAFT
 func (cfg *configDespliegue) falloAnteriorElegirNuevoLiderTest3(t *testing.T) {
-	t.Skip("SKIPPED FalloAnteriorElegirNuevoLiderTest3")
+	//t.Skip("SKIPPED FalloAnteriorElegirNuevoLiderTest3")
 
 	fmt.Println(t.Name(), ".....................")
 
@@ -281,6 +281,8 @@ func (cfg *configDespliegue) pruebaUnLider(numreplicas int) int {
 		ultimoMandatoConLider := -1
 		for mandato, lideres := range mapaLideres {
 			if len(lideres) > 1 {
+				fmt.Printf("mandato %d tiene %d (>1) lideres",
+					mandato, len(lideres))
 				cfg.t.Fatalf("mandato %d tiene %d (>1) lideres",
 					mandato, len(lideres))
 			}
@@ -296,6 +298,7 @@ func (cfg *configDespliegue) pruebaUnLider(numreplicas int) int {
 		}
 	}
 	cfg.t.Fatalf("un lider esperado, ninguno obtenido")
+	fmt.Printf("un lider esperado, ninguno obtenido")
 
 	return -1 // Termina
 }
@@ -325,11 +328,11 @@ func (cfg *configDespliegue) startDistributedProcesses() {
 			[]string{endPoint.Host()}, cfg.cr)
 
 		// dar tiempo para se establezcan las replicas
-		time.Sleep(2000 * time.Millisecond)
+		time.Sleep(200 * time.Millisecond)
 	}
 
 	// aproximadamente 500 ms para cada arranque por ssh en portatil
-	time.Sleep(20000 * time.Millisecond)
+	time.Sleep(500 * time.Millisecond)
 }
 
 func (cfg *configDespliegue) stopDistributedProcesses() {
@@ -346,9 +349,9 @@ func (cfg *configDespliegue) stopDistributedProcesses() {
 
 // Comprobar estado remoto de un nodo con respecto a un estado prefijado
 func (cfg *configDespliegue) comprobarEstadoRemoto(idNodoDeseado int) {
-	idNodo, _, _, _ := cfg.obtenerEstadoRemoto(idNodoDeseado)
+	idNodo, mandato, esLider, idLider := cfg.obtenerEstadoRemoto(idNodoDeseado)
 
-	//cfg.t.Log("Estado replica 0: ", idNodo, mandato, esLider, idLider, "\n")
+	cfg.t.Log("Estado replica : ", idNodo, mandato, esLider, idLider, "\n")
 
 	if idNodo != idNodoDeseado {
 		cfg.t.Fatalf("Estado incorrecto en replica %d en subtest %s",
