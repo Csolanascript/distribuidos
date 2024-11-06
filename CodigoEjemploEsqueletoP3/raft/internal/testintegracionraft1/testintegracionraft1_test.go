@@ -22,9 +22,9 @@ const (
 	REPLICA1 = "127.0.0.1:29001"
 	REPLICA2 = "127.0.0.1:29002"
 	REPLICA3 = "127.0.0.1:29003"
-	//REPLICA1 = "192.168.3.13:29230"
-	//REPLICA2 = "192.168.3.14:29230"
-	//REPLICA3 = "192.168.3.15:29230"
+	//REPLICA1 = "192.168.3.17:29230"
+	//REPLICA2 = "192.168.3.18:29230"
+	//REPLICA3 = "192.168.3.19:29230"
 	// paquete main de ejecutables relativos a directorio raiz de modulo
 	EXECREPLICA = "cmd/srvraft/main.go"
 
@@ -174,29 +174,26 @@ func (cfg *configDespliegue) falloAnteriorElegirNuevoLiderTest3(t *testing.T) {
 
 	fmt.Println(t.Name(), ".....................")
 
+	// Iniciar los procesos distribuidos
 	cfg.startDistributedProcesses()
 
-	leader := cfg.pruebaUnLider(3)
-	fmt.Printf("El leader es el nodo %d\n", leader)
-	// Desconectar lider
-	fmt.Printf("Se para el nodo %d\n", leader)
-	cfg.pararLeader(leader)
-	// 	Se comprueba un nuevo líder
-	fmt.Printf("Esperenado nuevo leader ...\n")
-	var idLeader int
-	for {
-		_, _, _, idLeader := cfg.obtenerEstadoRemoto((leader + 1) % 3)
-		if idLeader != leader {
-			break
-		}
-		time.Sleep(100 * time.Millisecond)
-	}
-	fmt.Printf("El nuevo leader es el nodo %d\n", idLeader)
+	// Encontrar el líder actual
+	lider := cfg.pruebaUnLider(3)
+	fmt.Printf("El líder es el nodo %d\n", lider)
 
-	// Parar réplicas almacenamiento en remoto
-	cfg.stopDistributedProcesses() //parametros
+	// Detener el nodo líder
+	fmt.Printf("Se detiene el nodo líder %d\n", lider)
+	cfg.pararLider(lider)
+
+	// Esperar a que se elija un nuevo líder
+	nuevoLider := cfg.esperarNuevoLider(lider)
+	fmt.Printf("El nuevo líder es el nodo %d\n", nuevoLider)
+
+	// Detener todos los procesos distribuidos
+	cfg.stopDistributedProcesses()
 
 	fmt.Println(".............", t.Name(), "Superado")
+
 }
 
 // 3 operaciones comprometidas con situacion estable y sin fallos - 3 NODOS RAFT
@@ -251,17 +248,25 @@ func (cfg *configDespliegue) comprobarOperacion(idLeader int, index int,
 	}
 }
 
-// Se para al nodo leader
-func (cfg *configDespliegue) pararLeader(idLeader int) {
-	var reply raft.Vacio
-	for i, endPoint := range cfg.nodosRaft {
-		if i == idLeader {
-			err := endPoint.CallTimeout("NodoRaft.ParaNodo",
-				raft.Vacio{}, &reply, 10*time.Millisecond)
-			check.CheckError(err, "Error en llamada RPC Para nodo")
-			cfg.conectados[i] = false
-		}
+func (cfg *configDespliegue) pararLider(idLeader int) {
+	if idLeader < 0 || idLeader >= len(cfg.nodosRaft) {
+		fmt.Printf("ID de líder no válido: %d\n", idLeader)
+		return
 	}
+
+	var reply raft.Vacio
+	endPoint := cfg.nodosRaft[idLeader]
+
+	// Intentar detener el nodo líder
+	err := endPoint.CallTimeout("NodoRaft.ParaNodo", raft.Vacio{}, &reply, 10*time.Millisecond)
+	if err != nil {
+		check.CheckError(err, "Error en llamada RPC Para nodo")
+		return
+	}
+
+	// Actualizar el estado del nodo como desconectado
+	cfg.conectados[idLeader] = false
+	fmt.Printf("Nodo líder %d detenido exitosamente\n", idLeader)
 }
 
 // Comprobar que hay un solo lider
@@ -357,4 +362,19 @@ func (cfg *configDespliegue) comprobarEstadoRemoto(idNodoDeseado int) {
 		cfg.t.Fatalf("Estado incorrecto en replica %d en subtest %s",
 			idNodoDeseado, cfg.t.Name())
 	}
+}
+
+// esperarNuevoLider espera hasta que se elija un nuevo líder, diferente del anterior.
+func (cfg *configDespliegue) esperarNuevoLider(idLiderAnterior int) int {
+	fmt.Println("Esperando un nuevo líder...")
+	nuevoLider := idLiderAnterior
+
+	for nuevoLider == idLiderAnterior {
+		i := (idLiderAnterior + 1) % 3
+		_, _, _, nuevoLider = cfg.obtenerEstadoRemoto(i)
+		time.Sleep(100 * time.Millisecond)
+		fmt.Println("Esperando un nuevo líder...")
+	}
+
+	return nuevoLider
 }

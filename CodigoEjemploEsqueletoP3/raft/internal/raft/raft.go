@@ -47,7 +47,7 @@ const (
 	kEnableDebugLogs = true
 
 	// Poner a true para logear a stdout en lugar de a fichero
-	kLogToStdout = true
+	kLogToStdout = false
 
 	// Cambiar esto para salida de logs en un directorio diferente
 	kLogOutputDir = "./logs_raft/"
@@ -187,7 +187,7 @@ func NuevoNodo(nodos []rpctimeout.HostPort, yo int,
 	fmt.Println("Log inicializado y nodo creado con éxito")
 	//fmt.Printf("Estado inicial: %+v\n", nr.Estado)
 	fmt.Printf("Rol inicial: %s\n", nr.Rol)
-	go nr.bucle()
+	go nr.MaquinaDeEstados()
 	return nr
 }
 
@@ -382,28 +382,27 @@ func (nr *NodoRaft) PedirVoto(peticion *ArgsPeticionVoto,
 	// Inicializamos la respuesta con el mandato actual del nodo
 
 	// Verificación de la actualidad del log del candidato
-	logOk := false
+	logActualizado := false
 	if peticion.MandatoUltimaEntradaCandidato > MandatoLog {
-		logOk = true // El log del candidato está en un mandato más reciente
+		logActualizado = true // El log del candidato está en un mandato más reciente
 	} else if peticion.MandatoUltimaEntradaCandidato == MandatoLog {
 		if peticion.IndiceUltimaEntradaCandidato >= LongLog-1 {
-			logOk = true // El candidato tiene el mismo mandato y al menos el mismo índice
+			logActualizado = true // El candidato tiene el mismo mandato y al menos el mismo índice
 		}
 	}
 
 	// Verificación del término del candidato y el estado de votación
-	termOk := false
+	terminoActualizado := false
 	if peticion.MandatoCandidato > nr.Estado.MandatoActual {
-		termOk = true // El candidato tiene un término superior
+		terminoActualizado = true // El candidato tiene un término superior
 	} else if peticion.MandatoCandidato == nr.Estado.MandatoActual {
 		if nr.Estado.HaVotadoA == -1 || nr.Estado.HaVotadoA == peticion.IdCandidato {
-			termOk = true // Mismo término y aún no ha votado, o ya votó por el candidato
+			terminoActualizado = true // Mismo término y aún no ha votado, o ya votó por el candidato
 		}
 	}
 
-	if logOk && termOk {
-		nr.Logger.Printf("RECV RPC.PedirVoto: Voto concedido a %d\n",
-			peticion.IdCandidato)
+	if logActualizado && terminoActualizado {
+		nr.Logger.Printf("Le he mandado un voto a %d\n", peticion.IdCandidato)
 		nr.Estado.MandatoActual = peticion.MandatoCandidato
 		nr.Estado.HaVotadoA = peticion.IdCandidato
 		nr.Rol = "Seguidor"
@@ -440,10 +439,10 @@ func (nr *NodoRaft) AppendEntries(args *ArgAppendEntries, results *Results) erro
 
 	// Verificar si el mandato del líder es mayor al mandato actual
 	if args.MandatoLider > nr.Estado.MandatoActual {
-		nr.Logger.Println("RECV RPC.AppendEntries: Voy rezagado")
 		nr.Estado.MandatoActual = args.MandatoLider
 		nr.Estado.HaVotadoA = -1 // Reiniciar el voto en el nuevo mandato
 		nr.CanalLatido <- true
+		nr.Logger.Println("Actualizado el mandato actual")
 	}
 
 	// Procesar AppendEntries si el mandato es el actual y el log está alineado
@@ -471,10 +470,9 @@ func (nr *NodoRaft) AppendEntries(args *ArgAppendEntries, results *Results) erro
 // Verificar si el log contiene la entrada en IndiceLogAnterior con el mandato correcto
 func (nr *NodoRaft) isLogValido(args *ArgAppendEntries) bool {
 	if args.IndiceLogAnterior >= 0 && args.IndiceLogAnterior <= len(nr.Estado.Log)-1 {
-		nr.Logger.Println("ENTRÉEEEE")
 		return args.MandatoLogAnterior == nr.Estado.Log[args.IndiceLogAnterior].Mandato
 	}
-	nr.Logger.Printf("NO HE ENTRADO. IndiceLogAnterior es %d y el ttamaño del log de nr es %d\n", args.IndiceLogAnterior, len(nr.Estado.Log))
+	nr.Logger.Printf("NO HE ENTRADO. IndiceLogAnterior es %d y el tamaño del log de nr es %d\n", args.IndiceLogAnterior, len(nr.Estado.Log))
 	return false
 }
 
@@ -647,63 +645,58 @@ func (nr *NodoRaft) peticionLatido(nodo int, args *ArgAppendEntries, reply *Resu
 // Función para enviar nuevos latidos a otros nodos
 func (nr *NodoRaft) enviarLatido() {
 	nr.Logger.Println("Nuevo latido")
-	args := ArgAppendEntries{
+
+	baseArgs := ArgAppendEntries{
 		MandatoLider:       nr.Estado.MandatoActual,
 		IdLider:            nr.Yo,
-		IndiceLogAnterior:  -1,
-		MandatoLogAnterior: 0,
-		EntradasLog:        nil,
 		IndiceComprometido: nr.Estado.IndiceMayorComprometido,
 	}
 
+	// Itera sobre los nodos y configura las entradas específicas para cada nodo
 	for nodo := range nr.Nodos {
-		if nodo != nr.Yo {
-			var respuesta Results
-			args.IndiceLogAnterior = nr.Estado.SiguienteIndice[nodo] - 1
-			if args.IndiceLogAnterior > -1 {
-				args.MandatoLogAnterior = nr.Estado.Log[args.IndiceLogAnterior].Mandato
-			}
-			if nr.Estado.SiguienteIndice[nodo] < len(nr.Estado.Log) {
-				args.EntradasLog = nr.Estado.Log[nr.Estado.SiguienteIndice[nodo]:]
-			}
-			go nr.peticionLatido(nodo, &args, &respuesta)
+		if nodo == nr.Yo {
+			continue
 		}
+
+		// Clona los argumentos base y personaliza por nodo
+		args := baseArgs
+		args.IndiceLogAnterior = nr.Estado.SiguienteIndice[nodo] - 1
+		args.EntradasLog = nil // Reinicia las entradas para cada nodo
+
+		if args.IndiceLogAnterior >= 0 {
+			args.MandatoLogAnterior = nr.Estado.Log[args.IndiceLogAnterior].Mandato
+		}
+
+		// Asigna las entradas del log si el índice está dentro del rango
+		if nr.Estado.SiguienteIndice[nodo] < len(nr.Estado.Log) {
+			args.EntradasLog = nr.Estado.Log[nr.Estado.SiguienteIndice[nodo]:]
+		}
+
+		go func(destino int, argumentos ArgAppendEntries) {
+			var respuesta Results
+			nr.peticionLatido(destino, &argumentos, &respuesta)
+		}(nodo, args)
 	}
+
 }
-
-// =============================================================================
-// Maquina de estados
-// =============================================================================
-//                                                      timeout
-//                                           ______
-//                                          v      |
-//   --------    timeout    -----------  recv majority votes   -----------
-//  |Seguidor| ----------> | Candidato |--------------------> |  Lider   |
-//   --------               -----------                        -----------
-//        ^          higher term/ |                         higher term |
-//         |            new leader |                                     |
-//         |_______________________|____________________________________ |
-// =============================================================================
-
-func (nr *NodoRaft) bucle() {
+func (nr *NodoRaft) MaquinaDeEstados() {
 	for {
+		nr.logEstadoActual()
 		switch nr.Rol {
 		case "Seguidor":
-			nr.Logger.Printf("ESTADO: Seguidor | Mandato %d\n", nr.Estado.MandatoActual)
 			nr.bucleSeguidor()
 		case "Candidato":
-			nr.Logger.Printf("ESTADO: Candidato | Mandato %d\n", nr.Estado.MandatoActual+1)
 			nr.bucleCandidato()
 		case "Lider":
-			nr.Logger.Printf("ESTADO: Lider | Mandato %d\n", nr.Estado.MandatoActual)
 			nr.bucleLider()
 		}
 	}
 }
 
-/**
- * @brief Caso de que el nodo sea un seguidor.
- */
+// Función auxiliar para loggear el estado actual
+func (nr *NodoRaft) logEstadoActual() {
+	nr.Logger.Printf("Soy %s y mi mandato es %d\n", nr.Rol, nr.Estado.MandatoActual)
+}
 
 func tiempoEleccion(min, max int) int {
 	return rand.Intn(max) + min
@@ -742,6 +735,7 @@ func (nr *NodoRaft) bucleCandidato() {
 		// Temporizador de elección entre 150ms y 300ms
 		electionTimeout := time.Duration(tiempoEleccion(100, 500)) * time.Millisecond
 		temporizador := time.NewTimer(electionTimeout)
+		defer temporizador.Stop()
 		nr.eleccion()
 
 		select {
