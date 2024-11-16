@@ -1,0 +1,1607 @@
+192.168.3.19_29235 -> 18:25:51.617840 raft.go:161: logger initialized
+192.168.3.19_29235 -> 18:25:51.618125 raft.go:165: Iniciando configuración de estado y canales
+192.168.3.19_29235 -> 18:25:51.618153 raft.go:168: Estado inicializado1
+192.168.3.19_29235 -> 18:25:51.618175 raft.go:170: Estado inicializado2
+192.168.3.19_29235 -> 18:25:51.618196 raft.go:172: Estado inicializado3
+192.168.3.19_29235 -> 18:25:51.618218 raft.go:174: Estado inicializado4
+192.168.3.19_29235 -> 18:25:51.618239 raft.go:176: Estado inicializado5
+192.168.3.19_29235 -> 18:25:51.618491 raft.go:698: Soy Seguidor y mi mandato es 0
+192.168.3.19_29235 -> 18:25:51.861132 raft.go:405: Le he mandado un voto a 0
+192.168.3.19_29235 -> 18:25:51.861478 raft.go:405: Le he mandado un voto a 0
+192.168.3.19_29235 -> 18:25:51.866181 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:51.866289 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:51.866372 raft.go:461: Error append entries. Mi mandato es 9 y el del lider es 9
+192.168.3.19_29235 -> 18:25:51.890475 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:51.890540 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:51.890574 raft.go:461: Error append entries. Mi mandato es 9 y el del lider es 9
+192.168.3.19_29235 -> 18:25:51.917177 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:51.917347 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:51.917452 raft.go:461: Error append entries. Mi mandato es 9 y el del lider es 9
+192.168.3.19_29235 -> 18:25:51.942388 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:51.942475 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:51.942521 raft.go:461: Error append entries. Mi mandato es 9 y el del lider es 9
+192.168.3.19_29235 -> 18:25:51.967557 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:51.967630 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:51.967670 raft.go:461: Error append entries. Mi mandato es 9 y el del lider es 9
+192.168.3.19_29235 -> 18:25:51.993075 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:51.993166 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:51.993217 raft.go:461: Error append entries. Mi mandato es 9 y el del lider es 9
+192.168.3.19_29235 -> 18:25:52.018160 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:52.018246 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:52.018293 raft.go:461: Error append entries. Mi mandato es 9 y el del lider es 9
+192.168.3.19_29235 -> 18:25:52.043733 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:52.043808 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:52.043850 raft.go:461: Error append entries. Mi mandato es 9 y el del lider es 9
+192.168.3.19_29235 -> 18:25:52.069119 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:52.069211 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:52.069257 raft.go:461: Error append entries. Mi mandato es 9 y el del lider es 9
+192.168.3.19_29235 -> 18:25:52.097925 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:52.098032 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:52.098082 raft.go:461: Error append entries. Mi mandato es 9 y el del lider es 9
+192.168.3.19_29235 -> 18:25:52.120467 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:52.120553 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:52.120625 raft.go:461: Error append entries. Mi mandato es 9 y el del lider es 9
+192.168.3.19_29235 -> 18:25:52.146381 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:52.146471 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:52.146517 raft.go:461: Error append entries. Mi mandato es 9 y el del lider es 9
+192.168.3.19_29235 -> 18:25:52.148827 raft.go:698: Soy Candidato y mi mandato es 9
+192.168.3.19_29235 -> 18:25:52.148956 raft.go:574: Nueva elección
+192.168.3.19_29235 -> 18:25:52.151912 raft.go:551: RPC.PedirVoto: Solicitud de Voto [2]{&{10 2 -1 0}} -> Respuesta [1]{&{0 10 true}}
+192.168.3.19_29235 -> 18:25:52.152131 raft.go:775: Inicio Lider: IndiceComprometido:0 Log: []
+192.168.3.19_29235 -> 18:25:52.152207 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:52.152974 raft.go:551: RPC.PedirVoto: Solicitud de Voto [2]{&{10 2 -1 0}} -> Respuesta [1]{&{0 10 true}}
+192.168.3.19_29235 -> 18:25:52.178196 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:52.203706 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:52.228782 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:52.254477 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:52.280054 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:52.305275 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:52.329937 raft.go:405: Le he mandado un voto a 1
+192.168.3.19_29235 -> 18:25:52.330197 raft.go:405: Le he mandado un voto a 1
+192.168.3.19_29235 -> 18:25:52.330263 raft.go:698: Soy Seguidor y mi mandato es 11
+192.168.3.19_29235 -> 18:25:52.332563 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:52.332695 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:52.332778 raft.go:461: Error append entries. Mi mandato es 11 y el del lider es 11
+192.168.3.19_29235 -> 18:25:52.358565 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:52.358653 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:52.358698 raft.go:461: Error append entries. Mi mandato es 11 y el del lider es 11
+192.168.3.19_29235 -> 18:25:52.384445 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:52.384528 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:52.384726 raft.go:461: Error append entries. Mi mandato es 11 y el del lider es 11
+192.168.3.19_29235 -> 18:25:52.409676 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:52.409785 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:52.409831 raft.go:461: Error append entries. Mi mandato es 11 y el del lider es 11
+192.168.3.19_29235 -> 18:25:52.434373 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:52.434447 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:52.434479 raft.go:461: Error append entries. Mi mandato es 11 y el del lider es 11
+192.168.3.19_29235 -> 18:25:52.460400 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:52.460493 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:52.460533 raft.go:461: Error append entries. Mi mandato es 11 y el del lider es 11
+192.168.3.19_29235 -> 18:25:52.486517 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:52.486607 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:52.486652 raft.go:461: Error append entries. Mi mandato es 11 y el del lider es 11
+192.168.3.19_29235 -> 18:25:52.512340 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:52.512428 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:52.512473 raft.go:461: Error append entries. Mi mandato es 11 y el del lider es 11
+192.168.3.19_29235 -> 18:25:52.525735 raft.go:698: Soy Candidato y mi mandato es 11
+192.168.3.19_29235 -> 18:25:52.525847 raft.go:574: Nueva elección
+192.168.3.19_29235 -> 18:25:52.528309 raft.go:551: RPC.PedirVoto: Solicitud de Voto [2]{&{12 2 -1 0}} -> Respuesta [1]{&{0 12 true}}
+192.168.3.19_29235 -> 18:25:52.528452 raft.go:775: Inicio Lider: IndiceComprometido:0 Log: []
+192.168.3.19_29235 -> 18:25:52.528535 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:52.530933 raft.go:551: RPC.PedirVoto: Solicitud de Voto [2]{&{12 2 -1 0}} -> Respuesta [1]{&{0 12 true}}
+192.168.3.19_29235 -> 18:25:52.554588 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:52.580094 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:52.605876 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:52.631582 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:52.657595 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:52.663604 raft.go:405: Le he mandado un voto a 0
+192.168.3.19_29235 -> 18:25:52.663811 raft.go:405: Le he mandado un voto a 0
+192.168.3.19_29235 -> 18:25:52.663915 raft.go:698: Soy Seguidor y mi mandato es 13
+192.168.3.19_29235 -> 18:25:52.666318 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:52.666377 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:52.666407 raft.go:461: Error append entries. Mi mandato es 13 y el del lider es 13
+192.168.3.19_29235 -> 18:25:52.692205 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:52.692280 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:52.692315 raft.go:461: Error append entries. Mi mandato es 13 y el del lider es 13
+192.168.3.19_29235 -> 18:25:52.717842 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:52.717919 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:52.717961 raft.go:461: Error append entries. Mi mandato es 13 y el del lider es 13
+192.168.3.19_29235 -> 18:25:52.743444 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:52.743515 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:52.743549 raft.go:461: Error append entries. Mi mandato es 13 y el del lider es 13
+192.168.3.19_29235 -> 18:25:52.768826 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:52.768899 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:52.768934 raft.go:461: Error append entries. Mi mandato es 13 y el del lider es 13
+192.168.3.19_29235 -> 18:25:52.794307 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:52.794376 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:52.794408 raft.go:461: Error append entries. Mi mandato es 13 y el del lider es 13
+192.168.3.19_29235 -> 18:25:52.819722 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:52.819808 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:52.819840 raft.go:461: Error append entries. Mi mandato es 13 y el del lider es 13
+192.168.3.19_29235 -> 18:25:52.845343 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:52.845435 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:52.845469 raft.go:461: Error append entries. Mi mandato es 13 y el del lider es 13
+192.168.3.19_29235 -> 18:25:52.871125 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:52.871213 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:52.871259 raft.go:461: Error append entries. Mi mandato es 13 y el del lider es 13
+192.168.3.19_29235 -> 18:25:52.897037 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:52.897119 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:52.897207 raft.go:461: Error append entries. Mi mandato es 13 y el del lider es 13
+192.168.3.19_29235 -> 18:25:52.915892 raft.go:698: Soy Candidato y mi mandato es 13
+192.168.3.19_29235 -> 18:25:52.915998 raft.go:574: Nueva elección
+192.168.3.19_29235 -> 18:25:52.918428 raft.go:551: RPC.PedirVoto: Solicitud de Voto [2]{&{14 2 -1 0}} -> Respuesta [1]{&{0 14 true}}
+192.168.3.19_29235 -> 18:25:52.918585 raft.go:775: Inicio Lider: IndiceComprometido:0 Log: []
+192.168.3.19_29235 -> 18:25:52.918648 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:52.919044 raft.go:551: RPC.PedirVoto: Solicitud de Voto [2]{&{14 2 -1 0}} -> Respuesta [1]{&{0 14 true}}
+192.168.3.19_29235 -> 18:25:52.922950 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:52.923045 raft.go:461: Error append entries. Mi mandato es 14 y el del lider es 13
+192.168.3.19_29235 -> 18:25:52.944386 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:52.970163 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:52.995201 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:53.020956 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:53.046146 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:53.071226 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:53.096629 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:53.122740 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:53.148409 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:53.173785 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:53.199615 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:53.225122 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:53.251208 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:53.276389 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:53.301809 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:53.317279 raft.go:405: Le he mandado un voto a 1
+192.168.3.19_29235 -> 18:25:53.317434 raft.go:698: Soy Seguidor y mi mandato es 15
+192.168.3.19_29235 -> 18:25:53.317550 raft.go:405: Le he mandado un voto a 1
+192.168.3.19_29235 -> 18:25:53.319831 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:53.319921 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:53.319969 raft.go:461: Error append entries. Mi mandato es 15 y el del lider es 15
+192.168.3.19_29235 -> 18:25:53.345071 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:53.345149 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:53.345184 raft.go:461: Error append entries. Mi mandato es 15 y el del lider es 15
+192.168.3.19_29235 -> 18:25:53.370468 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:53.370568 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:53.370714 raft.go:461: Error append entries. Mi mandato es 15 y el del lider es 15
+192.168.3.19_29235 -> 18:25:53.396327 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:53.396439 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:53.396488 raft.go:461: Error append entries. Mi mandato es 15 y el del lider es 15
+192.168.3.19_29235 -> 18:25:53.421513 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:53.421618 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:53.421660 raft.go:461: Error append entries. Mi mandato es 15 y el del lider es 15
+192.168.3.19_29235 -> 18:25:53.446911 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:53.447005 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:53.447052 raft.go:461: Error append entries. Mi mandato es 15 y el del lider es 15
+192.168.3.19_29235 -> 18:25:53.472368 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:53.472464 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:53.472564 raft.go:461: Error append entries. Mi mandato es 15 y el del lider es 15
+192.168.3.19_29235 -> 18:25:53.498119 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:53.498196 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:53.498236 raft.go:461: Error append entries. Mi mandato es 15 y el del lider es 15
+192.168.3.19_29235 -> 18:25:53.523800 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:53.523891 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:53.523935 raft.go:461: Error append entries. Mi mandato es 15 y el del lider es 15
+192.168.3.19_29235 -> 18:25:53.549927 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:53.550013 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:53.550057 raft.go:461: Error append entries. Mi mandato es 15 y el del lider es 15
+192.168.3.19_29235 -> 18:25:53.575524 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:53.575623 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:53.575668 raft.go:461: Error append entries. Mi mandato es 15 y el del lider es 15
+192.168.3.19_29235 -> 18:25:53.601038 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:53.601121 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:53.601161 raft.go:461: Error append entries. Mi mandato es 15 y el del lider es 15
+192.168.3.19_29235 -> 18:25:53.626643 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:53.626733 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:53.626792 raft.go:461: Error append entries. Mi mandato es 15 y el del lider es 15
+192.168.3.19_29235 -> 18:25:53.652802 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:53.652902 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:53.652991 raft.go:461: Error append entries. Mi mandato es 15 y el del lider es 15
+192.168.3.19_29235 -> 18:25:53.678418 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:53.678519 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:53.678569 raft.go:461: Error append entries. Mi mandato es 15 y el del lider es 15
+192.168.3.19_29235 -> 18:25:53.703903 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:53.703999 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:53.704052 raft.go:461: Error append entries. Mi mandato es 15 y el del lider es 15
+192.168.3.19_29235 -> 18:25:53.729307 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:53.729402 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:53.729454 raft.go:461: Error append entries. Mi mandato es 15 y el del lider es 15
+192.168.3.19_29235 -> 18:25:53.754742 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:53.754828 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:53.754874 raft.go:461: Error append entries. Mi mandato es 15 y el del lider es 15
+192.168.3.19_29235 -> 18:25:53.770938 raft.go:698: Soy Candidato y mi mandato es 15
+192.168.3.19_29235 -> 18:25:53.771027 raft.go:574: Nueva elección
+192.168.3.19_29235 -> 18:25:53.774070 raft.go:551: RPC.PedirVoto: Solicitud de Voto [2]{&{16 2 -1 0}} -> Respuesta [1]{&{0 16 true}}
+192.168.3.19_29235 -> 18:25:53.774236 raft.go:775: Inicio Lider: IndiceComprometido:0 Log: []
+192.168.3.19_29235 -> 18:25:53.774302 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:53.774731 raft.go:551: RPC.PedirVoto: Solicitud de Voto [2]{&{16 2 -1 0}} -> Respuesta [1]{&{0 16 true}}
+192.168.3.19_29235 -> 18:25:53.799754 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:53.824887 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:53.850108 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:53.875437 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:53.901222 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:53.926614 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:53.952722 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:53.977820 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:54.003036 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:54.029137 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:54.038749 raft.go:405: Le he mandado un voto a 1
+192.168.3.19_29235 -> 18:25:54.038931 raft.go:698: Soy Seguidor y mi mandato es 17
+192.168.3.19_29235 -> 18:25:54.039016 raft.go:405: Le he mandado un voto a 1
+192.168.3.19_29235 -> 18:25:54.041515 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:54.041591 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:54.041628 raft.go:461: Error append entries. Mi mandato es 17 y el del lider es 17
+192.168.3.19_29235 -> 18:25:54.069219 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:54.069309 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:54.069355 raft.go:461: Error append entries. Mi mandato es 17 y el del lider es 17
+192.168.3.19_29235 -> 18:25:54.092743 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:54.092833 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:54.092871 raft.go:461: Error append entries. Mi mandato es 17 y el del lider es 17
+192.168.3.19_29235 -> 18:25:54.117920 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:54.118020 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:54.118061 raft.go:461: Error append entries. Mi mandato es 17 y el del lider es 17
+192.168.3.19_29235 -> 18:25:54.143741 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:54.143841 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:54.143883 raft.go:461: Error append entries. Mi mandato es 17 y el del lider es 17
+192.168.3.19_29235 -> 18:25:54.169945 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:54.170041 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:54.170094 raft.go:461: Error append entries. Mi mandato es 17 y el del lider es 17
+192.168.3.19_29235 -> 18:25:54.195407 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:54.195493 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:54.195525 raft.go:461: Error append entries. Mi mandato es 17 y el del lider es 17
+192.168.3.19_29235 -> 18:25:54.213938 raft.go:698: Soy Candidato y mi mandato es 17
+192.168.3.19_29235 -> 18:25:54.214051 raft.go:574: Nueva elección
+192.168.3.19_29235 -> 18:25:54.217106 raft.go:551: RPC.PedirVoto: Solicitud de Voto [2]{&{18 2 -1 0}} -> Respuesta [1]{&{0 18 true}}
+192.168.3.19_29235 -> 18:25:54.217257 raft.go:775: Inicio Lider: IndiceComprometido:0 Log: []
+192.168.3.19_29235 -> 18:25:54.217314 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:54.217577 raft.go:551: RPC.PedirVoto: Solicitud de Voto [2]{&{18 2 -1 0}} -> Respuesta [1]{&{0 18 true}}
+192.168.3.19_29235 -> 18:25:54.242610 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:54.268079 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:54.293396 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:54.319016 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:54.344724 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:54.370343 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:54.396211 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:54.421334 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:54.447181 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:54.472637 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:54.474616 raft.go:405: Le he mandado un voto a 0
+192.168.3.19_29235 -> 18:25:54.474794 raft.go:698: Soy Seguidor y mi mandato es 19
+192.168.3.19_29235 -> 18:25:54.474882 raft.go:405: Le he mandado un voto a 0
+192.168.3.19_29235 -> 18:25:54.477628 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:54.477716 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:54.477756 raft.go:461: Error append entries. Mi mandato es 19 y el del lider es 19
+192.168.3.19_29235 -> 18:25:54.503422 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:54.503529 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:54.503575 raft.go:461: Error append entries. Mi mandato es 19 y el del lider es 19
+192.168.3.19_29235 -> 18:25:54.528608 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:54.528712 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:54.528753 raft.go:461: Error append entries. Mi mandato es 19 y el del lider es 19
+192.168.3.19_29235 -> 18:25:54.554164 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:54.554261 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:54.554315 raft.go:461: Error append entries. Mi mandato es 19 y el del lider es 19
+192.168.3.19_29235 -> 18:25:54.579957 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:54.580038 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:54.580079 raft.go:461: Error append entries. Mi mandato es 19 y el del lider es 19
+192.168.3.19_29235 -> 18:25:54.606181 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:54.606271 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:54.606314 raft.go:461: Error append entries. Mi mandato es 19 y el del lider es 19
+192.168.3.19_29235 -> 18:25:54.631784 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:54.631890 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:54.631939 raft.go:461: Error append entries. Mi mandato es 19 y el del lider es 19
+192.168.3.19_29235 -> 18:25:54.656877 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:54.656964 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:54.657005 raft.go:461: Error append entries. Mi mandato es 19 y el del lider es 19
+192.168.3.19_29235 -> 18:25:54.682419 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:54.682501 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:54.682541 raft.go:461: Error append entries. Mi mandato es 19 y el del lider es 19
+192.168.3.19_29235 -> 18:25:54.707931 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:54.708019 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:54.708063 raft.go:461: Error append entries. Mi mandato es 19 y el del lider es 19
+192.168.3.19_29235 -> 18:25:54.733099 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:54.733194 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:54.733240 raft.go:461: Error append entries. Mi mandato es 19 y el del lider es 19
+192.168.3.19_29235 -> 18:25:54.758241 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:54.758329 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:54.758409 raft.go:461: Error append entries. Mi mandato es 19 y el del lider es 19
+192.168.3.19_29235 -> 18:25:54.784163 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:54.784264 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:54.784310 raft.go:461: Error append entries. Mi mandato es 19 y el del lider es 19
+192.168.3.19_29235 -> 18:25:54.809212 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:54.809298 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:54.809338 raft.go:461: Error append entries. Mi mandato es 19 y el del lider es 19
+192.168.3.19_29235 -> 18:25:54.835251 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:54.835331 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:54.835371 raft.go:461: Error append entries. Mi mandato es 19 y el del lider es 19
+192.168.3.19_29235 -> 18:25:54.851950 raft.go:405: Le he mandado un voto a 1
+192.168.3.19_29235 -> 18:25:54.852144 raft.go:405: Le he mandado un voto a 1
+192.168.3.19_29235 -> 18:25:54.854873 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:54.854951 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:54.854991 raft.go:461: Error append entries. Mi mandato es 20 y el del lider es 20
+192.168.3.19_29235 -> 18:25:54.881079 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:54.881189 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:54.881330 raft.go:461: Error append entries. Mi mandato es 20 y el del lider es 20
+192.168.3.19_29235 -> 18:25:54.907090 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:54.907173 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:54.907211 raft.go:461: Error append entries. Mi mandato es 20 y el del lider es 20
+192.168.3.19_29235 -> 18:25:54.932624 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:54.932704 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:54.932742 raft.go:461: Error append entries. Mi mandato es 20 y el del lider es 20
+192.168.3.19_29235 -> 18:25:54.958495 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:54.958620 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:54.958665 raft.go:461: Error append entries. Mi mandato es 20 y el del lider es 20
+192.168.3.19_29235 -> 18:25:54.984046 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:54.984115 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:54.984146 raft.go:461: Error append entries. Mi mandato es 20 y el del lider es 20
+192.168.3.19_29235 -> 18:25:55.009234 raft.go:698: Soy Candidato y mi mandato es 20
+192.168.3.19_29235 -> 18:25:55.009327 raft.go:574: Nueva elección
+192.168.3.19_29235 -> 18:25:55.009876 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:55.009966 raft.go:461: Error append entries. Mi mandato es 21 y el del lider es 20
+192.168.3.19_29235 -> 18:25:55.012234 raft.go:551: RPC.PedirVoto: Solicitud de Voto [2]{&{21 2 -1 0}} -> Respuesta [1]{&{0 21 true}}
+192.168.3.19_29235 -> 18:25:55.012374 raft.go:775: Inicio Lider: IndiceComprometido:0 Log: []
+192.168.3.19_29235 -> 18:25:55.012461 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:55.012786 raft.go:551: RPC.PedirVoto: Solicitud de Voto [2]{&{21 2 -1 0}} -> Respuesta [1]{&{0 21 true}}
+192.168.3.19_29235 -> 18:25:55.038158 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:55.064102 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:55.090136 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:55.116272 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:55.141437 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:55.167180 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:55.192925 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:55.218778 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:55.244832 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:55.269890 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:55.295692 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:55.321511 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:55.347276 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:55.373025 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:55.399140 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:55.425131 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:55.451205 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:55.475422 raft.go:405: Le he mandado un voto a 1
+192.168.3.19_29235 -> 18:25:55.475714 raft.go:698: Soy Seguidor y mi mandato es 22
+192.168.3.19_29235 -> 18:25:55.475742 raft.go:405: Le he mandado un voto a 1
+192.168.3.19_29235 -> 18:25:55.478623 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:55.478707 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:55.478754 raft.go:461: Error append entries. Mi mandato es 22 y el del lider es 22
+192.168.3.19_29235 -> 18:25:55.503599 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:55.503684 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:55.503724 raft.go:461: Error append entries. Mi mandato es 22 y el del lider es 22
+192.168.3.19_29235 -> 18:25:55.529623 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:55.529703 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:55.529746 raft.go:461: Error append entries. Mi mandato es 22 y el del lider es 22
+192.168.3.19_29235 -> 18:25:55.555642 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:55.555737 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:55.555777 raft.go:461: Error append entries. Mi mandato es 22 y el del lider es 22
+192.168.3.19_29235 -> 18:25:55.581479 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:55.581565 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:55.581603 raft.go:461: Error append entries. Mi mandato es 22 y el del lider es 22
+192.168.3.19_29235 -> 18:25:55.606518 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:55.606597 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:55.606640 raft.go:461: Error append entries. Mi mandato es 22 y el del lider es 22
+192.168.3.19_29235 -> 18:25:55.632476 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:55.632556 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:55.632650 raft.go:461: Error append entries. Mi mandato es 22 y el del lider es 22
+192.168.3.19_29235 -> 18:25:55.641851 raft.go:698: Soy Candidato y mi mandato es 22
+192.168.3.19_29235 -> 18:25:55.641958 raft.go:574: Nueva elección
+192.168.3.19_29235 -> 18:25:55.644926 raft.go:551: RPC.PedirVoto: Solicitud de Voto [2]{&{23 2 -1 0}} -> Respuesta [1]{&{0 23 true}}
+192.168.3.19_29235 -> 18:25:55.645334 raft.go:775: Inicio Lider: IndiceComprometido:0 Log: []
+192.168.3.19_29235 -> 18:25:55.645396 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:55.645136 raft.go:551: RPC.PedirVoto: Solicitud de Voto [2]{&{23 2 -1 0}} -> Respuesta [1]{&{0 23 true}}
+192.168.3.19_29235 -> 18:25:55.670506 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:55.696278 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:55.722067 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:55.747155 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:55.773122 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:55.798852 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:55.823974 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:55.850082 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:55.876040 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:55.901917 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:55.912859 raft.go:405: Le he mandado un voto a 1
+192.168.3.19_29235 -> 18:25:55.913035 raft.go:698: Soy Seguidor y mi mandato es 24
+192.168.3.19_29235 -> 18:25:55.913071 raft.go:405: Le he mandado un voto a 1
+192.168.3.19_29235 -> 18:25:55.915531 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:55.915606 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:55.915642 raft.go:461: Error append entries. Mi mandato es 24 y el del lider es 24
+192.168.3.19_29235 -> 18:25:55.941582 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:55.941670 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:55.941719 raft.go:461: Error append entries. Mi mandato es 24 y el del lider es 24
+192.168.3.19_29235 -> 18:25:55.967163 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:55.967253 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:55.967289 raft.go:461: Error append entries. Mi mandato es 24 y el del lider es 24
+192.168.3.19_29235 -> 18:25:55.993622 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:55.993711 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:55.993751 raft.go:461: Error append entries. Mi mandato es 24 y el del lider es 24
+192.168.3.19_29235 -> 18:25:56.018298 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:56.018384 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:56.018416 raft.go:461: Error append entries. Mi mandato es 24 y el del lider es 24
+192.168.3.19_29235 -> 18:25:56.044443 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:56.044537 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:56.044629 raft.go:461: Error append entries. Mi mandato es 24 y el del lider es 24
+192.168.3.19_29235 -> 18:25:56.070227 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:56.070318 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:56.070364 raft.go:461: Error append entries. Mi mandato es 24 y el del lider es 24
+192.168.3.19_29235 -> 18:25:56.096205 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:56.096307 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:56.096349 raft.go:461: Error append entries. Mi mandato es 24 y el del lider es 24
+192.168.3.19_29235 -> 18:25:56.109381 raft.go:405: Le he mandado un voto a 0
+192.168.3.19_29235 -> 18:25:56.109603 raft.go:405: Le he mandado un voto a 0
+192.168.3.19_29235 -> 18:25:56.112094 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:56.112185 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:56.112221 raft.go:461: Error append entries. Mi mandato es 25 y el del lider es 25
+192.168.3.19_29235 -> 18:25:56.137598 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:56.137689 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:56.137740 raft.go:461: Error append entries. Mi mandato es 25 y el del lider es 25
+192.168.3.19_29235 -> 18:25:56.163098 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:56.163198 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:56.163294 raft.go:461: Error append entries. Mi mandato es 25 y el del lider es 25
+192.168.3.19_29235 -> 18:25:56.188553 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:56.188692 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:56.188733 raft.go:461: Error append entries. Mi mandato es 25 y el del lider es 25
+192.168.3.19_29235 -> 18:25:56.214277 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:56.214356 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:56.214395 raft.go:461: Error append entries. Mi mandato es 25 y el del lider es 25
+192.168.3.19_29235 -> 18:25:56.240764 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:56.241437 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:56.241489 raft.go:461: Error append entries. Mi mandato es 25 y el del lider es 25
+192.168.3.19_29235 -> 18:25:56.266027 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:56.266129 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:56.266169 raft.go:461: Error append entries. Mi mandato es 25 y el del lider es 25
+192.168.3.19_29235 -> 18:25:56.291528 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:56.291618 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:56.291663 raft.go:461: Error append entries. Mi mandato es 25 y el del lider es 25
+192.168.3.19_29235 -> 18:25:56.317119 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:56.317207 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:56.317248 raft.go:461: Error append entries. Mi mandato es 25 y el del lider es 25
+192.168.3.19_29235 -> 18:25:56.342400 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:56.342480 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:56.342520 raft.go:461: Error append entries. Mi mandato es 25 y el del lider es 25
+192.168.3.19_29235 -> 18:25:56.351465 raft.go:698: Soy Candidato y mi mandato es 25
+192.168.3.19_29235 -> 18:25:56.351542 raft.go:574: Nueva elección
+192.168.3.19_29235 -> 18:25:56.353758 raft.go:551: RPC.PedirVoto: Solicitud de Voto [2]{&{26 2 -1 0}} -> Respuesta [1]{&{0 26 true}}
+192.168.3.19_29235 -> 18:25:56.353897 raft.go:775: Inicio Lider: IndiceComprometido:0 Log: []
+192.168.3.19_29235 -> 18:25:56.353950 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:56.354531 raft.go:551: RPC.PedirVoto: Solicitud de Voto [2]{&{26 2 -1 0}} -> Respuesta [1]{&{0 26 true}}
+192.168.3.19_29235 -> 18:25:56.379379 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:56.405353 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:56.431449 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:56.457304 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:56.463280 raft.go:405: Le he mandado un voto a 0
+192.168.3.19_29235 -> 18:25:56.463434 raft.go:698: Soy Seguidor y mi mandato es 27
+192.168.3.19_29235 -> 18:25:56.463507 raft.go:405: Le he mandado un voto a 0
+192.168.3.19_29235 -> 18:25:56.465791 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:56.465860 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:56.465897 raft.go:461: Error append entries. Mi mandato es 27 y el del lider es 27
+192.168.3.19_29235 -> 18:25:56.491354 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:56.491434 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:56.491476 raft.go:461: Error append entries. Mi mandato es 27 y el del lider es 27
+192.168.3.19_29235 -> 18:25:56.517262 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:56.517395 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:56.517439 raft.go:461: Error append entries. Mi mandato es 27 y el del lider es 27
+192.168.3.19_29235 -> 18:25:56.542778 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:56.542877 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:56.542918 raft.go:461: Error append entries. Mi mandato es 27 y el del lider es 27
+192.168.3.19_29235 -> 18:25:56.568857 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:56.568936 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:56.568966 raft.go:461: Error append entries. Mi mandato es 27 y el del lider es 27
+192.168.3.19_29235 -> 18:25:56.594218 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:56.594303 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:56.594348 raft.go:461: Error append entries. Mi mandato es 27 y el del lider es 27
+192.168.3.19_29235 -> 18:25:56.620138 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:56.620225 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:56.620264 raft.go:461: Error append entries. Mi mandato es 27 y el del lider es 27
+192.168.3.19_29235 -> 18:25:56.645749 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:56.645832 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:56.645873 raft.go:461: Error append entries. Mi mandato es 27 y el del lider es 27
+192.168.3.19_29235 -> 18:25:56.671016 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:56.671099 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:56.671145 raft.go:461: Error append entries. Mi mandato es 27 y el del lider es 27
+192.168.3.19_29235 -> 18:25:56.696519 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:56.696648 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:56.696690 raft.go:461: Error append entries. Mi mandato es 27 y el del lider es 27
+192.168.3.19_29235 -> 18:25:56.721772 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:56.721872 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:56.721914 raft.go:461: Error append entries. Mi mandato es 27 y el del lider es 27
+192.168.3.19_29235 -> 18:25:56.747460 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:56.747541 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:56.747581 raft.go:461: Error append entries. Mi mandato es 27 y el del lider es 27
+192.168.3.19_29235 -> 18:25:56.755392 raft.go:698: Soy Candidato y mi mandato es 27
+192.168.3.19_29235 -> 18:25:56.755474 raft.go:574: Nueva elección
+192.168.3.19_29235 -> 18:25:56.757919 raft.go:551: RPC.PedirVoto: Solicitud de Voto [2]{&{28 2 -1 0}} -> Respuesta [1]{&{0 28 true}}
+192.168.3.19_29235 -> 18:25:56.758074 raft.go:775: Inicio Lider: IndiceComprometido:0 Log: []
+192.168.3.19_29235 -> 18:25:56.758136 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:56.758510 raft.go:551: RPC.PedirVoto: Solicitud de Voto [2]{&{28 2 -1 0}} -> Respuesta [1]{&{0 28 true}}
+192.168.3.19_29235 -> 18:25:56.784050 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:56.809966 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:56.836075 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:56.861690 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:56.887603 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:56.912689 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:56.918506 raft.go:405: Le he mandado un voto a 1
+192.168.3.19_29235 -> 18:25:56.918682 raft.go:698: Soy Seguidor y mi mandato es 29
+192.168.3.19_29235 -> 18:25:56.918728 raft.go:405: Le he mandado un voto a 1
+192.168.3.19_29235 -> 18:25:56.920865 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:56.920962 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:56.921005 raft.go:461: Error append entries. Mi mandato es 29 y el del lider es 29
+192.168.3.19_29235 -> 18:25:56.946514 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:56.946608 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:56.946648 raft.go:461: Error append entries. Mi mandato es 29 y el del lider es 29
+192.168.3.19_29235 -> 18:25:56.972170 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:56.972250 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:56.972288 raft.go:461: Error append entries. Mi mandato es 29 y el del lider es 29
+192.168.3.19_29235 -> 18:25:56.998145 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:56.998225 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:56.998265 raft.go:461: Error append entries. Mi mandato es 29 y el del lider es 29
+192.168.3.19_29235 -> 18:25:57.024088 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:57.024172 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:57.024218 raft.go:461: Error append entries. Mi mandato es 29 y el del lider es 29
+192.168.3.19_29235 -> 18:25:57.050170 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:57.050302 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:57.050342 raft.go:461: Error append entries. Mi mandato es 29 y el del lider es 29
+192.168.3.19_29235 -> 18:25:57.075777 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:57.075859 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:57.075900 raft.go:461: Error append entries. Mi mandato es 29 y el del lider es 29
+192.168.3.19_29235 -> 18:25:57.101619 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:57.101691 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:57.101729 raft.go:461: Error append entries. Mi mandato es 29 y el del lider es 29
+192.168.3.19_29235 -> 18:25:57.127520 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:57.127594 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:57.127632 raft.go:461: Error append entries. Mi mandato es 29 y el del lider es 29
+192.168.3.19_29235 -> 18:25:57.131844 raft.go:405: Le he mandado un voto a 0
+192.168.3.19_29235 -> 18:25:57.147756 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:57.147824 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:57.147859 raft.go:461: Error append entries. Mi mandato es 30 y el del lider es 30
+192.168.3.19_29235 -> 18:25:57.157345 raft.go:405: Le he mandado un voto a 0
+192.168.3.19_29235 -> 18:25:57.173628 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:57.173712 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:57.173756 raft.go:461: Error append entries. Mi mandato es 30 y el del lider es 30
+192.168.3.19_29235 -> 18:25:57.199605 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:57.199687 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:57.199727 raft.go:461: Error append entries. Mi mandato es 30 y el del lider es 30
+192.168.3.19_29235 -> 18:25:57.225810 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:57.225937 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:57.225980 raft.go:461: Error append entries. Mi mandato es 30 y el del lider es 30
+192.168.3.19_29235 -> 18:25:57.250840 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:57.250915 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:57.250953 raft.go:461: Error append entries. Mi mandato es 30 y el del lider es 30
+192.168.3.19_29235 -> 18:25:57.277150 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:57.277242 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:57.277283 raft.go:461: Error append entries. Mi mandato es 30 y el del lider es 30
+192.168.3.19_29235 -> 18:25:57.302961 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:57.303060 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:57.303102 raft.go:461: Error append entries. Mi mandato es 30 y el del lider es 30
+192.168.3.19_29235 -> 18:25:57.328152 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:57.328237 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:57.328281 raft.go:461: Error append entries. Mi mandato es 30 y el del lider es 30
+192.168.3.19_29235 -> 18:25:57.354233 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:57.354314 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:57.354353 raft.go:461: Error append entries. Mi mandato es 30 y el del lider es 30
+192.168.3.19_29235 -> 18:25:57.354811 raft.go:698: Soy Candidato y mi mandato es 30
+192.168.3.19_29235 -> 18:25:57.354881 raft.go:574: Nueva elección
+192.168.3.19_29235 -> 18:25:57.357312 raft.go:551: RPC.PedirVoto: Solicitud de Voto [2]{&{31 2 -1 0}} -> Respuesta [1]{&{0 31 true}}
+192.168.3.19_29235 -> 18:25:57.357456 raft.go:775: Inicio Lider: IndiceComprometido:0 Log: []
+192.168.3.19_29235 -> 18:25:57.357514 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:57.357732 raft.go:551: RPC.PedirVoto: Solicitud de Voto [2]{&{31 2 -1 0}} -> Respuesta [1]{&{0 31 true}}
+192.168.3.19_29235 -> 18:25:57.383412 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:57.409329 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:57.434397 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:57.458985 raft.go:405: Le he mandado un voto a 1
+192.168.3.19_29235 -> 18:25:57.459140 raft.go:698: Soy Seguidor y mi mandato es 32
+192.168.3.19_29235 -> 18:25:57.459212 raft.go:405: Le he mandado un voto a 1
+192.168.3.19_29235 -> 18:25:57.461442 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:57.461513 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:57.461546 raft.go:461: Error append entries. Mi mandato es 32 y el del lider es 32
+192.168.3.19_29235 -> 18:25:57.487363 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:57.487452 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:57.487493 raft.go:461: Error append entries. Mi mandato es 32 y el del lider es 32
+192.168.3.19_29235 -> 18:25:57.512341 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:57.512418 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:57.512457 raft.go:461: Error append entries. Mi mandato es 32 y el del lider es 32
+192.168.3.19_29235 -> 18:25:57.537767 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:57.537851 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:57.537892 raft.go:461: Error append entries. Mi mandato es 32 y el del lider es 32
+192.168.3.19_29235 -> 18:25:57.563366 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:57.563508 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:57.563547 raft.go:461: Error append entries. Mi mandato es 32 y el del lider es 32
+192.168.3.19_29235 -> 18:25:57.589264 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:57.589342 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:57.589370 raft.go:461: Error append entries. Mi mandato es 32 y el del lider es 32
+192.168.3.19_29235 -> 18:25:57.603868 raft.go:698: Soy Candidato y mi mandato es 32
+192.168.3.19_29235 -> 18:25:57.603952 raft.go:574: Nueva elección
+192.168.3.19_29235 -> 18:25:57.606485 raft.go:551: RPC.PedirVoto: Solicitud de Voto [2]{&{33 2 -1 0}} -> Respuesta [1]{&{0 33 true}}
+192.168.3.19_29235 -> 18:25:57.606638 raft.go:775: Inicio Lider: IndiceComprometido:0 Log: []
+192.168.3.19_29235 -> 18:25:57.606722 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:57.606815 raft.go:551: RPC.PedirVoto: Solicitud de Voto [2]{&{33 2 -1 0}} -> Respuesta [1]{&{0 33 true}}
+192.168.3.19_29235 -> 18:25:57.632642 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:57.657687 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:57.683720 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:57.709689 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:57.734732 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:57.760644 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:57.786608 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:57.811649 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:57.837632 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:57.850465 raft.go:405: Le he mandado un voto a 1
+192.168.3.19_29235 -> 18:25:57.850606 raft.go:405: Le he mandado un voto a 1
+192.168.3.19_29235 -> 18:25:57.850676 raft.go:698: Soy Seguidor y mi mandato es 34
+192.168.3.19_29235 -> 18:25:57.853001 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:57.853072 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:57.853107 raft.go:461: Error append entries. Mi mandato es 34 y el del lider es 34
+192.168.3.19_29235 -> 18:25:57.879515 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:57.879600 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:57.879641 raft.go:461: Error append entries. Mi mandato es 34 y el del lider es 34
+192.168.3.19_29235 -> 18:25:57.905295 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:57.905382 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:57.905432 raft.go:461: Error append entries. Mi mandato es 34 y el del lider es 34
+192.168.3.19_29235 -> 18:25:57.931391 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:57.931465 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:57.931506 raft.go:461: Error append entries. Mi mandato es 34 y el del lider es 34
+192.168.3.19_29235 -> 18:25:57.957557 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:57.957670 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:57.957716 raft.go:461: Error append entries. Mi mandato es 34 y el del lider es 34
+192.168.3.19_29235 -> 18:25:57.982876 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:57.982967 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:57.983008 raft.go:461: Error append entries. Mi mandato es 34 y el del lider es 34
+192.168.3.19_29235 -> 18:25:58.007937 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:58.008017 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:58.008057 raft.go:461: Error append entries. Mi mandato es 34 y el del lider es 34
+192.168.3.19_29235 -> 18:25:58.033948 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:58.034034 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:58.034073 raft.go:461: Error append entries. Mi mandato es 34 y el del lider es 34
+192.168.3.19_29235 -> 18:25:58.060002 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:58.060082 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:58.060120 raft.go:461: Error append entries. Mi mandato es 34 y el del lider es 34
+192.168.3.19_29235 -> 18:25:58.085678 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:58.085756 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:58.085795 raft.go:461: Error append entries. Mi mandato es 34 y el del lider es 34
+192.168.3.19_29235 -> 18:25:58.111725 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:58.111821 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:58.111860 raft.go:461: Error append entries. Mi mandato es 34 y el del lider es 34
+192.168.3.19_29235 -> 18:25:58.137568 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:58.137656 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:58.137689 raft.go:461: Error append entries. Mi mandato es 34 y el del lider es 34
+192.168.3.19_29235 -> 18:25:58.163739 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:58.163825 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:58.163869 raft.go:461: Error append entries. Mi mandato es 34 y el del lider es 34
+192.168.3.19_29235 -> 18:25:58.189644 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:58.189725 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:58.189764 raft.go:461: Error append entries. Mi mandato es 34 y el del lider es 34
+192.168.3.19_29235 -> 18:25:58.215746 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:58.215841 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:58.215881 raft.go:461: Error append entries. Mi mandato es 34 y el del lider es 34
+192.168.3.19_29235 -> 18:25:58.223701 raft.go:698: Soy Candidato y mi mandato es 34
+192.168.3.19_29235 -> 18:25:58.223805 raft.go:574: Nueva elección
+192.168.3.19_29235 -> 18:25:58.226496 raft.go:551: RPC.PedirVoto: Solicitud de Voto [2]{&{35 2 -1 0}} -> Respuesta [1]{&{0 35 true}}
+192.168.3.19_29235 -> 18:25:58.226642 raft.go:775: Inicio Lider: IndiceComprometido:0 Log: []
+192.168.3.19_29235 -> 18:25:58.226695 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:58.227338 raft.go:551: RPC.PedirVoto: Solicitud de Voto [2]{&{35 2 -1 0}} -> Respuesta [1]{&{0 35 true}}
+192.168.3.19_29235 -> 18:25:58.251752 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:58.276969 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:58.302160 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:58.328233 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:58.354290 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:58.359944 raft.go:405: Le he mandado un voto a 0
+192.168.3.19_29235 -> 18:25:58.360075 raft.go:405: Le he mandado un voto a 0
+192.168.3.19_29235 -> 18:25:58.360154 raft.go:698: Soy Seguidor y mi mandato es 36
+192.168.3.19_29235 -> 18:25:58.362747 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:58.362823 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:58.362859 raft.go:461: Error append entries. Mi mandato es 36 y el del lider es 36
+192.168.3.19_29235 -> 18:25:58.388785 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:58.388919 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:58.388964 raft.go:461: Error append entries. Mi mandato es 36 y el del lider es 36
+192.168.3.19_29235 -> 18:25:58.413953 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:58.414033 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:58.414073 raft.go:461: Error append entries. Mi mandato es 36 y el del lider es 36
+192.168.3.19_29235 -> 18:25:58.439081 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:58.439156 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:58.439196 raft.go:461: Error append entries. Mi mandato es 36 y el del lider es 36
+192.168.3.19_29235 -> 18:25:58.465138 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:58.465217 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:58.465257 raft.go:461: Error append entries. Mi mandato es 36 y el del lider es 36
+192.168.3.19_29235 -> 18:25:58.491190 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:58.491270 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:58.491311 raft.go:461: Error append entries. Mi mandato es 36 y el del lider es 36
+192.168.3.19_29235 -> 18:25:58.496833 raft.go:698: Soy Candidato y mi mandato es 36
+192.168.3.19_29235 -> 18:25:58.496902 raft.go:574: Nueva elección
+192.168.3.19_29235 -> 18:25:58.499432 raft.go:551: RPC.PedirVoto: Solicitud de Voto [2]{&{37 2 -1 0}} -> Respuesta [1]{&{0 37 true}}
+192.168.3.19_29235 -> 18:25:58.499560 raft.go:775: Inicio Lider: IndiceComprometido:0 Log: []
+192.168.3.19_29235 -> 18:25:58.499632 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:58.499718 raft.go:551: RPC.PedirVoto: Solicitud de Voto [2]{&{37 2 -1 0}} -> Respuesta [1]{&{0 37 true}}
+192.168.3.19_29235 -> 18:25:58.524896 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:58.551022 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:58.576974 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:58.602197 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:58.628305 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:58.653767 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:58.678811 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:58.703855 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:58.729225 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:58.755085 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:58.780148 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:58.805219 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:58.830355 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:58.855642 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:58.865154 raft.go:405: Le he mandado un voto a 0
+192.168.3.19_29235 -> 18:25:58.865324 raft.go:698: Soy Seguidor y mi mandato es 38
+192.168.3.19_29235 -> 18:25:58.865406 raft.go:405: Le he mandado un voto a 0
+192.168.3.19_29235 -> 18:25:58.867682 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:58.867749 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:58.867783 raft.go:461: Error append entries. Mi mandato es 38 y el del lider es 38
+192.168.3.19_29235 -> 18:25:58.894515 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:58.894599 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:58.894641 raft.go:461: Error append entries. Mi mandato es 38 y el del lider es 38
+192.168.3.19_29235 -> 18:25:58.920235 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:58.920316 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:58.920356 raft.go:461: Error append entries. Mi mandato es 38 y el del lider es 38
+192.168.3.19_29235 -> 18:25:58.945370 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:58.945453 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:58.945494 raft.go:461: Error append entries. Mi mandato es 38 y el del lider es 38
+192.168.3.19_29235 -> 18:25:58.971467 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:58.971548 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:58.971588 raft.go:461: Error append entries. Mi mandato es 38 y el del lider es 38
+192.168.3.19_29235 -> 18:25:58.973848 raft.go:698: Soy Candidato y mi mandato es 38
+192.168.3.19_29235 -> 18:25:58.973929 raft.go:574: Nueva elección
+192.168.3.19_29235 -> 18:25:58.976470 raft.go:551: RPC.PedirVoto: Solicitud de Voto [2]{&{39 2 -1 0}} -> Respuesta [1]{&{0 39 true}}
+192.168.3.19_29235 -> 18:25:58.976764 raft.go:775: Inicio Lider: IndiceComprometido:0 Log: []
+192.168.3.19_29235 -> 18:25:58.976851 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:58.977309 raft.go:551: RPC.PedirVoto: Solicitud de Voto [2]{&{39 2 -1 0}} -> Respuesta [1]{&{0 39 true}}
+192.168.3.19_29235 -> 18:25:59.002796 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:59.027911 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:59.053127 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:59.078322 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:59.103464 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:59.128873 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:59.153979 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:59.180057 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:59.206171 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:59.231435 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:59.256501 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:59.282403 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:59.308331 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:59.333551 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:59.358665 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:59.383751 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:59.408838 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:59.410772 raft.go:405: Le he mandado un voto a 0
+192.168.3.19_29235 -> 18:25:59.410953 raft.go:698: Soy Seguidor y mi mandato es 40
+192.168.3.19_29235 -> 18:25:59.410996 raft.go:405: Le he mandado un voto a 0
+192.168.3.19_29235 -> 18:25:59.413646 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:59.413721 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:59.413750 raft.go:461: Error append entries. Mi mandato es 40 y el del lider es 40
+192.168.3.19_29235 -> 18:25:59.439608 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:59.439701 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:59.439741 raft.go:461: Error append entries. Mi mandato es 40 y el del lider es 40
+192.168.3.19_29235 -> 18:25:59.465662 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:59.465750 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:59.465795 raft.go:461: Error append entries. Mi mandato es 40 y el del lider es 40
+192.168.3.19_29235 -> 18:25:59.490993 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:59.491078 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:59.491117 raft.go:461: Error append entries. Mi mandato es 40 y el del lider es 40
+192.168.3.19_29235 -> 18:25:59.516615 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:59.516703 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:59.516745 raft.go:461: Error append entries. Mi mandato es 40 y el del lider es 40
+192.168.3.19_29235 -> 18:25:59.541408 raft.go:698: Soy Candidato y mi mandato es 40
+192.168.3.19_29235 -> 18:25:59.541509 raft.go:574: Nueva elección
+192.168.3.19_29235 -> 18:25:59.542834 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:59.542917 raft.go:461: Error append entries. Mi mandato es 41 y el del lider es 40
+192.168.3.19_29235 -> 18:25:59.543972 raft.go:551: RPC.PedirVoto: Solicitud de Voto [2]{&{41 2 -1 0}} -> Respuesta [1]{&{0 41 true}}
+192.168.3.19_29235 -> 18:25:59.544106 raft.go:775: Inicio Lider: IndiceComprometido:0 Log: []
+192.168.3.19_29235 -> 18:25:59.544166 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:59.544933 raft.go:551: RPC.PedirVoto: Solicitud de Voto [2]{&{41 2 -1 0}} -> Respuesta [1]{&{0 41 true}}
+192.168.3.19_29235 -> 18:25:59.570065 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:59.595344 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:59.621211 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:59.646469 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:59.671683 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:25:59.685040 raft.go:405: Le he mandado un voto a 0
+192.168.3.19_29235 -> 18:25:59.685249 raft.go:405: Le he mandado un voto a 0
+192.168.3.19_29235 -> 18:25:59.685301 raft.go:698: Soy Seguidor y mi mandato es 42
+192.168.3.19_29235 -> 18:25:59.687562 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:59.687627 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:59.687661 raft.go:461: Error append entries. Mi mandato es 42 y el del lider es 42
+192.168.3.19_29235 -> 18:25:59.713653 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:59.713735 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:59.713780 raft.go:461: Error append entries. Mi mandato es 42 y el del lider es 42
+192.168.3.19_29235 -> 18:25:59.739396 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:59.739479 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:59.739519 raft.go:461: Error append entries. Mi mandato es 42 y el del lider es 42
+192.168.3.19_29235 -> 18:25:59.764378 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:59.764462 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:59.764502 raft.go:461: Error append entries. Mi mandato es 42 y el del lider es 42
+192.168.3.19_29235 -> 18:25:59.789794 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:59.789870 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:59.789910 raft.go:461: Error append entries. Mi mandato es 42 y el del lider es 42
+192.168.3.19_29235 -> 18:25:59.815871 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:59.815954 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:59.815994 raft.go:461: Error append entries. Mi mandato es 42 y el del lider es 42
+192.168.3.19_29235 -> 18:25:59.842231 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:25:59.842305 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:59.842345 raft.go:461: Error append entries. Mi mandato es 42 y el del lider es 42
+192.168.3.19_29235 -> 18:25:59.848242 raft.go:405: Le he mandado un voto a 1
+192.168.3.19_29235 -> 18:25:59.848421 raft.go:405: Le he mandado un voto a 1
+192.168.3.19_29235 -> 18:25:59.851041 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:59.851115 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:59.851150 raft.go:461: Error append entries. Mi mandato es 43 y el del lider es 43
+192.168.3.19_29235 -> 18:25:59.876658 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:59.876744 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:59.876836 raft.go:461: Error append entries. Mi mandato es 43 y el del lider es 43
+192.168.3.19_29235 -> 18:25:59.901785 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:59.901865 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:59.901904 raft.go:461: Error append entries. Mi mandato es 43 y el del lider es 43
+192.168.3.19_29235 -> 18:25:59.926661 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:59.926728 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:59.926748 raft.go:461: Error append entries. Mi mandato es 43 y el del lider es 43
+192.168.3.19_29235 -> 18:25:59.953170 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:59.953260 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:59.953302 raft.go:461: Error append entries. Mi mandato es 43 y el del lider es 43
+192.168.3.19_29235 -> 18:25:59.977814 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:25:59.977902 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:25:59.977934 raft.go:461: Error append entries. Mi mandato es 43 y el del lider es 43
+192.168.3.19_29235 -> 18:26:00.003913 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:00.004004 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:00.004044 raft.go:461: Error append entries. Mi mandato es 43 y el del lider es 43
+192.168.3.19_29235 -> 18:26:00.028882 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:00.028964 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:00.029003 raft.go:461: Error append entries. Mi mandato es 43 y el del lider es 43
+192.168.3.19_29235 -> 18:26:00.055347 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:00.055437 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:00.055478 raft.go:461: Error append entries. Mi mandato es 43 y el del lider es 43
+192.168.3.19_29235 -> 18:26:00.080059 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:00.080148 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:00.080181 raft.go:461: Error append entries. Mi mandato es 43 y el del lider es 43
+192.168.3.19_29235 -> 18:26:00.105955 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:00.106029 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:00.106054 raft.go:461: Error append entries. Mi mandato es 43 y el del lider es 43
+192.168.3.19_29235 -> 18:26:00.132146 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:00.132231 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:00.132271 raft.go:461: Error append entries. Mi mandato es 43 y el del lider es 43
+192.168.3.19_29235 -> 18:26:00.157199 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:00.157279 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:00.157319 raft.go:461: Error append entries. Mi mandato es 43 y el del lider es 43
+192.168.3.19_29235 -> 18:26:00.182365 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:00.182447 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:00.182488 raft.go:461: Error append entries. Mi mandato es 43 y el del lider es 43
+192.168.3.19_29235 -> 18:26:00.208784 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:00.208868 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:00.208957 raft.go:461: Error append entries. Mi mandato es 43 y el del lider es 43
+192.168.3.19_29235 -> 18:26:00.233888 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:00.233974 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:00.234013 raft.go:461: Error append entries. Mi mandato es 43 y el del lider es 43
+192.168.3.19_29235 -> 18:26:00.258955 raft.go:698: Soy Candidato y mi mandato es 43
+192.168.3.19_29235 -> 18:26:00.259030 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:00.259091 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:00.259132 raft.go:461: Error append entries. Mi mandato es 43 y el del lider es 43
+192.168.3.19_29235 -> 18:26:00.259058 raft.go:574: Nueva elección
+192.168.3.19_29235 -> 18:26:00.261661 raft.go:551: RPC.PedirVoto: Solicitud de Voto [2]{&{44 2 -1 0}} -> Respuesta [1]{&{0 44 true}}
+192.168.3.19_29235 -> 18:26:00.261809 raft.go:775: Inicio Lider: IndiceComprometido:0 Log: []
+192.168.3.19_29235 -> 18:26:00.261891 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:00.262153 raft.go:551: RPC.PedirVoto: Solicitud de Voto [2]{&{44 2 -1 0}} -> Respuesta [1]{&{0 44 true}}
+192.168.3.19_29235 -> 18:26:00.287461 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:00.312661 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:00.337772 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:00.363691 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:00.388803 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:00.414899 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:00.439933 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:00.465130 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:00.491171 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:00.516384 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:00.541485 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:00.567488 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:00.592641 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:00.617797 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:00.642941 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:00.668057 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:00.693434 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:00.719556 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:00.744646 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:00.760787 raft.go:622: Error en la petición de latido: Timeout in CallTimeout with method: NodoRaft.AppendEntries, args: &{44 2 -1 0 [] 0}
+192.168.3.19_29235 -> 18:26:00.770245 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:00.795395 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:00.803758 raft.go:405: Le he mandado un voto a 1
+192.168.3.19_29235 -> 18:26:00.803914 raft.go:698: Soy Seguidor y mi mandato es 45
+192.168.3.19_29235 -> 18:26:00.803992 raft.go:405: Le he mandado un voto a 1
+192.168.3.19_29235 -> 18:26:00.806437 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:00.806512 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:00.806547 raft.go:461: Error append entries. Mi mandato es 45 y el del lider es 45
+192.168.3.19_29235 -> 18:26:00.831916 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:00.832009 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:00.832050 raft.go:461: Error append entries. Mi mandato es 45 y el del lider es 45
+192.168.3.19_29235 -> 18:26:00.856934 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:00.857024 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:00.857069 raft.go:461: Error append entries. Mi mandato es 45 y el del lider es 45
+192.168.3.19_29235 -> 18:26:00.881834 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:00.881966 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:00.882013 raft.go:461: Error append entries. Mi mandato es 45 y el del lider es 45
+192.168.3.19_29235 -> 18:26:00.907969 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:00.908050 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:00.908089 raft.go:461: Error append entries. Mi mandato es 45 y el del lider es 45
+192.168.3.19_29235 -> 18:26:00.933990 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:00.934066 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:00.934104 raft.go:461: Error append entries. Mi mandato es 45 y el del lider es 45
+192.168.3.19_29235 -> 18:26:00.960212 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:00.960296 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:00.960342 raft.go:461: Error append entries. Mi mandato es 45 y el del lider es 45
+192.168.3.19_29235 -> 18:26:00.985116 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:00.985194 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:00.985235 raft.go:461: Error append entries. Mi mandato es 45 y el del lider es 45
+192.168.3.19_29235 -> 18:26:01.010353 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:01.010435 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:01.010479 raft.go:461: Error append entries. Mi mandato es 45 y el del lider es 45
+192.168.3.19_29235 -> 18:26:01.020863 raft.go:405: Le he mandado un voto a 0
+192.168.3.19_29235 -> 18:26:01.021037 raft.go:405: Le he mandado un voto a 0
+192.168.3.19_29235 -> 18:26:01.023749 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:01.023816 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:01.023853 raft.go:461: Error append entries. Mi mandato es 46 y el del lider es 46
+192.168.3.19_29235 -> 18:26:01.050084 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:01.050162 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:01.050202 raft.go:461: Error append entries. Mi mandato es 46 y el del lider es 46
+192.168.3.19_29235 -> 18:26:01.076088 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:01.076171 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:01.076215 raft.go:461: Error append entries. Mi mandato es 46 y el del lider es 46
+192.168.3.19_29235 -> 18:26:01.101774 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:01.101863 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:01.101899 raft.go:461: Error append entries. Mi mandato es 46 y el del lider es 46
+192.168.3.19_29235 -> 18:26:01.127729 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:01.127813 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:01.127854 raft.go:461: Error append entries. Mi mandato es 46 y el del lider es 46
+192.168.3.19_29235 -> 18:26:01.154167 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:01.154253 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:01.154295 raft.go:461: Error append entries. Mi mandato es 46 y el del lider es 46
+192.168.3.19_29235 -> 18:26:01.179798 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:01.179879 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:01.179923 raft.go:461: Error append entries. Mi mandato es 46 y el del lider es 46
+192.168.3.19_29235 -> 18:26:01.205908 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:01.205991 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:01.206031 raft.go:461: Error append entries. Mi mandato es 46 y el del lider es 46
+192.168.3.19_29235 -> 18:26:01.231989 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:01.232076 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:01.232117 raft.go:461: Error append entries. Mi mandato es 46 y el del lider es 46
+192.168.3.19_29235 -> 18:26:01.258424 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:01.258509 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:01.258554 raft.go:461: Error append entries. Mi mandato es 46 y el del lider es 46
+192.168.3.19_29235 -> 18:26:01.283452 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:01.283535 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:01.283575 raft.go:461: Error append entries. Mi mandato es 46 y el del lider es 46
+192.168.3.19_29235 -> 18:26:01.309289 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:01.309381 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:01.309417 raft.go:461: Error append entries. Mi mandato es 46 y el del lider es 46
+192.168.3.19_29235 -> 18:26:01.335373 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:01.335469 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:01.335511 raft.go:461: Error append entries. Mi mandato es 46 y el del lider es 46
+192.168.3.19_29235 -> 18:26:01.360723 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:01.360812 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:01.360854 raft.go:461: Error append entries. Mi mandato es 46 y el del lider es 46
+192.168.3.19_29235 -> 18:26:01.386711 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:01.386798 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:01.386843 raft.go:461: Error append entries. Mi mandato es 46 y el del lider es 46
+192.168.3.19_29235 -> 18:26:01.412619 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:01.412701 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:01.412743 raft.go:461: Error append entries. Mi mandato es 46 y el del lider es 46
+192.168.3.19_29235 -> 18:26:01.439183 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:01.439386 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:01.439428 raft.go:461: Error append entries. Mi mandato es 46 y el del lider es 46
+192.168.3.19_29235 -> 18:26:01.463148 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:01.463245 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:01.463288 raft.go:461: Error append entries. Mi mandato es 46 y el del lider es 46
+192.168.3.19_29235 -> 18:26:01.486883 raft.go:698: Soy Candidato y mi mandato es 46
+192.168.3.19_29235 -> 18:26:01.486980 raft.go:574: Nueva elección
+192.168.3.19_29235 -> 18:26:01.489213 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:01.489309 raft.go:461: Error append entries. Mi mandato es 47 y el del lider es 46
+192.168.3.19_29235 -> 18:26:01.489749 raft.go:551: RPC.PedirVoto: Solicitud de Voto [2]{&{47 2 -1 0}} -> Respuesta [1]{&{0 47 true}}
+192.168.3.19_29235 -> 18:26:01.489862 raft.go:775: Inicio Lider: IndiceComprometido:0 Log: []
+192.168.3.19_29235 -> 18:26:01.489921 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:01.489900 raft.go:551: RPC.PedirVoto: Solicitud de Voto [2]{&{47 2 -1 0}} -> Respuesta [1]{&{0 47 true}}
+192.168.3.19_29235 -> 18:26:01.516026 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:01.541254 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:01.567083 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:01.593070 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:01.618358 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:01.643662 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:01.668735 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:01.693823 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:01.718881 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:01.744921 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:01.770056 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:01.791572 raft.go:405: Le he mandado un voto a 0
+192.168.3.19_29235 -> 18:26:01.791757 raft.go:698: Soy Seguidor y mi mandato es 48
+192.168.3.19_29235 -> 18:26:01.791837 raft.go:405: Le he mandado un voto a 0
+192.168.3.19_29235 -> 18:26:01.794444 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:01.794538 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:01.794579 raft.go:461: Error append entries. Mi mandato es 48 y el del lider es 48
+192.168.3.19_29235 -> 18:26:01.820379 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:01.820462 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:01.820501 raft.go:461: Error append entries. Mi mandato es 48 y el del lider es 48
+192.168.3.19_29235 -> 18:26:01.846869 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:01.846958 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:01.846999 raft.go:461: Error append entries. Mi mandato es 48 y el del lider es 48
+192.168.3.19_29235 -> 18:26:01.871642 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:01.871723 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:01.871762 raft.go:461: Error append entries. Mi mandato es 48 y el del lider es 48
+192.168.3.19_29235 -> 18:26:01.896683 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:01.896762 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:01.896802 raft.go:461: Error append entries. Mi mandato es 48 y el del lider es 48
+192.168.3.19_29235 -> 18:26:01.922998 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:01.923078 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:01.923120 raft.go:461: Error append entries. Mi mandato es 48 y el del lider es 48
+192.168.3.19_29235 -> 18:26:01.947832 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:01.947913 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:01.947953 raft.go:461: Error append entries. Mi mandato es 48 y el del lider es 48
+192.168.3.19_29235 -> 18:26:01.974068 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:01.974148 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:01.974187 raft.go:461: Error append entries. Mi mandato es 48 y el del lider es 48
+192.168.3.19_29235 -> 18:26:01.999175 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:01.999258 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:01.999299 raft.go:461: Error append entries. Mi mandato es 48 y el del lider es 48
+192.168.3.19_29235 -> 18:26:02.024380 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:02.024459 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:02.024549 raft.go:461: Error append entries. Mi mandato es 48 y el del lider es 48
+192.168.3.19_29235 -> 18:26:02.050530 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:02.050609 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:02.050648 raft.go:461: Error append entries. Mi mandato es 48 y el del lider es 48
+192.168.3.19_29235 -> 18:26:02.076432 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:02.076517 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:02.076558 raft.go:461: Error append entries. Mi mandato es 48 y el del lider es 48
+192.168.3.19_29235 -> 18:26:02.101768 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:02.101866 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:02.101907 raft.go:461: Error append entries. Mi mandato es 48 y el del lider es 48
+192.168.3.19_29235 -> 18:26:02.127581 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:02.127663 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:02.127702 raft.go:461: Error append entries. Mi mandato es 48 y el del lider es 48
+192.168.3.19_29235 -> 18:26:02.140095 raft.go:698: Soy Candidato y mi mandato es 48
+192.168.3.19_29235 -> 18:26:02.140172 raft.go:574: Nueva elección
+192.168.3.19_29235 -> 18:26:02.142610 raft.go:551: RPC.PedirVoto: Solicitud de Voto [2]{&{49 2 -1 0}} -> Respuesta [1]{&{0 49 true}}
+192.168.3.19_29235 -> 18:26:02.142745 raft.go:775: Inicio Lider: IndiceComprometido:0 Log: []
+192.168.3.19_29235 -> 18:26:02.142796 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:02.143088 raft.go:551: RPC.PedirVoto: Solicitud de Voto [2]{&{49 2 -1 0}} -> Respuesta [1]{&{0 49 true}}
+192.168.3.19_29235 -> 18:26:02.168728 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:02.194097 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:02.219840 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:02.245167 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:02.270334 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:02.295656 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:02.321628 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:02.347279 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:02.367965 raft.go:405: Le he mandado un voto a 0
+192.168.3.19_29235 -> 18:26:02.368143 raft.go:698: Soy Seguidor y mi mandato es 50
+192.168.3.19_29235 -> 18:26:02.368180 raft.go:405: Le he mandado un voto a 0
+192.168.3.19_29235 -> 18:26:02.370728 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:02.370815 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:02.370853 raft.go:461: Error append entries. Mi mandato es 50 y el del lider es 50
+192.168.3.19_29235 -> 18:26:02.396996 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:02.397082 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:02.397123 raft.go:461: Error append entries. Mi mandato es 50 y el del lider es 50
+192.168.3.19_29235 -> 18:26:02.422259 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:02.422341 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:02.422382 raft.go:461: Error append entries. Mi mandato es 50 y el del lider es 50
+192.168.3.19_29235 -> 18:26:02.447407 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:02.447487 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:02.447527 raft.go:461: Error append entries. Mi mandato es 50 y el del lider es 50
+192.168.3.19_29235 -> 18:26:02.472779 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:02.472862 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:02.472962 raft.go:461: Error append entries. Mi mandato es 50 y el del lider es 50
+192.168.3.19_29235 -> 18:26:02.498512 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:02.498592 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:02.498633 raft.go:461: Error append entries. Mi mandato es 50 y el del lider es 50
+192.168.3.19_29235 -> 18:26:02.524444 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:02.524543 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:02.524647 raft.go:461: Error append entries. Mi mandato es 50 y el del lider es 50
+192.168.3.19_29235 -> 18:26:02.549656 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:02.549753 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:02.549795 raft.go:461: Error append entries. Mi mandato es 50 y el del lider es 50
+192.168.3.19_29235 -> 18:26:02.574930 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:02.575019 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:02.575065 raft.go:461: Error append entries. Mi mandato es 50 y el del lider es 50
+192.168.3.19_29235 -> 18:26:02.594860 raft.go:405: Le he mandado un voto a 1
+192.168.3.19_29235 -> 18:26:02.594977 raft.go:405: Le he mandado un voto a 1
+192.168.3.19_29235 -> 18:26:02.597586 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:02.597666 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:02.597707 raft.go:461: Error append entries. Mi mandato es 51 y el del lider es 51
+192.168.3.19_29235 -> 18:26:02.623387 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:02.623471 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:02.623516 raft.go:461: Error append entries. Mi mandato es 51 y el del lider es 51
+192.168.3.19_29235 -> 18:26:02.649202 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:02.649283 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:02.649324 raft.go:461: Error append entries. Mi mandato es 51 y el del lider es 51
+192.168.3.19_29235 -> 18:26:02.674542 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:02.674638 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:02.674684 raft.go:461: Error append entries. Mi mandato es 51 y el del lider es 51
+192.168.3.19_29235 -> 18:26:02.699963 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:02.700062 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:02.700104 raft.go:461: Error append entries. Mi mandato es 51 y el del lider es 51
+192.168.3.19_29235 -> 18:26:02.725027 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:02.725112 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:02.725152 raft.go:461: Error append entries. Mi mandato es 51 y el del lider es 51
+192.168.3.19_29235 -> 18:26:02.749943 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:02.750026 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:02.750055 raft.go:461: Error append entries. Mi mandato es 51 y el del lider es 51
+192.168.3.19_29235 -> 18:26:02.775947 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:02.776030 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:02.776074 raft.go:461: Error append entries. Mi mandato es 51 y el del lider es 51
+192.168.3.19_29235 -> 18:26:02.802113 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:02.802244 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:02.802287 raft.go:461: Error append entries. Mi mandato es 51 y el del lider es 51
+192.168.3.19_29235 -> 18:26:02.828087 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:02.828171 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:02.828212 raft.go:461: Error append entries. Mi mandato es 51 y el del lider es 51
+192.168.3.19_29235 -> 18:26:02.853203 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:02.853291 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:02.853331 raft.go:461: Error append entries. Mi mandato es 51 y el del lider es 51
+192.168.3.19_29235 -> 18:26:02.878386 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:02.878468 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:02.878511 raft.go:461: Error append entries. Mi mandato es 51 y el del lider es 51
+192.168.3.19_29235 -> 18:26:02.904417 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:02.904500 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:02.904539 raft.go:461: Error append entries. Mi mandato es 51 y el del lider es 51
+192.168.3.19_29235 -> 18:26:02.930473 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:02.930563 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:02.930604 raft.go:461: Error append entries. Mi mandato es 51 y el del lider es 51
+192.168.3.19_29235 -> 18:26:02.931062 raft.go:405: Le he mandado un voto a 0
+192.168.3.19_29235 -> 18:26:02.931202 raft.go:405: Le he mandado un voto a 0
+192.168.3.19_29235 -> 18:26:02.934219 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:02.934295 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:02.934335 raft.go:461: Error append entries. Mi mandato es 52 y el del lider es 52
+192.168.3.19_29235 -> 18:26:02.960060 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:02.960143 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:02.960183 raft.go:461: Error append entries. Mi mandato es 52 y el del lider es 52
+192.168.3.19_29235 -> 18:26:02.985043 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:02.985119 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:02.985159 raft.go:461: Error append entries. Mi mandato es 52 y el del lider es 52
+192.168.3.19_29235 -> 18:26:03.011404 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:03.011485 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:03.011525 raft.go:461: Error append entries. Mi mandato es 52 y el del lider es 52
+192.168.3.19_29235 -> 18:26:03.037347 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:03.037443 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:03.037484 raft.go:461: Error append entries. Mi mandato es 52 y el del lider es 52
+192.168.3.19_29235 -> 18:26:03.062567 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:03.062669 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:03.062711 raft.go:461: Error append entries. Mi mandato es 52 y el del lider es 52
+192.168.3.19_29235 -> 18:26:03.087724 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:03.087834 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:03.087877 raft.go:461: Error append entries. Mi mandato es 52 y el del lider es 52
+192.168.3.19_29235 -> 18:26:03.113051 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:03.113135 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:03.113174 raft.go:461: Error append entries. Mi mandato es 52 y el del lider es 52
+192.168.3.19_29235 -> 18:26:03.138844 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:03.138926 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:03.138964 raft.go:461: Error append entries. Mi mandato es 52 y el del lider es 52
+192.168.3.19_29235 -> 18:26:03.164907 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:03.164985 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:03.165024 raft.go:461: Error append entries. Mi mandato es 52 y el del lider es 52
+192.168.3.19_29235 -> 18:26:03.191077 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:03.191162 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:03.191207 raft.go:461: Error append entries. Mi mandato es 52 y el del lider es 52
+192.168.3.19_29235 -> 18:26:03.216187 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:03.216267 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:03.216307 raft.go:461: Error append entries. Mi mandato es 52 y el del lider es 52
+192.168.3.19_29235 -> 18:26:03.241489 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:03.241598 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:03.241643 raft.go:461: Error append entries. Mi mandato es 52 y el del lider es 52
+192.168.3.19_29235 -> 18:26:03.266654 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:03.266750 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:03.266790 raft.go:461: Error append entries. Mi mandato es 52 y el del lider es 52
+192.168.3.19_29235 -> 18:26:03.291837 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:03.291938 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:03.291984 raft.go:461: Error append entries. Mi mandato es 52 y el del lider es 52
+192.168.3.19_29235 -> 18:26:03.317003 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:03.317101 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:03.317144 raft.go:461: Error append entries. Mi mandato es 52 y el del lider es 52
+192.168.3.19_29235 -> 18:26:03.342339 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:03.342434 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:03.342474 raft.go:461: Error append entries. Mi mandato es 52 y el del lider es 52
+192.168.3.19_29235 -> 18:26:03.367249 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:03.367334 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:03.367372 raft.go:461: Error append entries. Mi mandato es 52 y el del lider es 52
+192.168.3.19_29235 -> 18:26:03.392258 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:03.392332 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:03.392369 raft.go:461: Error append entries. Mi mandato es 52 y el del lider es 52
+192.168.3.19_29235 -> 18:26:03.397981 raft.go:698: Soy Candidato y mi mandato es 52
+192.168.3.19_29235 -> 18:26:03.398063 raft.go:574: Nueva elección
+192.168.3.19_29235 -> 18:26:03.400326 raft.go:551: RPC.PedirVoto: Solicitud de Voto [2]{&{53 2 -1 0}} -> Respuesta [1]{&{0 53 true}}
+192.168.3.19_29235 -> 18:26:03.400514 raft.go:775: Inicio Lider: IndiceComprometido:0 Log: []
+192.168.3.19_29235 -> 18:26:03.400622 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:03.400908 raft.go:551: RPC.PedirVoto: Solicitud de Voto [2]{&{53 2 -1 0}} -> Respuesta [1]{&{0 53 true}}
+192.168.3.19_29235 -> 18:26:03.426523 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:03.451660 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:03.477195 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:03.502546 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:03.527796 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:03.552871 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:03.578152 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:03.603432 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:03.623689 raft.go:405: Le he mandado un voto a 0
+192.168.3.19_29235 -> 18:26:03.623878 raft.go:698: Soy Seguidor y mi mandato es 54
+192.168.3.19_29235 -> 18:26:03.623923 raft.go:405: Le he mandado un voto a 0
+192.168.3.19_29235 -> 18:26:03.626953 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:03.627035 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:03.627076 raft.go:461: Error append entries. Mi mandato es 54 y el del lider es 54
+192.168.3.19_29235 -> 18:26:03.652723 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:03.652809 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:03.652850 raft.go:461: Error append entries. Mi mandato es 54 y el del lider es 54
+192.168.3.19_29235 -> 18:26:03.677867 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:03.677949 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:03.677989 raft.go:461: Error append entries. Mi mandato es 54 y el del lider es 54
+192.168.3.19_29235 -> 18:26:03.702910 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:03.702987 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:03.703025 raft.go:461: Error append entries. Mi mandato es 54 y el del lider es 54
+192.168.3.19_29235 -> 18:26:03.728163 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:03.728242 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:03.728286 raft.go:461: Error append entries. Mi mandato es 54 y el del lider es 54
+192.168.3.19_29235 -> 18:26:03.753041 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:03.753116 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:03.753155 raft.go:461: Error append entries. Mi mandato es 54 y el del lider es 54
+192.168.3.19_29235 -> 18:26:03.778209 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:03.778300 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:03.778336 raft.go:461: Error append entries. Mi mandato es 54 y el del lider es 54
+192.168.3.19_29235 -> 18:26:03.803302 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:03.803385 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:03.803424 raft.go:461: Error append entries. Mi mandato es 54 y el del lider es 54
+192.168.3.19_29235 -> 18:26:03.828348 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:03.828425 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:03.828464 raft.go:461: Error append entries. Mi mandato es 54 y el del lider es 54
+192.168.3.19_29235 -> 18:26:03.853676 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:03.853760 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:03.853805 raft.go:461: Error append entries. Mi mandato es 54 y el del lider es 54
+192.168.3.19_29235 -> 18:26:03.878754 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:03.878837 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:03.878876 raft.go:461: Error append entries. Mi mandato es 54 y el del lider es 54
+192.168.3.19_29235 -> 18:26:03.903794 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:03.903873 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:03.903914 raft.go:461: Error append entries. Mi mandato es 54 y el del lider es 54
+192.168.3.19_29235 -> 18:26:03.930077 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:03.930154 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:03.930192 raft.go:461: Error append entries. Mi mandato es 54 y el del lider es 54
+192.168.3.19_29235 -> 18:26:03.940214 raft.go:698: Soy Candidato y mi mandato es 54
+192.168.3.19_29235 -> 18:26:03.940287 raft.go:574: Nueva elección
+192.168.3.19_29235 -> 18:26:03.942545 raft.go:551: RPC.PedirVoto: Solicitud de Voto [2]{&{55 2 -1 0}} -> Respuesta [1]{&{0 55 true}}
+192.168.3.19_29235 -> 18:26:03.942679 raft.go:775: Inicio Lider: IndiceComprometido:0 Log: []
+192.168.3.19_29235 -> 18:26:03.942732 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:03.943051 raft.go:551: RPC.PedirVoto: Solicitud de Voto [2]{&{55 2 -1 0}} -> Respuesta [1]{&{0 55 true}}
+192.168.3.19_29235 -> 18:26:03.968710 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:03.994105 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:04.019390 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:04.044556 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:04.069755 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:04.086487 raft.go:405: Le he mandado un voto a 1
+192.168.3.19_29235 -> 18:26:04.086604 raft.go:405: Le he mandado un voto a 1
+192.168.3.19_29235 -> 18:26:04.086673 raft.go:698: Soy Seguidor y mi mandato es 56
+192.168.3.19_29235 -> 18:26:04.089111 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:04.089205 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:04.089248 raft.go:461: Error append entries. Mi mandato es 56 y el del lider es 56
+192.168.3.19_29235 -> 18:26:04.115301 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:04.115383 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:04.115412 raft.go:461: Error append entries. Mi mandato es 56 y el del lider es 56
+192.168.3.19_29235 -> 18:26:04.140845 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:04.140942 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:04.140984 raft.go:461: Error append entries. Mi mandato es 56 y el del lider es 56
+192.168.3.19_29235 -> 18:26:04.165729 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:04.165811 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:04.165851 raft.go:461: Error append entries. Mi mandato es 56 y el del lider es 56
+192.168.3.19_29235 -> 18:26:04.190832 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:04.190913 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:04.190958 raft.go:461: Error append entries. Mi mandato es 56 y el del lider es 56
+192.168.3.19_29235 -> 18:26:04.215921 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:04.216006 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:04.216046 raft.go:461: Error append entries. Mi mandato es 56 y el del lider es 56
+192.168.3.19_29235 -> 18:26:04.241263 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:04.241402 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:04.241450 raft.go:461: Error append entries. Mi mandato es 56 y el del lider es 56
+192.168.3.19_29235 -> 18:26:04.267304 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:04.267399 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:04.267440 raft.go:461: Error append entries. Mi mandato es 56 y el del lider es 56
+192.168.3.19_29235 -> 18:26:04.292302 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:04.292388 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:04.292429 raft.go:461: Error append entries. Mi mandato es 56 y el del lider es 56
+192.168.3.19_29235 -> 18:26:04.317406 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:04.317485 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:04.317525 raft.go:461: Error append entries. Mi mandato es 56 y el del lider es 56
+192.168.3.19_29235 -> 18:26:04.342670 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:04.342751 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:04.342791 raft.go:461: Error append entries. Mi mandato es 56 y el del lider es 56
+192.168.3.19_29235 -> 18:26:04.367702 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:04.367789 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:04.367834 raft.go:461: Error append entries. Mi mandato es 56 y el del lider es 56
+192.168.3.19_29235 -> 18:26:04.392690 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:04.392774 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:04.392815 raft.go:461: Error append entries. Mi mandato es 56 y el del lider es 56
+192.168.3.19_29235 -> 18:26:04.418080 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:04.418160 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:04.418200 raft.go:461: Error append entries. Mi mandato es 56 y el del lider es 56
+192.168.3.19_29235 -> 18:26:04.443579 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:04.443681 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:04.443723 raft.go:461: Error append entries. Mi mandato es 56 y el del lider es 56
+192.168.3.19_29235 -> 18:26:04.468809 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:04.468902 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:04.468944 raft.go:461: Error append entries. Mi mandato es 56 y el del lider es 56
+192.168.3.19_29235 -> 18:26:04.493854 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:04.493948 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:04.493986 raft.go:461: Error append entries. Mi mandato es 56 y el del lider es 56
+192.168.3.19_29235 -> 18:26:04.496654 raft.go:698: Soy Candidato y mi mandato es 56
+192.168.3.19_29235 -> 18:26:04.496727 raft.go:574: Nueva elección
+192.168.3.19_29235 -> 18:26:04.499334 raft.go:551: RPC.PedirVoto: Solicitud de Voto [2]{&{57 2 -1 0}} -> Respuesta [1]{&{0 57 true}}
+192.168.3.19_29235 -> 18:26:04.499471 raft.go:775: Inicio Lider: IndiceComprometido:0 Log: []
+192.168.3.19_29235 -> 18:26:04.499524 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:04.499341 raft.go:551: RPC.PedirVoto: Solicitud de Voto [2]{&{57 2 -1 0}} -> Respuesta [1]{&{0 57 true}}
+192.168.3.19_29235 -> 18:26:04.525226 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:04.550340 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:04.575478 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:04.600624 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:04.626662 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:04.651796 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:04.677068 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:04.702303 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:04.715762 raft.go:405: Le he mandado un voto a 0
+192.168.3.19_29235 -> 18:26:04.715928 raft.go:698: Soy Seguidor y mi mandato es 58
+192.168.3.19_29235 -> 18:26:04.715966 raft.go:405: Le he mandado un voto a 0
+192.168.3.19_29235 -> 18:26:04.718451 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:04.718530 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:04.718568 raft.go:461: Error append entries. Mi mandato es 58 y el del lider es 58
+192.168.3.19_29235 -> 18:26:04.744643 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:04.744755 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:04.744800 raft.go:461: Error append entries. Mi mandato es 58 y el del lider es 58
+192.168.3.19_29235 -> 18:26:04.769832 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:04.769918 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:04.769959 raft.go:461: Error append entries. Mi mandato es 58 y el del lider es 58
+192.168.3.19_29235 -> 18:26:04.794854 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:04.794931 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:04.794971 raft.go:461: Error append entries. Mi mandato es 58 y el del lider es 58
+192.168.3.19_29235 -> 18:26:04.820146 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:04.820228 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:04.820269 raft.go:461: Error append entries. Mi mandato es 58 y el del lider es 58
+192.168.3.19_29235 -> 18:26:04.845357 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:04.845438 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:04.845477 raft.go:461: Error append entries. Mi mandato es 58 y el del lider es 58
+192.168.3.19_29235 -> 18:26:04.870409 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:04.870507 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:04.870549 raft.go:461: Error append entries. Mi mandato es 58 y el del lider es 58
+192.168.3.19_29235 -> 18:26:04.895520 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:04.895612 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:04.895657 raft.go:461: Error append entries. Mi mandato es 58 y el del lider es 58
+192.168.3.19_29235 -> 18:26:04.920902 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:04.920989 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:04.921031 raft.go:461: Error append entries. Mi mandato es 58 y el del lider es 58
+192.168.3.19_29235 -> 18:26:04.946116 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:04.946193 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:04.946233 raft.go:461: Error append entries. Mi mandato es 58 y el del lider es 58
+192.168.3.19_29235 -> 18:26:04.971351 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:04.971426 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:04.971465 raft.go:461: Error append entries. Mi mandato es 58 y el del lider es 58
+192.168.3.19_29235 -> 18:26:04.996262 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:04.996391 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:04.996434 raft.go:461: Error append entries. Mi mandato es 58 y el del lider es 58
+192.168.3.19_29235 -> 18:26:05.021779 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:05.021851 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:05.021890 raft.go:461: Error append entries. Mi mandato es 58 y el del lider es 58
+192.168.3.19_29235 -> 18:26:05.035822 raft.go:698: Soy Candidato y mi mandato es 58
+192.168.3.19_29235 -> 18:26:05.035943 raft.go:574: Nueva elección
+192.168.3.19_29235 -> 18:26:05.039441 raft.go:551: RPC.PedirVoto: Solicitud de Voto [2]{&{59 2 -1 0}} -> Respuesta [1]{&{0 59 true}}
+192.168.3.19_29235 -> 18:26:05.039671 raft.go:775: Inicio Lider: IndiceComprometido:0 Log: []
+192.168.3.19_29235 -> 18:26:05.039760 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:05.041246 raft.go:551: RPC.PedirVoto: Solicitud de Voto [2]{&{59 2 -1 0}} -> Respuesta [1]{&{0 59 true}}
+192.168.3.19_29235 -> 18:26:05.065038 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:05.090919 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:05.116060 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:05.141304 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:05.151377 raft.go:405: Le he mandado un voto a 0
+192.168.3.19_29235 -> 18:26:05.151534 raft.go:698: Soy Seguidor y mi mandato es 60
+192.168.3.19_29235 -> 18:26:05.151565 raft.go:405: Le he mandado un voto a 0
+192.168.3.19_29235 -> 18:26:05.153714 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:05.153780 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:05.153811 raft.go:461: Error append entries. Mi mandato es 60 y el del lider es 60
+192.168.3.19_29235 -> 18:26:05.180459 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:05.180563 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:05.180639 raft.go:461: Error append entries. Mi mandato es 60 y el del lider es 60
+192.168.3.19_29235 -> 18:26:05.205238 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:05.205326 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:05.205358 raft.go:461: Error append entries. Mi mandato es 60 y el del lider es 60
+192.168.3.19_29235 -> 18:26:05.231352 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:05.231438 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:05.231478 raft.go:461: Error append entries. Mi mandato es 60 y el del lider es 60
+192.168.3.19_29235 -> 18:26:05.256647 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:05.256733 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:05.256773 raft.go:461: Error append entries. Mi mandato es 60 y el del lider es 60
+192.168.3.19_29235 -> 18:26:05.281681 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:05.281765 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:05.281810 raft.go:461: Error append entries. Mi mandato es 60 y el del lider es 60
+192.168.3.19_29235 -> 18:26:05.306561 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:05.306639 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:05.306679 raft.go:461: Error append entries. Mi mandato es 60 y el del lider es 60
+192.168.3.19_29235 -> 18:26:05.331586 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:05.331665 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:05.331705 raft.go:461: Error append entries. Mi mandato es 60 y el del lider es 60
+192.168.3.19_29235 -> 18:26:05.356793 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:05.356878 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:05.356920 raft.go:461: Error append entries. Mi mandato es 60 y el del lider es 60
+192.168.3.19_29235 -> 18:26:05.382244 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:05.382328 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:05.382368 raft.go:461: Error append entries. Mi mandato es 60 y el del lider es 60
+192.168.3.19_29235 -> 18:26:05.407106 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:05.407188 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:05.407228 raft.go:461: Error append entries. Mi mandato es 60 y el del lider es 60
+192.168.3.19_29235 -> 18:26:05.432132 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:05.432209 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:05.432249 raft.go:461: Error append entries. Mi mandato es 60 y el del lider es 60
+192.168.3.19_29235 -> 18:26:05.457332 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:05.457411 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:05.457452 raft.go:461: Error append entries. Mi mandato es 60 y el del lider es 60
+192.168.3.19_29235 -> 18:26:05.482416 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:05.482491 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:05.482530 raft.go:461: Error append entries. Mi mandato es 60 y el del lider es 60
+192.168.3.19_29235 -> 18:26:05.507610 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:05.507686 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:05.507724 raft.go:461: Error append entries. Mi mandato es 60 y el del lider es 60
+192.168.3.19_29235 -> 18:26:05.532725 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:05.532809 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:05.532848 raft.go:461: Error append entries. Mi mandato es 60 y el del lider es 60
+192.168.3.19_29235 -> 18:26:05.558086 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:05.558165 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:05.558206 raft.go:461: Error append entries. Mi mandato es 60 y el del lider es 60
+192.168.3.19_29235 -> 18:26:05.583353 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:05.583443 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:05.583479 raft.go:461: Error append entries. Mi mandato es 60 y el del lider es 60
+192.168.3.19_29235 -> 18:26:05.608557 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:05.608718 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:05.608759 raft.go:461: Error append entries. Mi mandato es 60 y el del lider es 60
+192.168.3.19_29235 -> 18:26:05.622316 raft.go:698: Soy Candidato y mi mandato es 60
+192.168.3.19_29235 -> 18:26:05.622397 raft.go:574: Nueva elección
+192.168.3.19_29235 -> 18:26:05.624940 raft.go:551: RPC.PedirVoto: Solicitud de Voto [2]{&{61 2 -1 0}} -> Respuesta [1]{&{0 61 true}}
+192.168.3.19_29235 -> 18:26:05.625084 raft.go:775: Inicio Lider: IndiceComprometido:0 Log: []
+192.168.3.19_29235 -> 18:26:05.625178 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:05.625491 raft.go:551: RPC.PedirVoto: Solicitud de Voto [2]{&{61 2 -1 0}} -> Respuesta [1]{&{0 61 true}}
+192.168.3.19_29235 -> 18:26:05.650434 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:05.676419 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:05.701659 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:05.726815 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:05.752041 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:05.777366 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:05.802663 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:05.828713 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:05.854141 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:05.879299 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:05.905464 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:05.930806 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:05.956038 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:05.981389 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:06.007505 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:06.032658 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:06.057901 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:06.082986 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:06.108220 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:06.134340 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:06.159630 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:06.165168 raft.go:405: Le he mandado un voto a 1
+192.168.3.19_29235 -> 18:26:06.165318 raft.go:698: Soy Seguidor y mi mandato es 62
+192.168.3.19_29235 -> 18:26:06.165381 raft.go:405: Le he mandado un voto a 1
+192.168.3.19_29235 -> 18:26:06.167666 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:06.167745 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:06.167778 raft.go:461: Error append entries. Mi mandato es 62 y el del lider es 62
+192.168.3.19_29235 -> 18:26:06.193680 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:06.193781 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:06.193826 raft.go:461: Error append entries. Mi mandato es 62 y el del lider es 62
+192.168.3.19_29235 -> 18:26:06.218676 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:06.218768 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:06.218809 raft.go:461: Error append entries. Mi mandato es 62 y el del lider es 62
+192.168.3.19_29235 -> 18:26:06.243852 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:06.243937 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:06.243978 raft.go:461: Error append entries. Mi mandato es 62 y el del lider es 62
+192.168.3.19_29235 -> 18:26:06.269021 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:06.269101 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:06.269137 raft.go:461: Error append entries. Mi mandato es 62 y el del lider es 62
+192.168.3.19_29235 -> 18:26:06.294900 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:06.294987 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:06.295033 raft.go:461: Error append entries. Mi mandato es 62 y el del lider es 62
+192.168.3.19_29235 -> 18:26:06.320084 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:06.320164 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:06.320203 raft.go:461: Error append entries. Mi mandato es 62 y el del lider es 62
+192.168.3.19_29235 -> 18:26:06.346470 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:06.346575 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:06.346620 raft.go:461: Error append entries. Mi mandato es 62 y el del lider es 62
+192.168.3.19_29235 -> 18:26:06.371381 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:06.371474 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:06.371572 raft.go:461: Error append entries. Mi mandato es 62 y el del lider es 62
+192.168.3.19_29235 -> 18:26:06.396928 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:06.397015 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:06.397060 raft.go:461: Error append entries. Mi mandato es 62 y el del lider es 62
+192.168.3.19_29235 -> 18:26:06.422002 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:06.422093 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:06.422134 raft.go:461: Error append entries. Mi mandato es 62 y el del lider es 62
+192.168.3.19_29235 -> 18:26:06.447078 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:06.447160 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:06.447201 raft.go:461: Error append entries. Mi mandato es 62 y el del lider es 62
+192.168.3.19_29235 -> 18:26:06.472037 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:06.472117 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:06.472157 raft.go:461: Error append entries. Mi mandato es 62 y el del lider es 62
+192.168.3.19_29235 -> 18:26:06.497621 raft.go:698: Soy Candidato y mi mandato es 62
+192.168.3.19_29235 -> 18:26:06.497736 raft.go:574: Nueva elección
+192.168.3.19_29235 -> 18:26:06.498307 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:06.498397 raft.go:461: Error append entries. Mi mandato es 63 y el del lider es 62
+192.168.3.19_29235 -> 18:26:06.500538 raft.go:551: RPC.PedirVoto: Solicitud de Voto [2]{&{63 2 -1 0}} -> Respuesta [1]{&{0 63 true}}
+192.168.3.19_29235 -> 18:26:06.500535 raft.go:551: RPC.PedirVoto: Solicitud de Voto [2]{&{63 2 -1 0}} -> Respuesta [1]{&{0 63 true}}
+192.168.3.19_29235 -> 18:26:06.500937 raft.go:775: Inicio Lider: IndiceComprometido:0 Log: []
+192.168.3.19_29235 -> 18:26:06.501005 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:06.526940 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:06.552184 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:06.577536 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:06.602778 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:06.628050 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:06.654032 raft.go:698: Soy Seguidor y mi mandato es 64
+192.168.3.19_29235 -> 18:26:07.209640 raft.go:698: Soy Candidato y mi mandato es 64
+192.168.3.19_29235 -> 18:26:07.209770 raft.go:574: Nueva elección
+192.168.3.19_29235 -> 18:26:07.209850 raft.go:775: Inicio Lider: IndiceComprometido:0 Log: []
+192.168.3.19_29235 -> 18:26:07.209929 raft.go:647: Nuevo latido
+192.168.3.19_29235 -> 18:26:07.212896 raft.go:551: RPC.PedirVoto: Solicitud de Voto [2]{&{65 2 -1 0}} -> Respuesta [1]{&{0 65 false}}
+192.168.3.19_29235 -> 18:26:07.212894 raft.go:551: RPC.PedirVoto: Solicitud de Voto [2]{&{65 2 -1 0}} -> Respuesta [1]{&{0 65 false}}
+192.168.3.19_29235 -> 18:26:07.213961 raft.go:405: Le he mandado un voto a 1
+192.168.3.19_29235 -> 18:26:07.214127 raft.go:698: Soy Seguidor y mi mandato es 66
+192.168.3.19_29235 -> 18:26:07.214210 raft.go:405: Le he mandado un voto a 1
+192.168.3.19_29235 -> 18:26:07.216303 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:07.216372 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:07.216408 raft.go:461: Error append entries. Mi mandato es 66 y el del lider es 66
+192.168.3.19_29235 -> 18:26:07.242189 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:07.242276 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:07.242316 raft.go:461: Error append entries. Mi mandato es 66 y el del lider es 66
+192.168.3.19_29235 -> 18:26:07.267360 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:07.267491 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:07.267534 raft.go:461: Error append entries. Mi mandato es 66 y el del lider es 66
+192.168.3.19_29235 -> 18:26:07.293221 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:07.293322 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:07.293364 raft.go:461: Error append entries. Mi mandato es 66 y el del lider es 66
+192.168.3.19_29235 -> 18:26:07.318707 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:07.318808 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:07.318851 raft.go:461: Error append entries. Mi mandato es 66 y el del lider es 66
+192.168.3.19_29235 -> 18:26:07.343907 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:07.343994 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:07.344035 raft.go:461: Error append entries. Mi mandato es 66 y el del lider es 66
+192.168.3.19_29235 -> 18:26:07.367917 raft.go:405: Le he mandado un voto a 0
+192.168.3.19_29235 -> 18:26:07.368146 raft.go:405: Le he mandado un voto a 0
+192.168.3.19_29235 -> 18:26:07.368766 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:07.368833 raft.go:461: Error append entries. Mi mandato es 67 y el del lider es 66
+192.168.3.19_29235 -> 18:26:07.370907 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:07.370976 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:07.371011 raft.go:461: Error append entries. Mi mandato es 67 y el del lider es 67
+192.168.3.19_29235 -> 18:26:07.396143 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:07.396232 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:07.396273 raft.go:461: Error append entries. Mi mandato es 67 y el del lider es 67
+192.168.3.19_29235 -> 18:26:07.421223 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:07.421311 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:07.421352 raft.go:461: Error append entries. Mi mandato es 67 y el del lider es 67
+192.168.3.19_29235 -> 18:26:07.446116 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:07.446201 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:07.446241 raft.go:461: Error append entries. Mi mandato es 67 y el del lider es 67
+192.168.3.19_29235 -> 18:26:07.472175 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:07.472250 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:07.472289 raft.go:461: Error append entries. Mi mandato es 67 y el del lider es 67
+192.168.3.19_29235 -> 18:26:07.498311 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:07.498387 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:07.498425 raft.go:461: Error append entries. Mi mandato es 67 y el del lider es 67
+192.168.3.19_29235 -> 18:26:07.523467 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:07.523548 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:07.523590 raft.go:461: Error append entries. Mi mandato es 67 y el del lider es 67
+192.168.3.19_29235 -> 18:26:07.548784 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:07.548883 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:07.548923 raft.go:461: Error append entries. Mi mandato es 67 y el del lider es 67
+192.168.3.19_29235 -> 18:26:07.574316 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:07.574454 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:07.574494 raft.go:461: Error append entries. Mi mandato es 67 y el del lider es 67
+192.168.3.19_29235 -> 18:26:07.600442 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:07.600540 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:07.600739 raft.go:461: Error append entries. Mi mandato es 67 y el del lider es 67
+192.168.3.19_29235 -> 18:26:07.625242 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:07.625324 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:07.625364 raft.go:461: Error append entries. Mi mandato es 67 y el del lider es 67
+192.168.3.19_29235 -> 18:26:07.650420 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:07.650502 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:07.650541 raft.go:461: Error append entries. Mi mandato es 67 y el del lider es 67
+192.168.3.19_29235 -> 18:26:07.668880 raft.go:324: Obteniendo estado nodo
+192.168.3.19_29235 -> 18:26:07.668965 raft.go:210: Obteniendo estado
+192.168.3.19_29235 -> 18:26:07.669014 raft.go:216: Estado obtenido, soy 2 y soy Seguidor. El ID lider es 2
+192.168.3.19_29235 -> 18:26:07.675759 raft.go:438: AppendEntries recibido de 0
+192.168.3.19_29235 -> 18:26:07.675833 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:07.675870 raft.go:461: Error append entries. Mi mandato es 67 y el del lider es 67
+192.168.3.19_29235 -> 18:26:07.736865 raft.go:405: Le he mandado un voto a 1
+192.168.3.19_29235 -> 18:26:07.737012 raft.go:405: Le he mandado un voto a 1
+192.168.3.19_29235 -> 18:26:07.739602 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:07.739679 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:07.739723 raft.go:461: Error append entries. Mi mandato es 68 y el del lider es 68
+192.168.3.19_29235 -> 18:26:07.765577 raft.go:438: AppendEntries recibido de 1
+192.168.3.19_29235 -> 18:26:07.765662 raft.go:475: NO HE ENTRADO. IndiceLogAnterior es -1 y el tamaño del log de nr es 0
+192.168.3.19_29235 -> 18:26:07.765704 raft.go:461: Error append entries. Mi mandato es 68 y el del lider es 68

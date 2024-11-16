@@ -19,12 +19,12 @@ import (
 
 const (
 	//nodos replicas
-	REPLICA1 = "127.0.0.1:29001"
-	REPLICA2 = "127.0.0.1:29002"
-	REPLICA3 = "127.0.0.1:29003"
-	//REPLICA1 = "192.168.3.17:29230"
-	//REPLICA2 = "192.168.3.18:29230"
-	//REPLICA3 = "192.168.3.19:29230"
+	//REPLICA1 = "127.0.0.1:29001"
+	//REPLICA2 = "127.0.0.1:29002"
+	//REPLICA3 = "127.0.0.1:29003"
+	REPLICA1 = "192.168.3.17:29235"
+	REPLICA2 = "192.168.3.18:29235"
+	REPLICA3 = "192.168.3.19:29235"
 	// paquete main de ejecutables relativos a directorio raiz de modulo
 	EXECREPLICA = "cmd/srvraft/main.go"
 
@@ -37,7 +37,7 @@ var cwd, _ = os.Getwd()
 var PATH string = filepath.Dir(filepath.Dir(cwd))
 
 // go run cmd/srvraft/main.go 0 127.0.0.1:29001 127.0.0.1:29002 127.0.0.1:29003
-var EXECREPLICACMD string = "cd " + PATH + "; /snap/bin/go run " + EXECREPLICA
+var EXECREPLICACMD string = "cd " + PATH + ";  /usr/local/go/bin/go run " + EXECREPLICA
 
 //////////////////////////////////////////////////////////////////////////////
 ///////////////////////			 FUNCIONES TEST
@@ -333,11 +333,11 @@ func (cfg *configDespliegue) startDistributedProcesses() {
 			[]string{endPoint.Host()}, cfg.cr)
 
 		// dar tiempo para se establezcan las replicas
-		time.Sleep(200 * time.Millisecond)
+		time.Sleep(2000 * time.Millisecond)
 	}
 
 	// aproximadamente 500 ms para cada arranque por ssh en portatil
-	time.Sleep(500 * time.Millisecond)
+	time.Sleep(15000 * time.Millisecond)
 }
 
 func (cfg *configDespliegue) stopDistributedProcesses() {
