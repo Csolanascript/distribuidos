@@ -64,9 +64,10 @@ type TipoOperacion struct {
 // "canalAplicar" (funcion NuevoNodo) de la maquina de estados
 type AplicaOperacion struct {
 	Indice    int // en la entrada de registro
+	Mandato   int
 	Operacion TipoOperacion
-}
 
+}
 type Entrada struct {
 	Indice    int
 	Mandato   int
@@ -96,10 +97,12 @@ type NodoRaft struct {
 
 	Estado State
 
-	CanalLatido   chan bool
-	CanalSeguidor chan bool
-	CanalLider    chan bool
-	CanalVotos    chan bool
+	CanalLatido           chan bool
+	CanalSeguidor         chan bool
+	CanalLider            chan bool
+	CanalVotos            chan bool
+	canalAplicarOperacion chan int
+	Memoria               map[string]string
 
 	Rol string
 }
@@ -174,6 +177,7 @@ func NuevoNodo(nodos []rpctimeout.HostPort, yo int,
 	nr.Logger.Println("Estado inicializado4")
 	nr.CanalVotos = make(chan bool)
 	nr.Logger.Println("Estado inicializado5")
+	nr.canalAplicarOperacion = make(chan int)
 
 	nr.Estado.HaVotadoA = -1
 	nr.Estado.MandatoActual = 0
@@ -184,10 +188,12 @@ func NuevoNodo(nodos []rpctimeout.HostPort, yo int,
 	nr.Estado.SiguienteIndice = Make(0, len(nr.Nodos))
 	nr.Estado.IndiceUltimoConocido = Make(-1, len(nr.Nodos))
 
+	nr.Memoria = make(map[string]string)
 	fmt.Println("Log inicializado y nodo creado con éxito")
 	//fmt.Printf("Estado inicial: %+v\n", nr.Estado)
 	fmt.Printf("Rol inicial: %s\n", nr.Rol)
 	go nr.MaquinaDeEstados()
+	go nr.MemoriaBucle()
 	return nr
 }
 
@@ -247,55 +253,31 @@ func (nr *NodoRaft) obtenerEstado() (int, int, bool, int) {
 // - Quinto valor es el resultado de aplicar esta operación en máquina de estados
 func (nr *NodoRaft) someterOperacion(operacion TipoOperacion) (int, int,
 	bool, int, string) {
-
 	indice := -1
 	mandato := -1
-	esLider := nr.Yo == nr.IdLider
+	esLider := false
 	idLider := -1
 	valorADevolver := ""
 
-	if esLider {
-		indice = nr.Estado.IndiceMayorComprometido //+1?
-		mandato = nr.Estado.MandatoActual
-		entry := Entrada{indice, mandato, operacion}
-
-		nr.Logger.Printf("(%d, %d, %s, %s, %s)", entry.Indice, entry.Mandato,
-			entry.Operacion.Operacion, entry.Operacion.Clave,
-			entry.Operacion.Valor)
-
-		var results Results
-		confirmados := 0
-
-		for i := 0; i < len(nr.Nodos); i++ {
-			if i != nr.Yo {
-				nr.Nodos[i].CallTimeout(
-					"NodoRaft.AppendEntries",
-					ArgAppendEntries{
-						MandatoLider:       mandato,
-						IdLider:            nr.Yo,
-						IndiceLogAnterior:  indice,
-						MandatoLogAnterior: entry.Mandato,
-						EntradasLog:        []Entrada{entry},
-						IndiceComprometido: nr.Estado.IndiceMayorComprometido,
-					},
-					&results,
-					20*time.Millisecond,
-				)
-			}
-
-			if results.Exito {
-				confirmados++
-			}
-		}
-
-		if confirmados > len(nr.Nodos)/2 {
-			nr.Estado.IndiceMayorComprometido++
-		}
-
-		idLider = nr.Yo
+	if nr.Rol != "Lider" {
+		return indice, mandato, esLider, idLider, valorADevolver
 	}
 
+	if operacion.Operacion == "Lectura" {
+		valorADevolver = nr.Memoria[operacion.Clave]
+	} else {
+		valorADevolver = operacion.Valor
+	}
+
+	indice = len(nr.Estado.Log)
+	mandato = nr.Estado.MandatoActual
+	esLider = true
+	idLider = nr.Yo
+	nr.Estado.Log = append(nr.Estado.Log, Entrada{Indice: indice, Mandato: mandato, Operacion: operacion})
+	nr.Logger.Printf("Operación añadida al log: %v", operacion)
+
 	return indice, mandato, esLider, idLider, valorADevolver
+
 }
 
 // -----------------------------------------------------------------------
@@ -514,6 +496,22 @@ func min(a, b int) int {
 	return b
 }
 
+
+// Definir una estructura para la respuesta RPC
+type IndiceCommit struct {
+	IndiceCommit int
+}
+
+// Método RPC para obtener el índice de compromiso de un nodo
+func (nr *NodoRaft) obtenerIndiceComprometido(args Vacio, reply *IndiceCommit) error {
+	nr.Mux.Lock()
+	defer nr.Mux.Unlock()
+	reply.IndiceCommit = nr.Estado.IndiceMayorComprometido
+	nr.Logger.Printf("ObtenerIndiceComprometido: Nodo %d devolviendo índice %d", nr.Yo, nr.Estado.IndiceMayorComprometido)
+	return nil
+}
+
+
 // --------------------------------------------------------------------------
 // ----- METODOS/FUNCIONES desde nodo Raft, como cliente, a otro nodo Raft
 // --------------------------------------------------------------------------
@@ -693,6 +691,17 @@ func (nr *NodoRaft) MaquinaDeEstados() {
 	}
 }
 
+func (nr *NodoRaft) MemoriaBucle() {
+	for {
+		i := <-nr.canalAplicarOperacion
+		nr.Memoria[nr.Estado.Log[i].Operacion.Clave] = nr.Estado.Log[i].Operacion.Valor
+		nr.Estado.IndiceMayorAplicado++
+		nr.Logger.Println("Aplicada operación", nr.Estado.Log[i].Operacion)
+		nr.Logger.Printf("ESTADO NODO: init: CI:%d Log: %v Almacen: %v\n",
+			nr.Estado.IndiceMayorComprometido, nr.Estado.Log, nr.Memoria)
+	}
+}
+
 // Función auxiliar para loggear el estado actual
 func (nr *NodoRaft) logEstadoActual() {
 	nr.Logger.Printf("Soy %s y mi mandato es %d\n", nr.Rol, nr.Estado.MandatoActual)
@@ -799,3 +808,4 @@ func (nr *NodoRaft) bucleLider() {
 		}
 	}
 }
+

@@ -3,6 +3,7 @@ package testintegracionraft1
 import (
 	"fmt"
 	"raft/internal/comun/check"
+	"sync"
 
 	//"log"
 	//"crypto/rand"
@@ -19,12 +20,12 @@ import (
 
 const (
 	//nodos replicas
-	//REPLICA1 = "127.0.0.1:29001"
-	//REPLICA2 = "127.0.0.1:29002"
-	//REPLICA3 = "127.0.0.1:29003"
-	REPLICA1 = "192.168.3.17:29235"
-	REPLICA2 = "192.168.3.18:29235"
-	REPLICA3 = "192.168.3.19:29235"
+	REPLICA1 = "127.0.0.1:29001"
+	REPLICA2 = "127.0.0.1:29002"
+	REPLICA3 = "127.0.0.1:29003"
+	//REPLICA1 = "192.168.3.17:29235"
+	//REPLICA2 = "192.168.3.18:29235"
+	//REPLICA3 = "192.168.3.19:29235"
 	// paquete main de ejecutables relativos a directorio raiz de modulo
 	EXECREPLICA = "cmd/srvraft/main.go"
 
@@ -73,6 +74,15 @@ func TestPrimerasPruebas(t *testing.T) { // (m *testing.M) {
 	// Test4: Tres operaciones comprometidas en configuración estable
 	t.Run("T4:tresOperacionesComprometidasEstable",
 		func(t *testing.T) { cfg.tresOperacionesComprometidasEstable(t) })
+
+	t.Run("T5:AcuerdoEntradasSinSeguidor",
+		func(t *testing.T) { cfg.AcuerdoEntradasSinSeguidor(t) })
+
+	t.Run("T6:NoAcuerdoEntradasSinSeguidores",
+		func(t *testing.T) { cfg.NoAcuerdoEntradasSinSeguidores(t) })
+
+	t.Run("T7:SometerVariasOperaciones",
+		func(t *testing.T) { cfg.SometerVariasOperaciones(t) })
 }
 
 // ---------------------------------------------------------------------
@@ -214,6 +224,182 @@ func (cfg *configDespliegue) tresOperacionesComprometidasEstable(t *testing.T) {
 
 }
 
+func (cfg *configDespliegue) AcuerdoEntradasSinSeguidor(t *testing.T) {
+	//t.Skip("SKIPPED AcuerdoEntradasSinSeguidor")
+	fmt.Println("Iniciando Test 5: AcuerdoEntradasSinSeguidor")
+
+	
+	cfg.startDistributedProcesses()
+
+	
+	idLeader := cfg.pruebaUnLider(3)
+	
+	
+	
+	nodoCaido := (idLeader + 1) % 3
+	cfg.pararLider(nodoCaido)
+
+	
+	cfg.comprobarOperacion(idLeader, 0, "leer", "", "")
+	cfg.comprobarOperacion(idLeader, 1, "escribir", "", "hola mundo")
+	cfg.comprobarOperacion(idLeader, 2, "leer", "", "")
+
+	
+	cfg.iniciarNodo(nodoCaido)
+
+	//Tiempo para iniciar nodo al no haber barrera
+	time.Sleep(2000 * time.Millisecond)
+
+	
+	ultimoIndiceComrometido, err := cfg.obtenerIndiceComprometidoRemoto(idLeader)
+	if err != nil {
+		cfg.t.Fatalf("Error al obtener índice comprometido del líder: %v", err)
+	}
+
+	for i := 0; i < 3; i++ {
+		// Obtener el índice comprometido de cada nodo mediante la llamada RPC
+		indice, err := cfg.obtenerIndiceComprometidoRemoto(i)
+		if err != nil {
+			cfg.t.Fatalf("Error al obtener índice comprometido del nodo %d: %v", i, err)
+		}
+
+		// Obtener el líder percibido en el nodo i
+		_, _, _, idLider := cfg.obtenerEstadoRemoto(i)
+		//fmt.Printf("Nodo %d - Último índice comprometido: %d, Líder: %d\n", i, commitIndex, idLider)
+
+		// Comprobar que el líder percibido es el mismo
+		if idLider != idLeader {
+			cfg.t.Fatalf("El líder actual no coincide después de la reconexión en nodo %d, esperado: %d, obtenido: %d", i, idLeader, idLider)
+		}
+
+		// Comprobar que el índice comprometido coincide con el del líder
+		if indice != ultimoIndiceComrometido {
+			cfg.t.Fatalf("El índice comprometido no coincide en nodo %d, esperado: %d, obtenido: %d", i, ultimoIndiceComrometido, indice)
+		}
+	}
+
+	fmt.Println("Test 5: AcuerdoEntradasSinSeguidor superado")
+	cfg.stopDistributedProcesses()
+}
+
+
+func (cfg *configDespliegue) NoAcuerdoEntradasSinSeguidores(t *testing.T) {
+	//t.Skip("SKIPPED NoAcuerdoEntradasSinSeguidor")
+	fmt.Println("Iniciando Test 6: NoAcuerdoEntradasSinSeguidores")
+
+	cfg.startDistributedProcesses()
+	idLeader := cfg.pruebaUnLider(3)
+	
+	nodo1 := (idLeader + 1) % 3
+	nodo2 := (idLeader + 2) % 3
+	
+	cfg.pararLider(nodo1)
+	cfg.pararLider(nodo2)
+
+	cfg.comprobarOperacion(idLeader, 0, "leer", "", "")
+	cfg.comprobarOperacion(idLeader, 1, "escribir", "", "hola mundo")
+	cfg.comprobarOperacion(idLeader, 2, "leer", "", "")
+
+	
+	indiceLider, _ := cfg.obtenerIndiceComprometidoRemoto(idLeader)
+	
+	if indiceLider != -1 {
+		t.Fatalf("El líder no debería haber comprometido ninguna entrada todavía")
+	}
+	
+	cfg.iniciarNodo(nodo1)
+	cfg.iniciarNodo(nodo2)
+	time.Sleep(2000 * time.Millisecond)
+
+	
+	indiceLider, _ = cfg.obtenerIndiceComprometidoRemoto(idLeader)
+	if indiceLider != 2 {
+		t.Fatalf("El líder debería haber comprometido las 3 entradas")
+	}
+	
+	for i := 0; i < 3; i++ {
+		commitIndex, _ := cfg.obtenerIndiceComprometidoRemoto(i)
+		if commitIndex != 2 {
+			t.Fatalf("El nodo %d no está sincronizado correctamente", i)
+		}
+	}
+
+	fmt.Println("Test 6: AcuerdoEntradasSinSeguidores superado")
+	cfg.stopDistributedProcesses()
+}
+
+
+// TODO EL TEST 7
+func (cfg *configDespliegue) SometerVariasOperaciones(t *testing.T) {
+	t.Skip("SKIPPED SometerVariasOperaciones")
+	fmt.Println("Iniciando Test 7: SometerVariasOperaciones")
+
+	// Paso 1: Iniciar los procesos distribuidos para los nodos Raft
+	cfg.startDistributedProcesses()
+
+	// Paso 2: Obtener un líder
+	leader := cfg.pruebaUnLider(3)
+	//fmt.Printf("Líder inicial elegido: nodo %d\n", leader)
+
+	// Paso 3: Crear un WaitGroup para esperar a que todas las gorutinas terminen
+	var wg sync.WaitGroup
+	numOperaciones := 5
+	confirmaciones := make(chan int, numOperaciones)
+
+	// Paso 4: Someter 5 operaciones concurrentes al líder usando gorutinas
+	for i := 0; i < numOperaciones; i++ {
+		wg.Add(1)
+		go func(operacionID int) {
+			defer wg.Done()
+
+			// Generar una clave y un valor para la operación
+			clave := fmt.Sprintf("clave%d", operacionID)
+			valor := fmt.Sprintf("valor%d", operacionID)
+
+			// Someter la operación al líder
+			//fmt.Printf("Sometiendo operación %d al líder %d: escribir %s = %s\n", operacionID, leader, clave, valor)
+			indice, _, _, idLider, _ := cfg.someterOperacion(leader, "escribir", clave, valor)
+
+			// Comprobar si la operación fue sometida correctamente
+			if indice != operacionID || idLider != leader {
+				fmt.Printf("Error al someter operación %d: se obtuvo índice %d\n", operacionID, indice)
+				return
+			}
+			// Si fue exitosa, enviar confirmación al canal
+			confirmaciones <- indice
+		}(i)
+	}
+
+	// Paso 5: Esperar a que todas las operaciones se sometan
+	wg.Wait()
+	close(confirmaciones)
+
+	time.Sleep(2 * time.Second)
+	// Paso 6: Verificar que se han comprometido todas las operaciones
+	//fmt.Println("Verificando estados de los nodos...")
+	//for commitIndex := range confirmaciones {
+	//fmt.Printf("Operación confirmada con índice: %d\n", commitIndex)
+	//}
+
+	// Paso 7: Verificar que todos los nodos tienen el mismo estado
+	for nodo := 0; nodo < 3; nodo++ {
+		commitIndex, err := cfg.obtenerIndiceComprometidoRemoto(nodo)
+		if err != nil {
+			t.Fatalf("Error al obtener índice comprometido del nodo %d: %v", nodo, err)
+		}
+		//fmt.Printf("Nodo %d - Último índice comprometido: %d\n", nodo, commitIndex)
+
+		// Comprobamos que el índice comprometido sea igual al número total de operaciones - 1
+		if commitIndex != numOperaciones-1 {
+			t.Fatalf("El nodo %d no está sincronizado correctamente. Se esperaba commitIndex = %d, obtenido = %d", nodo, numOperaciones-1, commitIndex)
+		}
+	}
+
+	fmt.Println("Test 7: SometerVariasOperaciones superado")
+	cfg.stopDistributedProcesses()
+}
+
+
 // --------------------------------------------------------------------------
 // FUNCIONES DE APOYO
 // --------------------------------------------------------------------------
@@ -225,7 +411,7 @@ func (cfg *configDespliegue) someterOperacion(idLeader int, operation string,
 		Valor:     valor,
 	}
 	var reply raft.ResultadoRemoto
-	err := cfg.nodosRaft[idLeader].CallTimeout("NodoRaft.SometerOperacionRaft",
+	err := cfg.nodosRaft[idLeader].CallTimeout("NodoRaft.SometerOperacion",
 		operacion, &reply, 100*time.Millisecond)
 
 	// Manejo de error en la llamada RPC
@@ -244,7 +430,7 @@ func (cfg *configDespliegue) comprobarOperacion(idLeader int, index int,
 
 	// Verifica si el índice de la operación sometida es igual al índice esperado
 	if indice != index || idLider != idLeader {
-		cfg.t.Fatalf("No se ha soemetido correctamente la operación con índice %d, se obtuvo índice %d", index, indice)
+		cfg.t.Fatalf("No se ha sometido correctamente la operación con índice %d, se obtuvo índice %d", index, indice)
 	}
 }
 
@@ -332,7 +518,10 @@ func (cfg *configDespliegue) startDistributedProcesses() {
 			rpctimeout.HostPortArrayToString(cfg.nodosRaft),
 			[]string{endPoint.Host()}, cfg.cr)
 
-		// dar tiempo para se establezcan las replicas
+
+		
+		cfg.conectados[i] = true
+			// dar tiempo para se establezcan las replicas
 		time.Sleep(2000 * time.Millisecond)
 	}
 
@@ -377,4 +566,46 @@ func (cfg *configDespliegue) esperarNuevoLider(idLiderAnterior int) int {
 	}
 
 	return nuevoLider
+}
+
+func (cfg *configDespliegue) iniciarNodo(nodo int) {
+	if nodo >= len(cfg.nodosRaft)|| nodo < 0 {
+		cfg.t.Fatalf("Error: El siguiente nodo no corresponde: %d", nodo)
+	}
+
+
+	nodoIniciado := cfg.nodosRaft[nodo]
+	cfg.t.Logf("Nodo %d ha sido inciiado en la máquina %s", nodo, nodoIniciado.Host())
+
+	// Iniciamos el nodo nodoIniciado
+	despliegue.ExecMutipleHosts(
+		EXECREPLICACMD+" "+strconv.Itoa(nodo)+" "+rpctimeout.HostPortArrayToString(cfg.nodosRaft),
+		[]string{nodoIniciado.Host()}, cfg.cr)
+
+	// Hay que dar tiempo para que el nodo se inicie correctamente al no tener una barrera
+	time.Sleep(2000 * time.Millisecond)
+
+	var estadoRemoto raft.EstadoRemoto
+	// Comprobamos que el nodo ha sido iniciado correctamente
+	err := nodoIniciado.CallTimeout("NodoRaft.ObtenerEstadoNodo", raft.Vacio{}, &estadoRemoto, 500*time.Millisecond)
+
+	if err != nil {
+		cfg.t.Fatalf("Error: El nodo %d no se ha iniciado correctamente: %v", nodo, err)
+	} else {
+		cfg.t.Logf("Nodo %d arrancado correctamente.",
+			nodo)
+		cfg.conectados[nodo] = true
+	}
+}
+
+func (cfg *configDespliegue) obtenerIndiceComprometidoRemoto(nodo int) (int, error) {
+	var reply raft.IndiceCommit
+	err := cfg.nodosRaft[nodo].CallTimeout("NodoRaft.obtenerIndiceComprometido",
+		raft.Vacio{}, &reply, 500*time.Millisecond)
+	if err != nil {
+		fmt.Printf("Error en obtenerIndiceComprometido: %v\n", err)
+		return -1, err
+	}
+
+	return reply.IndiceCommit, nil
 }
