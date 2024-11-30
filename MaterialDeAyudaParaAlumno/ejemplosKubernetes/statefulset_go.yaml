@@ -1,0 +1,64 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: raft-service
+  labels:
+    app: rep
+spec:
+  clusterIP: None   # Headless service, solo para dar de alta pods en DNS
+  selector:      # tiene que coincidir con label definido en pod de StatefulSet
+    app: raft  # Para dar de alta automáticamente en DNS a los PODS ligados
+  ports:
+  - port: 6000
+    name: raft-port
+    protocol: TCP
+    targetPort: 6000
+
+---
+kind: StatefulSet
+apiVersion: apps/v1
+metadata:
+  name: raft
+spec:
+  serviceName: raft-service
+  replicas: 3
+  podManagementPolicy: Parallel   # por defecto sería OrderedReady (secuencial)
+  selector:
+    matchLabels:
+      app: raft    # Tiene que corresponder a .spec.template.metadata.labels
+  template:
+    metadata:
+      labels:
+        app: raft
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: nodo-raft
+        image: localhost:5001/servidor:latest
+        env:
+        - name: NODOS_RAFT
+          value: raft-service.default.svc.cluster.local
+        - name: NOMBRE_NODO		# primera replica raft-0, segunda raft-1, etc
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        command:
+        - /servidor
+        - $(NOMBRE_NODO)
+        ports:
+        - containerPort: 6000
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: client
+spec:
+  restartPolicy: OnFailure
+  containers:
+  - name: cliente
+    image: localhost:5001/cliente:latest
+    command: ["/bin/sh"]
+    args: ["-c", "sleep 3600;"] 
+    ports:
+    - containerPort: 7000
