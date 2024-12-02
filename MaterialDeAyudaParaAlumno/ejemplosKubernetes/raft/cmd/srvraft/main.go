@@ -16,25 +16,15 @@ import (
 )
 
 func main() {
-	// obtener entero de indice de este nodo
+	// Obtener entero de índice de este nodo
 	meStr := os.Args[1]
-	name := strings.Split(meStr, "-")[0]
-	me, err := strconv.Atoi(strings.Split(meStr, "-")[1])
+	name, me, err := parseNodeIndex(meStr)
 	check.CheckError(err, "Main, mal índice de nodo:")
 
 	dns := "raft-service.default.svc.cluster.local:6000"
-	var direcciones []string
-	for i := 0; i < 3; i++ {
-		nodo := name + "-" + strconv.Itoa(i) + "." + dns
-		direcciones = append(direcciones, nodo)
-	}
+	direcciones := generateAddresses(name, dns, 3)
 
-	var nodos []rpctimeout.HostPort
-	// Resto de argumento son los end points como strings
-	// De todas la replicas-> pasarlos a HostPort
-	for _, endPoint := range direcciones {
-		nodos = append(nodos, rpctimeout.HostPort(endPoint))
-	}
+	nodos := convertToHostPort(direcciones)
 
 	// Parte Servidor
 	nr := raft.NuevoNodo(nodos, me, make(chan raft.AplicaOperacion, 1000))
@@ -48,6 +38,28 @@ func main() {
 	for {
 		rpc.Accept(l)
 	}
+}
 
-	//METER LO DE FUNCION APLICAR OPERACION?????
+func parseNodeIndex(meStr string) (string, int, error) {
+	parts := strings.Split(meStr, "-")
+	name := parts[0]
+	me, err := strconv.Atoi(parts[1])
+	return name, me, err
+}
+
+func generateAddresses(name, dns string, count int) []string {
+	var direcciones []string
+	for i := 0; i < count; i++ {
+		nodo := fmt.Sprintf("%s-%d.%s", name, i, dns)
+		direcciones = append(direcciones, nodo)
+	}
+	return direcciones
+}
+
+func convertToHostPort(direcciones []string) []rpctimeout.HostPort {
+	var nodos []rpctimeout.HostPort
+	for _, endPoint := range direcciones {
+		nodos = append(nodos, rpctimeout.HostPort(endPoint))
+	}
+	return nodos
 }
